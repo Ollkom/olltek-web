@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "marketings",
+  "info": {
+    "singularName": "marketing",
+    "pluralName": "marketings",
+    "displayName": "Marketing"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "media": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.media"
+    },
+    "description": {
+      "type": "text"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.seo",
+        "shared.rich-text",
+        "shared.video-embed",
+        "sections.company",
+        "sections.features",
+        "sections.bottom-actions",
+        "layout.page-header"
+      ]
+    }
+  }
+}

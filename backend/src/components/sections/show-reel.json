@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_sections_show_reels",
+  "info": {
+    "displayName": "ShowReel"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "ReelItem": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.reel-item"
+    }
+  }
+}

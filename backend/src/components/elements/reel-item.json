@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_elements_reel_items",
+  "info": {
+    "displayName": "ReelItem",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "desktopMedia": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.media"
+    },
+    "mobileMedia": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.media"
+    },
+    "Button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "links.button-link"
+    }
+  }
+}

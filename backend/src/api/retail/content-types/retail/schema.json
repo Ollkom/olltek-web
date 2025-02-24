@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "retails",
+  "info": {
+    "singularName": "retail",
+    "pluralName": "retails",
+    "displayName": "Retail",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "media": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.media"
+    },
+    "description": {
+      "type": "text"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.rich-text",
+        "shared.video-embed",
+        "shared.seo",
+        "sections.company",
+        "sections.features",
+        "sections.bottom-actions",
+        "layout.page-header"
+      ]
+    }
+  }
+}

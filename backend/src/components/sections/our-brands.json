@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_our_brands",
+  "info": {
+    "displayName": "OurBrands",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "BrandsCategory": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.brands-category"
+    },
+    "Button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "links.button-link"
+    }
+  }
+}

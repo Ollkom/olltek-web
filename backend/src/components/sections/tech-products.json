@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_tech_products",
+  "info": {
+    "displayName": "TechProducts",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "Button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "links.button-link"
+    },
+    "Features": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.features"
+    }
+  }
+}
