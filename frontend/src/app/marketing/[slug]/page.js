@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { Post } from "@/components/common";
 import { getPostBySlug } from "@/utils/api-loaders";
 
-export default async function PostRoute({ params }) {
+export default async function PostRoute(props) {
+  const params = await props.params;
   const { slug } = params;
 
   const data = await getPostBySlug(slug, "marketings");
