@@ -6,7 +6,8 @@ import { InternalContact } from "@/components/forms";
 import { fetchAPI } from "@/utils/fetch-api";
 import { FALLBACK_SEO } from "@/utils/constants";
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params;
   const page = await getPageBySlug(params?.slug);
 
   if (!page?.data[0]?.attributes?.seo) return FALLBACK_SEO;
@@ -18,7 +19,8 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function PageRoute({ params }) {
+export default async function PageRoute(props) {
+  const params = await props.params;
   const page = await getPageBySlug(params?.slug, params?.lang);
   const testimonial = await getGlobal();
 

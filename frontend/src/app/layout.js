@@ -22,7 +22,8 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params;
   const meta = await getGlobal(params.lang);
 
   if (!meta.data) return FALLBACK_SEO;
