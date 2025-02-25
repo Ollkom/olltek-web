@@ -11,7 +11,11 @@ const ProductList = ({ item }) => (
           item.media?.file?.data &&
           getStrapiMedia(item.media?.file?.data?.attributes?.url)
         }
-        alt={item.media?.file?.data?.attributes?.alternativeText || heading}
+        alt={
+          item.media?.file?.data?.attributes?.alternativeText ||
+          item?.title ||
+          `Product ${item?.id}`
+        }
         width={item.media?.file?.data?.attributes?.width}
         height={item.media?.file?.data?.attributes?.height}
         className="mt-1.5"
@@ -46,7 +50,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
                 <ProductList item={item} />
               </Link>
             ) : (
-              <div className="px-8 py-6 flex space-x-6 items-start">
+              <div key={item?.id} className="px-8 py-6 flex space-x-6 items-start">
                 <ProductList item={item} />
               </div>
             )}

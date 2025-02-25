@@ -32,7 +32,11 @@ const ContactDetail = ({ item, isFirst }) => (
         {item?.media.data && (
           <Image
             src={getStrapiMedia(item?.media?.data?.attributes?.url)}
-            alt={item?.media?.data?.attributes?.alternativeText || "Contact Details"}
+            alt={
+              item?.media?.data?.attributes?.alternativeText ||
+              item?.title ||
+              `Contact Details ${item?.id}`
+            }
             width={item?.media?.data?.attributes?.width}
             height={item?.media?.data?.attributes?.height}
           />

@@ -65,8 +65,8 @@ const NavLinks = (props) => {
           {link?.navigations?.data.length > 0 && (
             <div
               className={`absolute top-30 left-0 z-50 w-full transition ease-out duration-500 transform shadow-md ${hoverMenuItem === link?.title
-                  ? "opacity-100 visible"
-                  : "opacity-0 invisible"
+                ? "opacity-100 visible"
+                : "opacity-0 invisible"
                 }`}
             >
               {/* Below div is for left side menu bg */}
@@ -95,7 +95,8 @@ const NavLinks = (props) => {
                           height={link?.media?.file?.data?.attributes?.height}
                           alt={
                             link?.media?.file?.data?.attributes?.alternativeText ||
-                            "Nav Image"
+                            link?.title ||
+                            `Nav ${link?.id}`
                           }
                         />
                       )}

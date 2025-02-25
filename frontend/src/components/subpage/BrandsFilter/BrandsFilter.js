@@ -53,7 +53,11 @@ export default function MultiFilters({ items, columns }) {
           const imageElement = item?.media?.data && (
             <Image
               src={getStrapiMedia(item?.media?.data?.attributes?.url)}
-              alt={item?.title || "Brand Image"}
+              alt={
+                item?.media?.data?.attributes?.alternativeText ||
+                item?.title ||
+                `Brand ${item?.id}`
+              }
               width={item?.media?.data?.attributes?.width}
               height={item?.media?.data?.attributes?.height}
               className="mx-auto"

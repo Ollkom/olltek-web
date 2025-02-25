@@ -38,7 +38,11 @@ const Hero = async (props) => {
       {heroImage && (
         <Image
           src={getStrapiMedia(heroImage?.url)}
-          alt="hero"
+          alt={
+            heroImage?.alternativeText ||
+            title ||
+            "Hero"
+          }
           width={heroImage?.width}
           height={heroImage?.height}
           loading="eager"

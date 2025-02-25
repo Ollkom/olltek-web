@@ -15,7 +15,11 @@ const Reel = ({ item }) => {
           src={getStrapiMedia(desktopImage?.url)}
           width={desktopImage?.width}
           height={desktopImage?.height}
-          alt={desktopImage?.alternativeText || "Show Reel"}
+          alt={
+            desktopImage?.alternativeText ||
+            item?.title ||
+            `Show Reel ${item?.id}`
+          }
           className="hidden rounded-xl object-cover transition-transform duration-300 group-hover:scale-105 md:block"
         />
       )}
@@ -24,7 +28,11 @@ const Reel = ({ item }) => {
           src={getStrapiMedia(mobileImage?.url)}
           width={mobileImage?.width}
           height={mobileImage?.height}
-          alt={mobileImage?.alternativeText || "Show Reel"}
+          alt={
+            mobileImage?.alternativeText ||
+            item?.title ||
+            `Show Reel ${item?.id}`
+          }
           className="rounded-xl md:hidden mx-auto"
         />
       )}

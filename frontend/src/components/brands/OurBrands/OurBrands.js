@@ -17,7 +17,11 @@ const Grid = ({ items }) => (
                 src={getStrapiMedia(media?.file?.data?.attributes?.url)}
                 width={media?.file?.data?.attributes?.width}
                 height={media?.file?.data?.attributes?.height}
-                alt={media?.file?.data?.attributes?.alternativeText || "Brand Image"}
+                alt={
+                  media?.file?.data?.attributes?.alternativeText ||
+                  item?.title ||
+                  `Brand ${item?.id}`
+                }
               />
             </span>
           )}

@@ -37,7 +37,11 @@ const Card = ({
         <div className="flex space-x-6 items-center">
           {image && (
             <Image
-              alt={image?.alternativeText || "Card Image"}
+              alt={
+                image?.alternativeText ||
+                title ||
+                "Card Image"
+              }
               width={image?.width}
               height={image?.height}
               src={getStrapiMedia(image?.url)}

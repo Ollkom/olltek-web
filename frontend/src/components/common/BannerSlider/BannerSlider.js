@@ -38,7 +38,10 @@ const BannerSlider = ({ data }) => {
               <div key={banner?.id}>
                 <Image
                   src={getStrapiMedia(banner?.attributes?.url)}
-                  alt={banner?.attributes?.alternativeText || "Banner Image"}
+                  alt={
+                    banner?.attributes?.alternativeText ||
+                    `Banner ${banner?.id}`
+                  }
                   width={banner?.attributes?.width}
                   height={banner?.attributes?.height}
                 />

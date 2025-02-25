@@ -18,7 +18,11 @@ const Features = (props) => {
                 <div className="mb-8">
                   <Image
                     src={getStrapiMedia(item?.media?.data?.attributes?.url)}
-                    alt={item?.title || "Feature Image"}
+                    alt={
+                      item?.media?.data?.attributes?.alternativeText ||
+                      item?.title ||
+                      `Feature ${item?.id}`
+                    }
                     width={item?.media?.data?.attributes?.width}
                     height={item?.media?.data?.attributes?.height}
                     className="mx-auto"

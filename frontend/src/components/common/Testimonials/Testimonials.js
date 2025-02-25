@@ -22,7 +22,11 @@ function Testimonial({ text, authorName, picture, authorTitle }) {
         <div className="w-[130px] mt-3">
           <Image
             src={imageUrl ?? ""}
-            alt={picture?.data?.attributes?.alternativeText || "none provided"}
+            alt={
+              picture?.data?.attributes?.alternativeText ||
+              authorName ||
+              `Testimonial ${picture?.data?.id}`
+            }
             width={picture?.data?.attributes?.width}
             height={picture?.data?.attributes?.height}
           />

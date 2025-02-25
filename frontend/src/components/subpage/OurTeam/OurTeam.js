@@ -32,7 +32,11 @@ const OurTeam = (props) => {
             <div className="text-center relative group" key={item?.id}>
               <Image
                 src={getStrapiMedia(item?.media?.data?.attributes?.url)}
-                alt={item?.media?.data?.attributes?.alternativeText || "Our Team"}
+                alt={
+                  item?.media?.data?.attributes?.alternativeText ||
+                  item?.title ||
+                  `Our Team ${item?.id}`
+                }
                 width={item?.media?.data?.attributes?.width}
                 height={item?.media?.data?.attributes?.height}
                 className="mb-4 rounded-3xl"
@@ -40,7 +44,11 @@ const OurTeam = (props) => {
               {item?.MediaHover?.data && (
                 <Image
                   src={getStrapiMedia(item?.MediaHover?.data?.attributes?.url)}
-                  alt={item?.MediaHover?.data?.attributes?.alternativeText || "Our Team"}
+                  alt={
+                    item?.MediaHover?.data?.attributes?.alternativeText ||
+                    item?.title ||
+                    `Our Team ${item?.id}`
+                  }
                   width={item?.MediaHover?.data?.attributes?.width}
                   height={item?.MediaHover?.data?.attributes?.height}
                   className="mb-4 rounded-3xl absolute top-0 opacity-0 md:group-hover:opacity-100 transition duration-300"
