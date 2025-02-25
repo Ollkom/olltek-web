@@ -17,7 +17,7 @@ const Footer = (props) => {
               <div className="w-[220px]">
                 <Image
                   src={getStrapiMedia(logo?.url)}
-                  alt={logo?.alternativeText}
+                  alt={logo?.alternativeText || "Olltek Logo"}
                   width={logo?.width}
                   height={logo?.height}
                 />
@@ -49,9 +49,8 @@ const Footer = (props) => {
 
           {FooterMenu?.map((item, index) => (
             <div
-              className={`mb-6 md:mb-0 md:flex items-start ${
-                index === FooterMenu?.length - 2 ? "mb-0" : ""
-              }`}
+              className={`mb-6 md:mb-0 md:flex items-start ${index === FooterMenu?.length - 2 ? "mb-0" : ""
+                }`}
               key={item?.id}
             >
               <div>

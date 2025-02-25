@@ -293,7 +293,7 @@ export default function Contact({ data }) {
               {media?.file?.data && (
                 <Image
                   src={getStrapiMedia(media?.file?.data?.attributes?.url)}
-                  alt={media?.file?.data?.attributes?.alternativeText}
+                  alt={media?.file?.data?.attributes?.alternativeText || "Contact"}
                   width={media?.file?.data?.attributes?.width}
                   height={media?.file?.data?.attributes?.height}
                   className="mb-6 max-w-48 md:max-w-80"
@@ -309,7 +309,7 @@ export default function Contact({ data }) {
                           src={getStrapiMedia(
                             item?.media?.data?.attributes?.url
                           )}
-                          alt={item?.media?.data?.attributes?.alternativeText}
+                          alt={item?.media?.data?.attributes?.alternativeText || "Contact Details"}
                           width={item?.media?.data?.attributes?.width}
                           height={item?.media?.data?.attributes?.height}
                         />

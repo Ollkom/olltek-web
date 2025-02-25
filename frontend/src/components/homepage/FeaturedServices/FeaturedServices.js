@@ -62,7 +62,7 @@ const FeaturedServices = (props) => {
               {media?.url && (
                 <Image
                   src={getStrapiMedia(media?.url)}
-                  alt={media?.alternativeText}
+                  alt={media?.alternativeText || "Featured Services"}
                   width={media?.width}
                   height={media?.height}
                   className="mx-auto"

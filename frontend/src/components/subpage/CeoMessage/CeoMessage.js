@@ -37,7 +37,7 @@ const CeoMessage = (props) => {
           {media?.file?.data && (
             <Image
               src={getStrapiMedia(media?.file?.data?.attributes?.url)}
-              alt={media?.file?.data?.attributes?.alternativeText}
+              alt={media?.file?.data?.attributes?.alternativeText || "Ceo Message"}
               width={media?.file?.data?.attributes?.width}
               height={media?.file?.data?.attributes?.height}
             />
@@ -69,7 +69,7 @@ const CeoMessage = (props) => {
                   {signature?.data && (
                     <Image
                       src={getStrapiMedia(signature?.data?.attributes?.url)}
-                      alt={signature?.data?.attributes?.alternativeText}
+                      alt={signature?.data?.attributes?.alternativeText || "Signature"}
                       width={signature?.data?.attributes?.width}
                       height={signature?.data?.attributes?.height}
                     />
