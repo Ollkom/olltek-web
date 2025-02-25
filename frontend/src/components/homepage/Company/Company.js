@@ -27,7 +27,7 @@ const Company = (props) => {
           <div>
             <Image
               src={getStrapiMedia(image?.url)}
-              alt={image?.alternativeText}
+              alt={image?.alternativeText || "Company Image"}
               width={image?.width}
               height={image?.height}
               className="mx-auto"

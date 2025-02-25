@@ -25,7 +25,7 @@ const TechExpertise = (props) => {
                       return (
                         <div className="text-center">
                           <Image
-                            alt={image?.alternativeText}
+                            alt={image?.alternativeText || "Tech Expertise"}
                             width={image?.width}
                             height={image?.height}
                             src={getStrapiMedia(image?.url)}

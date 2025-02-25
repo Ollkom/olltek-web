@@ -12,7 +12,7 @@ const HomeFacts = (props) => {
               <div>
                 <Image
                   src={getStrapiMedia(item?.media?.data?.attributes?.url)}
-                  alt={item?.title}
+                  alt={item?.title || "Home Fact"}
                   width={item?.media?.data?.attributes?.width}
                   height={item?.media?.data?.attributes?.height}
                   className="mx-auto"

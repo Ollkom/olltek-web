@@ -20,7 +20,7 @@ const EnhancedCard = ({
           src={getStrapiMedia(media?.url)}
           width={media?.width}
           height={media?.height}
-          alt={media?.alternativeText}
+          alt={media?.alternativeText || "Enhanced Card"}
         />
       )}
       <div

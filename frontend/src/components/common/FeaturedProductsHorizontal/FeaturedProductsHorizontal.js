@@ -11,7 +11,7 @@ const ProductList = ({ item }) => (
           item.media?.file?.data &&
           getStrapiMedia(item.media?.file?.data?.attributes?.url)
         }
-        alt={item.media?.file?.data?.attributes?.alternativeText}
+        alt={item.media?.file?.data?.attributes?.alternativeText || "Product Image"}
         width={item.media?.file?.data?.attributes?.width}
         height={item.media?.file?.data?.attributes?.height}
         className="mt-1.5"
