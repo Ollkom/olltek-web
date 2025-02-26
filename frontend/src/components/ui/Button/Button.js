@@ -1,6 +1,5 @@
 "use client";
 import cx from "classnames";
-import { motion } from "framer-motion";
 import { ButtonIcon } from "@/assets/images";
 
 const Button = (props) => {
@@ -18,13 +17,13 @@ const Button = (props) => {
         "flex relative": icon,
       })}
     >
-      <motion.button
+      <button
         className={cx(
           "rounded-full font-medium text-base text-black",
           {
             "pointer-events-none opacity-50": disabled,
 
-            "text-[#1010B7] bg-white px-6 py-2 md:py-3 transition-colors duration-300 ease-in-out hover:bg-[#070751] hover:text-white":
+            "text-[#1010B7] bg-white px-6 py-2 md:py-3 hover:bg-[#F8F9FB] border border-transparent hover:border-[#E5E5E7] active:border-[#E5E5E7]":
               variant === "secondary",
             "hover:bg-[#070751] py-2.5 px-8 border-2 border-black hover:text-white transition-colors duration-300 ease-in-out 2xl:text-2xl":
               variant === "primary",
@@ -38,9 +37,6 @@ const Button = (props) => {
         )}
         disabled={disabled}
         {...rest}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        transition={{ type: "spring", stiffness: 400, damping: 10 }}
       >
         {variant === "gradient" ? (
           <span className="flex w-full md:w-auto bg-white text-white rounded-full transition-colors duration-300 ease-in-out  hover:text-white hover:bg-gradient-to-r from-[#08B1F6] to-[#2F4BDF]">
@@ -51,7 +47,7 @@ const Button = (props) => {
         ) : (
           children
         )}
-      </motion.button>
+      </button>
 
       {icon && (
         <ButtonIcon className="absolute top-[17px] right-3 md:right-6" />
