@@ -36,6 +36,13 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
