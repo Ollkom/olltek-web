@@ -611,6 +611,7 @@ export interface SectionsHero extends Schema.Component {
     picture: Attribute.Media & Attribute.Required;
     buttons: Attribute.Component<'links.button-link', true>;
     pictureMobile: Attribute.Media;
+    icon: Attribute.Media;
   };
 }
 
