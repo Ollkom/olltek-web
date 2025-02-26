@@ -10,7 +10,11 @@ const HomeClients = (props) => {
           <div key={item?.id} className="my-6 px-7 md:px-8">
             <Image
               src={getStrapiMedia(item?.media?.data?.attributes?.url)}
-              alt={item?.title}
+              alt={
+                item?.media?.data?.attributes?.alternativeText ||
+                item?.title ||
+                `Client ${item?.id}`
+              }
               width={item?.media?.data?.attributes?.width}
               height={item?.media?.data?.attributes?.height}
               className="mx-auto"

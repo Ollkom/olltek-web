@@ -64,11 +64,10 @@ const NavLinks = (props) => {
           </Link>
           {link?.navigations?.data.length > 0 && (
             <div
-              className={`absolute top-30 left-0 z-50 w-full transition ease-out duration-500 transform shadow-md ${
-                hoverMenuItem === link?.title
-                  ? "opacity-100 visible"
-                  : "opacity-0 invisible"
-              }`}
+              className={`absolute top-30 left-0 z-50 w-full transition ease-out duration-500 transform shadow-md ${hoverMenuItem === link?.title
+                ? "opacity-100 visible"
+                : "opacity-0 invisible"
+                }`}
             >
               {/* Below div is for left side menu bg */}
               <div className="bg-[#070751] relative">
@@ -95,7 +94,9 @@ const NavLinks = (props) => {
                           width={link?.media?.file?.data?.attributes?.width}
                           height={link?.media?.file?.data?.attributes?.height}
                           alt={
-                            link?.media?.file?.data?.attributes?.alternativeText
+                            link?.media?.file?.data?.attributes?.alternativeText ||
+                            link?.title ||
+                            `Nav ${link?.id}`
                           }
                         />
                       )}

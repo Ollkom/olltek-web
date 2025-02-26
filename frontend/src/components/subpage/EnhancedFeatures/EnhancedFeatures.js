@@ -89,7 +89,11 @@ const EnhancedFeatures = (props) => {
                   src={getStrapiMedia(media?.url)}
                   width={media?.width}
                   height={media?.height}
-                  alt={media?.alternativeText}
+                  alt={
+                    media?.alternativeText ||
+                    title ||
+                    `Enhanced Features ${media?.id}`
+                  }
                   className="mx-auto"
                 />
               );

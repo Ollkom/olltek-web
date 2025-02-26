@@ -33,7 +33,11 @@ export default function PageHeader({ data }) {
             media?.file?.data &&
             getStrapiMedia(media?.file?.data?.attributes?.url)
           }
-          alt={media?.file?.data?.attributes?.alternativeText}
+          alt={
+            media?.file?.data?.attributes?.alternativeText ||
+            title ||
+            `Header ${media?.id}`
+          }
           width={media?.file?.data?.attributes?.width}
           height={media?.file?.data?.attributes?.height}
           loading="eager"

@@ -15,7 +15,7 @@ const NavDetails = (props) => {
         {media && (
           <Image
             src={getStrapiMedia(media?.url)}
-            alt={media?.alternativeText}
+            alt={media?.alternativeText || title || `Nav ${media?.id}`}
             width={media?.width}
             height={media?.height}
             className="mr-2 w-6 md:w-auto"

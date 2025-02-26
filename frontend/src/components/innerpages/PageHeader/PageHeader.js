@@ -12,7 +12,11 @@ export default function PageHeader({ fontInter, fontBakBak, data }) {
               media?.file?.data &&
               getStrapiMedia(media?.file?.data?.attributes?.url)
             }
-            alt={media?.file?.data?.attributes?.alternativeText || heading}
+            alt={
+              media?.file?.data?.attributes?.alternativeText ||
+              heading ||
+              "Page Header"
+            }
             width={media?.file?.data?.attributes?.width}
             height={media?.file?.data?.attributes?.height}
             className="align-top mr-4 max-w-16 md:max-w-full"

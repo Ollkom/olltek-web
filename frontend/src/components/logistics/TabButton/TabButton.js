@@ -17,7 +17,7 @@ const TabButton = ({ tab, selectedTab, setSelectedTab }) => {
       <div className="flex items-center">
         <Image
           src={tab.image}
-          alt={tab?.name}
+          alt={tab?.name || "Tab Image"}
           width={tab?.width}
           height={tab?.height}
           className={cx("mr-3 group-hover:hidden w-[42]", {
@@ -27,7 +27,7 @@ const TabButton = ({ tab, selectedTab, setSelectedTab }) => {
         />
         <Image
           src={tab.hoverImage}
-          alt={tab?.name}
+          alt={tab?.name || "Tab Image"}
           width={tab?.width}
           height={tab?.height}
           className={cx("mr-3 group-hover:block w-[42]", {
