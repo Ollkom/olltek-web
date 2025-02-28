@@ -1,6 +1,5 @@
 "use client";
 import cx from "classnames";
-import { motion } from "framer-motion";
 import { ButtonIcon } from "@/assets/images";
 
 const Button = (props) => {
@@ -18,15 +17,15 @@ const Button = (props) => {
         "flex relative": icon,
       })}
     >
-      <motion.button
+      <button
         className={cx(
           "rounded-full font-medium text-base text-black",
           {
             "pointer-events-none opacity-50": disabled,
 
-            "text-[#1010B7] bg-white px-6 py-2 md:py-3 transition-colors duration-300 ease-in-out hover:bg-[#070751] hover:text-white":
+            "text-darkGrayText bg-white px-4 py-2.5 hover:bg-lightBlue border border-white hover:border-lightBlue hover:text-white active:bg-darkBlue transition-colors duration-300 ease-in-out":
               variant === "secondary",
-            "hover:bg-[#070751] py-2.5 px-8 border-2 border-black hover:text-white transition-colors duration-300 ease-in-out 2xl:text-2xl":
+            "bg-darkBlue text-white px-4 py-2.5 border border-darkBlue hover:border-white hover:bg-white hover:text-darkBlue active:bg-lightGrayBackground transition-colors duration-300 ease-in-out":
               variant === "primary",
             "bg-gradient-to-r from-[#08B1F6] to-[#2F4BDF] py-1.5 px-8 text-white text-2xl 2xl:text-3xl":
               variant === "subsecondary",
@@ -38,9 +37,6 @@ const Button = (props) => {
         )}
         disabled={disabled}
         {...rest}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        transition={{ type: "spring", stiffness: 400, damping: 10 }}
       >
         {variant === "gradient" ? (
           <span className="flex w-full md:w-auto bg-white text-white rounded-full transition-colors duration-300 ease-in-out  hover:text-white hover:bg-gradient-to-r from-[#08B1F6] to-[#2F4BDF]">
@@ -51,7 +47,7 @@ const Button = (props) => {
         ) : (
           children
         )}
-      </motion.button>
+      </button>
 
       {icon && (
         <ButtonIcon className="absolute top-[17px] right-3 md:right-6" />
