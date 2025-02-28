@@ -87,7 +87,11 @@ const populate = {
         populate: true,
       },
       // Platform Data
-      Button: true,
+      Button: {
+        populate: {
+          icon: true,
+        },
+      },
       Heading: true,
       PlatformList: {
         fields: ["title"],
