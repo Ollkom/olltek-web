@@ -53,7 +53,7 @@
     "Button": {
       "type": "component",
       "repeatable": false,
-      "component": "links.button-link"
+      "component": "links.social-link"
     },
     "showFilter": {
       "type": "boolean",
@@ -62,8 +62,8 @@
     "enable": {
       "type": "boolean"
     },
-    "titleColor": {
-      "type": "string"
+    "ctaTitle": {
+      "type": "text"
     }
   }
 }
