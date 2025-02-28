@@ -29,6 +29,8 @@ export async function getGlobal() {
       "testimonials",
       "testimonials.Testimonial",
       "testimonials.Testimonial.picture",
+      "countries",
+      "countries.country.media.file"
     ],
   };
   return await fetchAPI(path, urlParamsObject, options, tag);
