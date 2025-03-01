@@ -9,3 +9,4 @@ export { default as Statistics } from "./Statistics";
 export { default as HomeClients } from "./HomeClients";
 export { default as HomeFacts } from "./HomeFacts";
 export { default as Industries } from "./Industries";
+export { default as CountryScroll } from "./CountryScroll";
