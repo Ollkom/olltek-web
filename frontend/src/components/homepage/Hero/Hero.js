@@ -1,14 +1,19 @@
 import { Button } from "@/components/ui";
 import { getStrapiMedia } from "@/utils/api-helpers";
+import { getGlobal } from "@/utils/api-loaders";
 import Image from "next/image";
 import Link from "next/link";
+import CountryScroll from "@/components/homepage/CountryScroll";
 
-const Hero = (props) => {
+const Hero = async (props) => {
   const { data } = props;
-  const { picture, pictureMobile, icon, title, description, buttons } = data;
+  const globalData = await getGlobal();
+  const countries = globalData?.data?.attributes?.countries;
+
+  const { picture, pictureMobile, title, description, buttons } = data;
   const heroImage = picture?.data?.attributes;
   const heroImageMobile = pictureMobile?.data?.attributes;
-  const iconImage = icon?.data?.attributes;
+
 
   if (!data) return null;
   return (
@@ -16,18 +21,8 @@ const Hero = (props) => {
       <div className="absolute flex flex-col gap-2 md:gap-3 justify-center items-center text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:max-w-[615px] z-10 px-6 md:px-0">
         {title && (
           <h2 className="text-[28px] text-center md:text-[52px] md:pb-4 font-medium leading-tight md:leading-[1.1]">
-            {title}
-            <span className="inline-block ms-2">
-              {iconImage?.url && (
-                <Image
-                  src={getStrapiMedia(iconImage?.url)}
-                  alt={iconImage?.alternativeText || "Icon"}
-                  width={iconImage?.width}
-                  height={iconImage?.height}
-                  className="w-[26px] h-[26px] md:w-[40px] md:h-[40px]"
-                />
-              )}
-            </span>
+            Cross-Border Solutions to GCC from
+            <CountryScroll countries={countries} />
           </h2>
         )}
         {description && (
@@ -38,7 +33,7 @@ const Hero = (props) => {
             {buttons.map((button) => {
               if (!button?.text || !button?.url) return null;
               return (
-                <Link key={button.id} href={button.url}>
+                <Link key={button.id} href={button.url || "/"}>
                   <Button variant={button.type} className="text-sm md:text-base">
                     {button.text}
                   </Button>
