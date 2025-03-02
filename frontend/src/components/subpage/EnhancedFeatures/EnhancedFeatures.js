@@ -1,122 +1,85 @@
 import Link from "next/link";
+import { EnhancedCard, MotionCardStaggered } from "@/components/ui";
+import { SectionHeader } from "@/components/common";
 import Image from "next/image";
-import cx from "classnames";
-import { Typography, EnhancedCard, MotionCardStaggered } from "@/components/ui";
 import { getStrapiMedia } from "@/utils/api-helpers";
+import { IconLinkArrow } from "@/assets/images";
+
 
 const EnhancedFeatures = (props) => {
   const { data } = props;
   const {
     enable,
     title,
-    bgColor,
     description,
     feature,
-    variant,
-    columns,
-    titleColor,
+    ctaTitle,
+    Button
   } = data;
-  const gridColumn =
-    columns === "fourColumn"
-      ? 4
-      : columns === "fiveColumn"
-        ? 5
-        : columns === "sixColumn"
-          ? 6
-          : 3;
-  const isCard = variant === "card";
 
-  if (enable === false) return;
-
+  if (enable === false) return null;
   return (
     <section
-      className={cx("py-12 md:py-24")}
-      style={{ backgroundColor: bgColor }}
-    >
-      <div className="px-5 md:px-0 container-custom">
-        {title && (
-          <Typography
-            variant="title"
-            className={cx("tracking-widest text-center w-full", {
-              "pb-8": !description,
-            })}
-          >
-            <span style={{ color: titleColor ?? "#333333" }}>{title}</span>
-          </Typography>
-        )}
-        {description && (
-          <Typography
-            variant="heading1"
-            className="md:w-[800px] mx-auto text-center"
-          >
-            <span style={{ color: titleColor ?? "#202529" }}>
-              {description}
-            </span>
-          </Typography>
-        )}
-        {isCard ? (
-          <div
-            className={`grid grid-cols-1 gap-8 md:grid-cols-${gridColumn} md:gap-6 py-10`}
-          >
-            {feature?.map((item, index) => {
-              const media = item?.media?.data?.attributes;
-              const url = item?.url ? `/${item?.url}` : null;
-              return (
-                <MotionCardStaggered
-                  key={item?.id}
-                  index={index}
-                  className="bg-white"
-                >
-                  <EnhancedCard
-                    url={url}
-                    title={item?.title}
-                    description={item?.description}
-                    media={media}
-                    smallClamp
-                  />
-                </MotionCardStaggered>
-              );
-            })}
-          </div>
-        ) : (
-          <div
-            className={`grid grid-cols-2 md:grid-cols-${gridColumn} gap-4 item-center justify-center mx-auto`}
-          >
-            {feature?.map((item) => {
-              const media = item?.media?.data?.attributes;
-              const imageElement = item?.media?.data && (
-                <Image
-                  src={getStrapiMedia(media?.url)}
-                  width={media?.width}
-                  height={media?.height}
-                  alt={
-                    media?.alternativeText ||
-                    title ||
-                    `Enhanced Features ${media?.id}`
-                  }
-                  className="mx-auto"
+      className="py-10 md:py-14">
+      <div className="px-5 md:px-0 container-custom mx-auto">
+        {/* Section Header */}
+        <div className="flex flex-col items-center justify-center text-center mb-12">
+          <SectionHeader title={title} description={description} />
+        </div>
+
+        {/* Feature Cards Grid */}
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6`}>
+          {feature?.map((item, index) => {
+            const media = item?.media?.data?.attributes;
+            const url = item?.url || null;
+            return (
+              <MotionCardStaggered
+                key={item?.id}
+                index={index}
+              >
+                <EnhancedCard
+                  url={url}
+                  title={item?.title}
+                  description={item?.description}
+                  media={media}
+                  text={item?.text}
                 />
-              );
-              return (
-                <div className="w-full md:w-auto mt-4 drop-shadow-lg bg-white flex items-center">
-                  {item?.showLink ? (
-                    <Link
-                      href={item?.url}
-                      target={item?.newTab ? "_blank" : "_self"}
-                      className="w-full mx-auto py-8 px-6 md:py-14"
-                    >
-                      {imageElement}
-                    </Link>
-                  ) : (
-                    <span className="py-8 px-6 md:py-12 mx-auto">
-                      {imageElement}
-                    </span>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
+              </MotionCardStaggered>
+            );
+          })}
+          {/* Contact CTA Section */}
+          {(ctaTitle || Button?.text) && (
+            <MotionCardStaggered
+              index={feature?.length}
+            >
+              <div className="flex flex-col items-center justify-center gap-4 bg-[#445EAB33] rounded-md p-8 text-center aspect-[4/3]">
+                {Button?.icon && (
+                  <Image
+                    src={getStrapiMedia(Button.icon.data.attributes.url)}
+                    alt={Button.icon.data.attributes.name}
+                    width={Button.icon.data.attributes.width}
+                    height={Button.icon.data.attributes.height}
+                    className="w-10 h-10"
+                  />
+                )}
+                {ctaTitle && (
+                  <h3 className="md:text-base 2xl:text-xl font-medium text-darkGrayText">{ctaTitle}</h3>
+                )}
+                {Button?.text && (
+                  <Link
+                    href={Button.url || "/"}
+                    target={Button.newTab ? "_blank" : "_self"}
+                    className="flex items-center text-lightBlue font-semibold text-base group"
+                  >
+                    {Button.text}
+                    <IconLinkArrow className="ms-2 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
+                  </Link>
+                )}
+              </div>
+            </MotionCardStaggered>
+          )}
+        </div>
+
       </div>
     </section>
   );
