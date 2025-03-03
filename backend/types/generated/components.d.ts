@@ -677,6 +677,8 @@ export interface SectionsInternalContactForm extends Schema.Component {
   attributes: {
     title: Attribute.String;
     ContactDetails: Attribute.Component<'elements.feature', true>;
+    picture: Attribute.Media;
+    description: Attribute.Text;
   };
 }
 
