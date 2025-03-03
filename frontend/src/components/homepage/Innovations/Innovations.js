@@ -87,7 +87,7 @@ const Innovations = (props) => {
           {description && <p className="text-white font-normal text-sm md:text-lg">{description}</p>}
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8 items-center">
+        <div className="flex flex-col-reverse md:flex-row gap-8 items-center">
           {/* steps */}
           <div className="w-full md:w-1/2">
             <div className="flex flex-col items-start">
@@ -108,13 +108,13 @@ const Innovations = (props) => {
                       <div className="flex items-center">
                         <div
                           className={`
-                          flex items-center justify-center w-10 h-10 rounded-full mr-4 border border-[#E5E5E7] font-medium text-base transition-all duration-200 ease-in-out
+                          flex items-center justify-center w-10 h-10 rounded-full mr-2 md:mr-4 border-t border-r border-b border-[#E5E5E7] font-medium text-base transition-all duration-200 ease-in-out flex-shrink-0
                           ${index === selectedIndex ? 'text-white font-semibold' : 'bg-[#FFFFFF] text-[#525D6A]'}
                         `}
                         >
                           {index + 1}
                         </div>
-                        {item?.title && <h3 className={`text-white pe-4 ${index === selectedIndex ? 'font-semibold' : 'font-normal'}`}>
+                        {item?.title && <h3 className={`text-white pe-4 text-sm md:text-base ${index === selectedIndex ? 'font-semibold' : 'font-normal'}`}>
                           {item.title}
                         </h3>}
                       </div>
