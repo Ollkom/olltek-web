@@ -8,6 +8,7 @@ import {
   Company,
   Statistics,
   Industries,
+  Innovations,
 } from "@/components/homepage";
 import { LargeVideo } from "@/components/subpage";
 import { InternalContact } from "@/components/forms";
@@ -39,6 +40,8 @@ export function sectionRenderer(section, index) {
       return <Industries key={index} data={section} fontInter={inter} />;
     case "sections.internal-contact-form":
       return <InternalContact key={index} data={section} />;
+    case "sections.innovations":
+      return <Innovations key={index} data={section} fontInter={inter} />;
 
     default:
       return null;
