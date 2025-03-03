@@ -25,7 +25,7 @@ const Button = (props) => {
 
             "text-darkGrayText bg-white px-4 py-2.5 hover:bg-lightBlue border border-white hover:border-lightBlue hover:text-white active:bg-darkBlue transition-colors duration-300 ease-in-out":
               variant === "secondary",
-            "bg-darkBlue text-white px-4 py-2.5 border border-darkBlue hover:border-white hover:bg-white hover:text-darkBlue active:bg-lightGrayBackground transition-colors duration-300 ease-in-out":
+            "bg-lightBlue text-white px-4 py-2.5 border border-lightBlue hover:border-lightBlue hover:bg-white hover:text-lightBlue active:bg-lightGrayBackground transition-colors duration-300 ease-in-out":
               variant === "primary",
             "bg-gradient-to-r from-[#08B1F6] to-[#2F4BDF] py-1.5 px-8 text-white text-2xl 2xl:text-3xl":
               variant === "subsecondary",
