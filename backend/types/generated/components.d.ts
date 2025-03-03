@@ -536,6 +536,16 @@ export interface SectionsContactForm extends Schema.Component {
   };
 }
 
+export interface SectionsCountries extends Schema.Component {
+  collectionName: 'components_sections_countries';
+  info: {
+    displayName: 'Countries';
+  };
+  attributes: {
+    country: Attribute.Component<'elements.brand', true>;
+  };
+}
+
 export interface SectionsFaq extends Schema.Component {
   collectionName: 'components_sections_faqs';
   info: {
@@ -579,10 +589,10 @@ export interface SectionsFeatures extends Schema.Component {
       ['threeColumn', 'fourColumn', 'fiveColumn', 'sixColumn']
     >;
     bgColor: Attribute.String;
-    Button: Attribute.Component<'links.button-link'>;
+    Button: Attribute.Component<'links.social-link'>;
     showFilter: Attribute.Boolean & Attribute.DefaultTo<false>;
     enable: Attribute.Boolean;
-    titleColor: Attribute.String;
+    ctaTitle: Attribute.Text;
   };
 }
 
@@ -1099,6 +1109,7 @@ declare module '@strapi/types' {
       'sections.clients': SectionsClients;
       'sections.company': SectionsCompany;
       'sections.contact-form': SectionsContactForm;
+      'sections.countries': SectionsCountries;
       'sections.faq': SectionsFaq;
       'sections.featured-products': SectionsFeaturedProducts;
       'sections.features': SectionsFeatures;
