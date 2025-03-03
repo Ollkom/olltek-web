@@ -23,7 +23,7 @@ const Clients = (props) => {
   if (enable === false) return;
   if (Client?.length === 0) return null;
   return (
-    <section className="py-12 px-5 md:px-0 mx-auto border-b border-lightGrayBackground">
+    <section className="py-12 px-5 md:px-0 mx-auto bg-lightGrayBackground border-b border-lightGrayBackground">
       <div className="container-custom">
         <SectionHeader title={heading} header={subtitle} />
         <div
