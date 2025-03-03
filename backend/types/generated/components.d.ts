@@ -47,7 +47,7 @@ export interface ElementsFeatureColumn extends Schema.Component {
   attributes: {
     title: Attribute.String & Attribute.Required;
     description: Attribute.Text;
-    icon: Attribute.Media & Attribute.Required;
+    icon: Attribute.Media;
   };
 }
 
@@ -157,11 +157,10 @@ export interface ElementsService extends Schema.Component {
   attributes: {
     name: Attribute.String;
     description: Attribute.Text;
-    isRecommended: Attribute.Boolean;
-    icon: Attribute.Media;
-    video: Attribute.Media;
-    Button: Attribute.Component<'links.button-link'>;
-    subheader: Attribute.Text;
+    feature: Attribute.Component<'elements.feature-column', true>;
+    picture: Attribute.Media;
+    type: Attribute.Enumeration<['bullet', 'icon']> &
+      Attribute.DefaultTo<'icon'>;
   };
 }
 
@@ -659,11 +658,13 @@ export interface SectionsInnovations extends Schema.Component {
   collectionName: 'components_sections_innovations';
   info: {
     displayName: 'Innovations';
+    description: '';
   };
   attributes: {
     feature: Attribute.Component<'elements.feature', true>;
     title: Attribute.String;
     description: Attribute.Text;
+    picture: Attribute.Media;
   };
 }
 
@@ -676,6 +677,8 @@ export interface SectionsInternalContactForm extends Schema.Component {
   attributes: {
     title: Attribute.String;
     ContactDetails: Attribute.Component<'elements.feature', true>;
+    picture: Attribute.Media;
+    description: Attribute.Text;
   };
 }
 
