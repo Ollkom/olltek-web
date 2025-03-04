@@ -27,11 +27,11 @@ const Footer = (props) => {
                   className="w-32"
                 />
               )}
-              <p className="text-sm md:text-base font-medium">
+              {logoText && <p className="text-sm md:text-base font-medium">
                 {logoText}
-              </p>
+              </p>}
             </div>
-            <div className="flex flex-col gap-3">
+            {socialLinks?.length > 0 && <div className="flex flex-col gap-3">
               <p className="text-base md:text-lg font-medium">Follow us on</p>
               <div className="flex space-x-3">
                 {socialLinks?.map((link) => {
@@ -40,14 +40,14 @@ const Footer = (props) => {
                   return (
                     <Link
                       key={link.id}
-                      href={link.url}
+                      href={link.url || "/"}
                       target={link.newTab ? "_blank" : ""}
                       className="bg-[#FFFFFF] p-2 rounded-md hover:bg-white/80 transition-colors shadow-md"
                     >
-                      {link?.icon?.data && (
+                      {icon?.url && (
                         <Image
                           src={getStrapiMedia(icon?.url)}
-                          alt={link.text || "social icon"}
+                          alt={link.text || `social icon ${link.id}`}
                           width={icon?.width}
                           height={icon?.height}
                           className="w-5 h-5"
@@ -57,39 +57,44 @@ const Footer = (props) => {
                   )
                 })}
               </div>
-            </div>
+            </div>}
           </div>
 
           <div className="hidden md:block w-px border-l border-[#979AA0] h-[102px]"></div>
           {/* footer menu */}
-          <div className="grid grid-cols-2 md:flex md:flex-row w-full">
-            {FooterMenu.map((item, index) => (
+          {FooterMenu?.length > 0 && <div className="grid grid-cols-2 md:flex md:flex-row w-full">
+            {FooterMenu?.map((item, index) => (
               <>
                 <div key={item.id} className="mb-8 md:mb-0 md:px-8 2xl:md:px-16">
-                  {item.Heading && <h3 className="text-base font-semibold mb-4">{item?.Heading}</h3>}
-                  <nav>
-                    <ul className="flex flex-col md:flex-row flex-wrap md:max-w-[500px] 2xl:max-w-[700px]">
-                      {item?.FooterLinks && item.FooterLinks.map((link, index) => (
-                        <li key={link.id} className="mb-3">
-                          <Link
-                            href={link.url}
-                            target={link.newTab ? "_blank" : ""}
-                            className="text-sm md:text-base font-medium hover:underline whitespace-nowrap text-[#E5E5E7]"
-                          >
-                            {link.text}
-                          </Link>
-                          {index !== item.FooterLinks.length - 1 && <span className="hidden md:inline mx-2 text-white/50">|</span>}
-                        </li>
-                      ))}
-                    </ul>
-                  </nav>
+                  {item?.Heading && <h3 className="text-base font-semibold mb-4">{item?.Heading}</h3>}
+                  {item?.FooterLinks?.length > 0 && (
+                    <nav>
+                      <ul className="flex flex-col md:flex-row flex-wrap md:max-w-[500px] 2xl:max-w-[700px]">
+                        {item?.FooterLinks?.map((link, index) => {
+
+                          if (!link?.text) return null;
+                          return (
+                            <li key={link.id} className="mb-3">
+                              <Link
+                                href={link.url || "/"}
+                                target={link.newTab ? "_blank" : ""}
+                                className="text-sm md:text-base font-medium hover:underline whitespace-nowrap text-[#E5E5E7]"
+                              >
+                                {link.text}
+                              </Link>
+                              {index !== item.FooterLinks.length - 1 && <span className="hidden md:inline mx-2 text-white/50">|</span>}
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </nav>)}
                 </div>
                 {index !== FooterMenu.length - 1 && (
                   <div className="hidden md:block w-px border-l border-[#979AA0] h-[102px]"></div>
                 )}
               </>
             ))}
-          </div>
+          </div>}
         </div>
         <ScrollToTop />
 
