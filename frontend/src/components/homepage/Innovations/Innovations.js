@@ -2,8 +2,6 @@
 import { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
-import cx from "classnames";
-import { SectionHeader } from "@/components/common";
 import { getStrapiMedia } from "@/utils/api-helpers";
 
 
@@ -62,6 +60,7 @@ const Innovations = (props) => {
     };
   }, [mainApi, onSelect]);
 
+  if (feature?.length === 0) return null;
   return (
     <section className="py-12 text-white relative">
       {picture?.data?.attributes?.url && (
@@ -92,9 +91,7 @@ const Innovations = (props) => {
           <div className="w-full md:w-1/2">
             <div className="flex flex-col items-start">
               {feature?.map((item, index) => {
-                const { title } = item;
 
-                if (!title) return null;
                 return (
                   <div key={item.id} className="flex flex-col items-start justify-center">
                     {/* Item content */}
@@ -137,7 +134,6 @@ const Innovations = (props) => {
                 {feature?.map((item) => {
                   const itemMedia = item?.media?.data?.attributes;
 
-                  if (!itemMedia?.url) return null;
                   return (
                     <div key={item.id} className="flex-[0_0_100%] min-w-0">
                       {item?.media?.data && (
