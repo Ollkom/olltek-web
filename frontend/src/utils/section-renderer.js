@@ -2,7 +2,6 @@ import dynamic from "next/dynamic";
 import { Inter } from "next/font/google";
 import {
   Hero,
-  Features,
   Clients,
   FeaturedServices,
   Company,
@@ -10,7 +9,7 @@ import {
   Industries,
   Innovations,
 } from "@/components/homepage";
-import { LargeVideo } from "@/components/subpage";
+import { EnhancedFeatures, LargeVideo } from "@/components/subpage";
 import { InternalContact } from "@/components/forms";
 const BottomActions = dynamic(
   () => import("@/components/common/BottomActions")
@@ -23,7 +22,7 @@ export function sectionRenderer(section, index) {
     case "sections.hero":
       return <Hero key={index} data={section} />;
     case "sections.features":
-      return <Features key={index} data={section} />;
+      return <EnhancedFeatures key={index} data={section} fontInter={inter} />;
     case "sections.clients":
       return <Clients key={index} data={section} />;
     case "sections.services":
