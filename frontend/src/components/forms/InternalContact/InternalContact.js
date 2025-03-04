@@ -147,7 +147,7 @@ export default function InternalContact({ data, department }) {
             {description && <p className="text-white font-normal text-sm md:text-lg">{description}</p>}
           </div>
           {/* Form */}
-          <div className="md:max-w-4xl mx-auto mt-5 bg-white p-8 rounded-md">
+          <div className="md:max-w-4xl mx-auto bg-white p-4 md:p-8 rounded-md">
             <div className="flex flex-col">
               <form onSubmit={handleSubmit}>
                 <div className="md:flex md:space-x-3">
@@ -197,11 +197,9 @@ export default function InternalContact({ data, department }) {
                     <ErrorMessage message={formerror?.message} />
                   </div>
                 </div>
-                <div className="text-left">
-                  <Button type="submit" variant="primary">
-                    Submit
-                  </Button>
-                </div>
+                <Button type="submit" variant="primary" className="w-full md:w-auto">
+                  Submit
+                </Button>
               </form>
             </div>
           </div>
