@@ -3,146 +3,193 @@ import Image from "next/image";
 import { useState, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 import {
-  IconMenuCaret,
-  IconMenuCaretActive,
-  IconMenuLevelZeroCaret,
+  IconChevronDown,
 } from "@/assets/images";
 import { getStrapiMedia } from "@/utils/api-helpers";
+import cx from "classnames";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import { useDotButton } from "@/hooks";
 
 const NavLinks = (props) => {
-  const { links, setShowMenuOverlay } = props;
+  const { links, advertisements } = props;
   const [hoverMenuItem, setHoverMenuItem] = useState(null);
-  const hoverTimeout = useRef(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    slidesToScroll: 1,
+  }, [
+    Autoplay({ playOnInit: true, stopOnMouseEnter: true, stopOnInteraction: false, delay: 3000 })
+  ]);
 
-  const onHoverEnterHandler = useCallback(
-    (categoryName, menuLength) => {
-      hoverTimeout.current = setTimeout(() => {
-        setHoverMenuItem(categoryName);
-        setShowMenuOverlay(menuLength > 0);
-      }, 200); // 200ms delay to simulate hover intent
-    },
-    [setShowMenuOverlay]
-  );
+  const isCarouselRequired = advertisements?.Advert?.length > 1
+  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 
-  const onHoverLeaveHandler = useCallback(() => {
-    clearTimeout(hoverTimeout.current); // Clear timeout if mouse leaves early
-    setHoverMenuItem(null);
-    setShowMenuOverlay(false);
-  }, [setShowMenuOverlay]);
+  const hoverEnterTimeout = useRef(null);
+  const hoverLeaveTimeout = useRef(null);
 
-  // Clean up on component unmount
+  // Reset Embla carousel when active menu toggles so that each carosuel is unique
+  useEffect(() => {
+    if (emblaApi && hoverMenuItem) {
+      emblaApi.reInit();
+    }
+  }, [emblaApi, hoverMenuItem]);
+
   useEffect(() => {
     return () => {
-      clearTimeout(hoverTimeout.current);
+      clearTimeout(hoverEnterTimeout.current);
+      clearTimeout(hoverLeaveTimeout.current);
     };
+  }, []);
+
+  // set hover menu item and delay to show the hover menu
+  const onHoverEnterHandler = useCallback(
+    (linkId) => {
+      clearTimeout(hoverLeaveTimeout.current);
+
+      hoverEnterTimeout.current = setTimeout(() => {
+        setHoverMenuItem(linkId);
+      }, 50);
+    },
+  );
+
+  // reset hover menu item and delay to hide the hover menu
+  const onHoverLeaveHandler = useCallback(() => {
+    clearTimeout(hoverEnterTimeout.current);
+
+    hoverLeaveTimeout.current = setTimeout(() => {
+      setHoverMenuItem(null);
+    }, 500);
   }, []);
 
   return (
     <>
-      {links?.map((link) => (
-        <li
-          className="block group"
-          onMouseEnter={onHoverEnterHandler.bind(
-            null,
-            link?.title,
-            link?.navigations?.data.length
-          )}
-          onMouseLeave={onHoverLeaveHandler}
-          key={link?.title}
-        >
-          {/* Level 0 */}
-          <Link
-            href={link?.url}
-            onClick={onHoverLeaveHandler}
-            className="text-[#333] px-10 text-xl font-normal inline-block 2xl:text-2xl group-hover:text-[#0774F5]"
+      {links?.map((link) => {
+        const hasNavigationLinks = link?.navigations?.data?.length > 0;
+        const isMenuOpen = hoverMenuItem === link?.id;
+
+        return (
+          <li
+            className="group"
+            onMouseEnter={onHoverEnterHandler.bind(
+              null,
+              link?.id
+            )}
+            onMouseLeave={onHoverLeaveHandler}
+            key={link?.id}
           >
-            <span className="relative block py-7">
-              {link.title}
-              <IconMenuLevelZeroCaret className="h-0 absolute left-0 right-0 mx-auto bottom-0 group-hover:block opacity-0 md:group-hover:opacity-100 md:group-hover:h-3 transition-all duration-300 ease-in-out" />
-              <div className="bg-[#0774F5] absolute bottom-0 h-0 w-full group-hover:opacity-0 md:group-hover:opacity-100 md:group-hover:h-1 transition-all duration-300 ease-in-out"></div>
-            </span>
-          </Link>
-          {link?.navigations?.data.length > 0 && (
-            <div
-              className={`absolute top-30 left-0 z-50 w-full transition ease-out duration-500 transform shadow-md ${hoverMenuItem === link?.title
-                ? "opacity-100 visible"
-                : "opacity-0 invisible"
-                }`}
+            {/* Level 0 */}
+            <Link
+              href={link?.url}
+              className="text-darkGrayText px-10 text-base font-semibold inline-flex items-center group-hover:text-[#0774F5]"
             >
-              {/* Below div is for left side menu bg */}
-              <div className="bg-[#070751] relative">
-                {/* Below div is for right side menu bg */}
-                <div className="bg-[#F2F4F8] absolute right-0 w-[50%] h-full"></div>
-                <div className="container-custom top-0 mx-auto left-0 right-0 bg-[#F2F4F8] relative z-20">
-                  <div className="flex">
-                    <div className="w-[35%] bg-[#070751] py-10 pr-20">
-                      {link?.title && (
-                        <h2 className="text-3xl uppercase tracking-widest text-white">
-                          {link?.title}
-                        </h2>
-                      )}
-                      {link?.description && (
-                        <p className="py-4 text-white text-xl 2xl:text-2xl">
-                          {link?.description}
-                        </p>
-                      )}
-                      {link?.media?.file?.data?.attributes?.url && (
-                        <Image
-                          src={getStrapiMedia(
-                            link?.media?.file?.data?.attributes?.url
-                          )}
-                          width={link?.media?.file?.data?.attributes?.width}
-                          height={link?.media?.file?.data?.attributes?.height}
-                          alt={
-                            link?.media?.file?.data?.attributes?.alternativeText ||
-                            link?.title ||
-                            `Nav ${link?.id}`
-                          }
-                        />
-                      )}
+              {link.title}
+              {hasNavigationLinks > 0 && <IconChevronDown className="ml-2" />}
+            </Link>
+            {hasNavigationLinks > 0 && (
+              <div
+                className={cx(
+                  "absolute top-[101%] left-0 right-0 z-50 w-full flex justify-end md:max-w-[720px] lg:max-w-[900px] xl:max-w-[1080px] 2xl:max-w-[1680px] mx-auto transition ease-out duration-500 transform",
+                  {
+                    "opacity-100 visible": hoverMenuItem === link?.id,
+                    "opacity-0 invisible": hoverMenuItem !== link?.id,
+                  }
+                )}
+              >
+                <div className="w-full bg-white rounded-md shadow-md overflow-hidden max-w-[824px]">
+                  <div className="flex flex-col md:flex-row px-14 py-8">
+                    {/* Left side navigation */}
+                    <div className="w-full flex flex-col md:flex-wrap md:h-[340px] gap-12 overflow-hidden">
+                      {link?.navigations?.data?.map((sublink) => {
+                        const { heading, slug, media } = sublink?.attributes;
+                        const iconUrl = media?.file?.data?.attributes?.url;
+                        return (
+                          <Link
+                            key={sublink.id}
+                            href={slug || "/"}
+                            className="group/sublink flex flex-shrink-0 items-center gap-4 transition-colors md:w-[45%]"
+                            onClick={onHoverLeaveHandler}
+                          >
+                            {iconUrl && (
+                              <div className="w-10 h-10 rounded-full flex flex-shrink-0 items-center justify-center bg-darkGrayText group-hover/sublink:bg-lightBlue">
+
+                                <Image
+                                  src={getStrapiMedia(iconUrl)}
+                                  width={24}
+                                  height={24}
+                                  alt={heading || `Icon ${sublink.id}`}
+                                  className="w-6 h-6"
+                                />
+
+                              </div>
+                            )}
+                            {heading && (
+                              <span className="text-base font-medium text-darkGrayText group-hover/sublink:text-lightBlue">
+                                {heading}
+                              </span>
+                            )}
+                          </Link>
+                        );
+                      })}
                     </div>
-                    <div className="w-[75%] mr-auto pl-20 py-7">
-                      {link?.subtitle && (
-                        <h3 className="tracking-widest text-xl font-bold py-5">
-                          {link?.subtitle}
-                        </h3>
-                      )}
-                      <ul className="grid grid-cols-2">
-                        {link?.navigations?.data?.map((sublinks) => {
-                          const { heading, slug } = sublinks?.attributes;
-                          return (
-                            <li
-                              className="py-3 group/links pr-3"
-                              key={sublinks?.id}
-                            >
-                              <Link
-                                href={slug ? slug : "/"}
-                                className="text-[#333333] hover:text-[#0774F5] flex items-center text-lg 2xl:text-xl font-medium transition-all duration-300 ease-in-out relative"
-                                onClick={onHoverLeaveHandler}
-                              >
-                                <IconMenuCaret className="absolute opacity-100 md:group-hover/links:opacity-0 transition-all duration-300 ease-in-out" />
-                                <IconMenuCaretActive className="absolute group-hover/links:block opacity-0 md:group-hover/links:opacity-100 transition-all duration-300 ease-in-out" />
-                                <span className="pl-5">{heading}</span>
-                              </Link>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                      {link?.footNote && (
-                        <div className="mt-4">
-                          <p className="border-t border-[#D2D2D2] py-8 text-center text-lg 2xl:text-xl">
-                            {link?.footNote}
-                          </p>
+
+                    {/* Right side featured content */}
+                    <div className="relative flex justify-center px-10">
+                      {advertisements?.Advert?.length > 0 && (
+                        <div
+                          ref={isCarouselRequired && isMenuOpen ? emblaRef : null}
+                          className="overflow-hidden w-[240px] h-[320px] rounded-md">
+                          <div className="flex h-full">
+                            {advertisements?.Advert?.map((advert) => (
+                              <div key={advert.id} className="flex-[0_0_100%] min-w-0 relative h-full">
+                                <Image
+                                  src={getStrapiMedia(advert?.media?.data?.attributes?.url)}
+                                  alt={advert?.title || `Advertisement ${advert?.id}`}
+                                  fill
+                                  className="object-cover rounded-md"
+                                />
+                                <div className="absolute inset-0 bg-black/60"></div>
+                                <div className="absolute top-0 left-0 right-0 pt-6">
+                                  {advert?.MediaHover?.data?.attributes?.url && (
+                                    <Image
+                                      src={getStrapiMedia(advert?.MediaHover?.data?.attributes?.url)}
+                                      alt={advert?.title || `Advertisement ${advert?.id}`}
+                                      width={120}
+                                      height={16}
+                                      className="object-contain mx-auto"
+                                    />
+                                  )}
+                                </div>
+                                <div className="absolute bottom-0 left-0 right-0 bg-black/30 px-4 pt-2 pb-8">
+                                  {advert?.title && <h3 className="text-base font-normal text-white">{advert?.title}</h3>}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Indicator dots */}
+                          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                            {scrollSnaps?.map((_, index) => (
+                              <div
+                                key={index}
+                                onClick={() => onDotButtonClick(index)}
+                                className={cx("w-2 h-2 rounded-full cursor-pointer", {
+                                  "bg-white": index === selectedIndex,
+                                  "bg-lightGrayText": index !== selectedIndex,
+                                })}
+                              ></div>
+                            ))}
+                          </div>
                         </div>
                       )}
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
-        </li>
-      ))}
+            )}
+          </li>
+        )
+      })}
     </>
   );
 };
