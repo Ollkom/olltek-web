@@ -14,26 +14,24 @@ function Testimonial({ text, authorName, picture, authorTitle }) {
 
   return (
     <div className="flex flex-col items-center justify-between flex-grow h-full gap-4 md:gap-6">
-      <div className="">
-        <Image
-          src={imageUrl ?? ""}
-          alt={
-            picture?.data?.attributes?.alternativeText ||
-            authorName ||
-            `Testimonial ${picture?.data?.id}`
-          }
-          width={picture?.data?.attributes?.width}
-          height={picture?.data?.attributes?.height}
-          className="mx-auto w-36"
-        />
-      </div>
-      <p className="font-semibold text-center text-sm md:text-base text-[#333333]">
+      <Image
+        src={imageUrl ?? ""}
+        alt={
+          picture?.data?.attributes?.alternativeText ||
+          authorName ||
+          `Testimonial ${picture?.data?.id}`
+        }
+        width={picture?.data?.attributes?.width}
+        height={picture?.data?.attributes?.height}
+        className="mx-auto w-36"
+      />
+      {text && <p className="font-semibold text-center text-sm md:text-base text-[#333333]">
         {text}
-      </p>
-      <div className="mx-auto flex flex-col items-center text-center">
-        <p className="text-darkGrayText text-sm md:text-base font-semibold">{authorName}</p>
-        <p className="font-normal text-xs md:text-base text-[#666666]">{authorTitle}</p>
-      </div>
+      </p>}
+      {(authorName || authorTitle) && <div className="mx-auto flex flex-col items-center text-center">
+        {authorName && <p className="text-darkGrayText text-sm md:text-base font-semibold">{authorName}</p>}
+        {authorTitle && <p className="font-normal text-xs md:text-base text-[#666666]">{authorTitle}</p>}
+      </div>}
     </div>
   );
 }
