@@ -26,12 +26,11 @@ const ScrollToTop = () => {
 
   return (
     <div
-      className={`fixed bottom-5 right-5 z-50 transition-opacity duration-300 cursor-pointer bg-[#070751] w-12 h-12 rounded-full flex items-center ${
-        isVisible ? "opacity-100" : "opacity-0"
-      }`}
+      className={`md:fixed md:bottom-5 md:right-5 z-50 transition-opacity duration-300 cursor-pointer bg-lightBlue border border-white w-12 h-12 rounded-full flex items-center mx-auto md:mx-0 ${isVisible ? "opacity-100" : "opacity-0"
+        }`}
       onClick={scrollToTop}
     >
-      <IconPolygonWhite className="rotate-180 mx-auto" />
+      <IconPolygonWhite className="mx-auto" />
     </div>
   );
 };
