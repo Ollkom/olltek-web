@@ -11,6 +11,7 @@ import {
 } from "@/components/homepage";
 import { EnhancedFeatures, LargeVideo } from "@/components/subpage";
 import { InternalContact } from "@/components/forms";
+import { BlogPosts } from "@/components/common";
 const BottomActions = dynamic(
   () => import("@/components/common/BottomActions")
 );
@@ -41,6 +42,8 @@ export function sectionRenderer(section, index) {
       return <InternalContact key={index} data={section} />;
     case "sections.innovations":
       return <Innovations key={index} data={section} fontInter={inter} />;
+    case "sections.blog-posts":
+      return <BlogPosts key={index} data={section} />;
 
     default:
       return null;
