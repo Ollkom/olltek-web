@@ -30,7 +30,9 @@ export async function getGlobal() {
       "testimonials.Testimonial",
       "testimonials.Testimonial.picture",
       "countries",
-      "countries.country.media.file"
+      "countries.country.media.file",
+      "Advertisements.Advert.media",
+      "Advertisements.Advert.MediaHover",
     ],
   };
   return await fetchAPI(path, urlParamsObject, options, tag);
