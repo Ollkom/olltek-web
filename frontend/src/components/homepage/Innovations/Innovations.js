@@ -77,7 +77,7 @@ const Innovations = (props) => {
       )}
       <div className="container-custom px-5 md:px-0 relative z-10">
         {/* TODO: Use SectionHeader component with text-white update */}
-        <div className="flex flex-col gap-4 max-w-3xl mx-auto text-center pb-4 md:pb-8 2xl:pb-12">
+        <div className="flex flex-col gap-4 max-w-3xl mx-auto text-center pb-4 md:pb-12">
           {title && (
             <h2 className="text-white font-medium text-2xl md:text-3xl">
               {title}
@@ -86,7 +86,7 @@ const Innovations = (props) => {
           {description && <p className="text-white font-normal text-sm md:text-lg">{description}</p>}
         </div>
 
-        <div className="flex flex-col-reverse md:flex-row gap-8 items-center">
+        <div className="flex flex-col-reverse md:flex-row gap-8 items-center max-w-7xl mx-auto">
           {/* steps */}
           <div className="w-full md:w-1/2">
             <div className="flex flex-col items-start">
@@ -103,15 +103,13 @@ const Innovations = (props) => {
                       onClick={() => onThumbClick(index)}
                     >
                       <div className="flex items-center">
-                        <div
-                          className={`
-                          flex items-center justify-center w-10 h-10 rounded-full mr-2 md:mr-4 border-t border-r border-b border-[#E5E5E7] font-medium text-base transition-all duration-200 ease-in-out flex-shrink-0
+                        <div className={`flex items-center justify-center w-8 h-8 rounded-full mr-2 md:mr-4 border-t border-r border-b border-[#E5E5E7] font-medium text-base transition-all duration-200 ease-in-out flex-shrink-0
                           ${index === selectedIndex ? 'text-white font-semibold' : 'bg-[#FFFFFF] text-[#525D6A]'}
                         `}
                         >
                           {index + 1}
                         </div>
-                        {item?.title && <h3 className={`text-white pe-4 text-sm md:text-base ${index === selectedIndex ? 'font-semibold' : 'font-normal'}`}>
+                        {item?.title && <h3 className={`text-white pe-4 text-sm ${index === selectedIndex ? 'font-semibold' : 'font-normal'}`}>
                           {item.title}
                         </h3>}
                       </div>
@@ -119,7 +117,7 @@ const Innovations = (props) => {
 
                     {/* Divider */}
                     {index < feature.length - 1 && (
-                      <div className="h-6 w-[2px] bg-[#FFFFFF] ml-5 my-2"></div>
+                      <div className="h-6 w-[2px] bg-[#FFFFFF] ml-4 my-2"></div>
                     )}
                   </div>
                 )
