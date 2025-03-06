@@ -447,6 +447,21 @@ export interface SectionsBannerSlider extends Schema.Component {
   };
 }
 
+export interface SectionsBlogPosts extends Schema.Component {
+  collectionName: 'components_sections_blog_posts';
+  info: {
+    displayName: 'BlogPosts';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    type: Attribute.Enumeration<['latest', 'featured']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'latest'>;
+  };
+}
+
 export interface SectionsBottomActions extends Schema.Component {
   collectionName: 'components_slices_bottom_actions';
   info: {
@@ -1118,6 +1133,7 @@ declare module '@strapi/types' {
       'sections.about-us': SectionsAboutUs;
       'sections.advertisements': SectionsAdvertisements;
       'sections.banner-slider': SectionsBannerSlider;
+      'sections.blog-posts': SectionsBlogPosts;
       'sections.bottom-actions': SectionsBottomActions;
       'sections.career-form': SectionsCareerForm;
       'sections.ceo-message': SectionsCeoMessage;
