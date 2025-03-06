@@ -78,7 +78,7 @@ const NavLinks = (props) => {
             {/* Level 0 */}
             <Link
               href={link?.url}
-              className="text-darkGrayText px-10 text-base font-semibold inline-flex items-center group-hover:text-[#0774F5]"
+              className="text-darkGrayText text-base font-semibold inline-flex items-center group-hover:text-[#0774F5]"
             >
               {link.title}
               {hasNavigationLinks > 0 && <IconChevronDown className="ml-2" />}
