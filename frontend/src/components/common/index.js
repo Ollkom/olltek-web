@@ -17,3 +17,5 @@ export { default as SectionHeader } from "./SectionHeader";
 export { default as Faq } from "./Faq";
 export { default as FeaturedProducts } from "./FeaturedProducts";
 export { default as FeaturedProductsHorizontal } from "./FeaturedProductsHorizontal";
+export { default as CarouselButton } from "./CarouselButton";
+export { default as DotButton } from "./DotButton";
