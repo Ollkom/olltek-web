@@ -15,7 +15,7 @@ const Header = (props) => {
   return (
     <header className="relative z-50 bg-white border-b border-[#E5E5E7] h-[86px] flex items-center justify-center w-full">
       <div className=" w-full">
-        <div className="flex items-center pl-6 pr-4 md:justify-between md:pr-0 md:pl-0 md:py-0 container-custom">
+        <div className="flex items-center pl-6 pr-4 md:justify-between md:gap-5 md:pr-0 md:pl-0 md:py-0 container-custom">
           <Logo navbarLogo={navbarLogo} navbarLogoMobile={navbarLogoMobile} />
           <div className="ml-auto">
             <NavBar

@@ -26,7 +26,7 @@ const NavBar = (props) => {
           <HamburgerButton closeMenu={closeMenu} setOpen={setOpen} open={open} />
         </div>
         {/* Desktop nav */}
-        <ul className="md:flex hidden items-center">
+        <ul className="md:flex hidden items-center gap-8">
           <NavLinks links={links} advertisements={advertisements} />
         </ul>
         {/* Mobile nav */}
