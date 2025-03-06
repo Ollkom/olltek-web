@@ -131,10 +131,9 @@ const NavLinks = (props) => {
                     </div>
 
                     {/* Right side featured content */}
-                    <div className="relative flex justify-center px-10">
-                      {advertisements?.Advert?.length > 0 && (
-                        <div
-                          ref={isCarouselRequired && isMenuOpen ? emblaRef : null}
+                    {advertisements?.Advert?.length > 0 && (
+                      <div className="relative flex justify-center px-10">
+                        <div ref={isCarouselRequired && isMenuOpen ? emblaRef : null}
                           className="overflow-hidden w-[240px] h-[320px] rounded-md">
                           <div className="flex h-full">
                             {advertisements?.Advert?.map((advert) => (
@@ -184,8 +183,8 @@ const NavLinks = (props) => {
                             </div>
                           )}
                         </div>
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
