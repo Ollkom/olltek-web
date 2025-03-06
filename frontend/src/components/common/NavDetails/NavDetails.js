@@ -48,11 +48,11 @@ const NavDetails = (props) => {
               <li key={sublink.id}>
                 <Link
                   href={slug || "/"}
-                  className="flex items-center gap-4"
+                  className="group flex items-center gap-4"
                   onClick={closeMenu}
                 >
                   {icon?.url && (
-                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-darkGrayText flex items-center justify-center">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-darkGrayText flex items-center justify-center group-active:bg-lightBlue">
                       <Image
                         src={getStrapiMedia(icon?.url)}
                         width={icon?.width}
@@ -62,7 +62,7 @@ const NavDetails = (props) => {
                       />
                     </div>
                   )}
-                  {heading && <span className="text-base font-medium text-darkGrayText">
+                  {heading && <span className="text-base font-medium text-darkGrayText group-active:text-lightBlue">
                     {heading}
                   </span>}
                 </Link>
@@ -80,7 +80,7 @@ const NavDetails = (props) => {
             className="overflow-hidden h-[457px] rounded-md">
             <div className="flex h-full">
               {advertisements?.Advert?.map((advert) => (
-                <div key={advert.id} className="flex-[0_0_100%] min-w-0 relative h-full">
+                <Link key={advert.id} href={advert?.url || "/"} className="flex-[0_0_100%] min-w-0 relative h-full">
                   {advert?.media?.data?.attributes?.url && (
                     <Image
                       src={getStrapiMedia(advert?.media?.data?.attributes?.url)}
@@ -107,7 +107,7 @@ const NavDetails = (props) => {
                       <h3 className="text-2xl font-light text-white">{advert?.title}</h3>
                     </div>
                   )}
-                </div>
+                </Link>
               ))}
             </div>
 
