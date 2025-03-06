@@ -71,10 +71,7 @@ const NavLinks = (props) => {
         return (
           <li
             className="group"
-            onMouseEnter={onHoverEnterHandler.bind(
-              null,
-              link?.id
-            )}
+            onMouseEnter={() => onHoverEnterHandler(link?.id)}
             onMouseLeave={onHoverLeaveHandler}
             key={link?.id}
           >
@@ -142,12 +139,14 @@ const NavLinks = (props) => {
                           <div className="flex h-full">
                             {advertisements?.Advert?.map((advert) => (
                               <div key={advert.id} className="flex-[0_0_100%] min-w-0 relative h-full">
-                                <Image
-                                  src={getStrapiMedia(advert?.media?.data?.attributes?.url)}
-                                  alt={advert?.title || `Advertisement ${advert?.id}`}
-                                  fill
-                                  className="object-cover rounded-md"
-                                />
+                                {advert?.media?.data?.attributes?.url && (
+                                  <Image
+                                    src={getStrapiMedia(advert?.media?.data?.attributes?.url)}
+                                    alt={advert?.title || `Advertisement ${advert?.id}`}
+                                    width={advert?.media?.data?.attributes?.width}
+                                    height={advert?.media?.data?.attributes?.height}
+                                    className="object-cover rounded-md h-full w-full"
+                                  />)}
                                 <div className="absolute inset-0 bg-black/60"></div>
                                 <div className="absolute top-0 left-0 right-0 pt-6">
                                   {advert?.MediaHover?.data?.attributes?.url && (
@@ -160,26 +159,30 @@ const NavLinks = (props) => {
                                     />
                                   )}
                                 </div>
-                                <div className="absolute bottom-0 left-0 right-0 bg-black/30 px-4 pt-2 pb-8">
-                                  {advert?.title && <h3 className="text-base font-normal text-white">{advert?.title}</h3>}
-                                </div>
+                                {advert?.title && (
+                                  <div className="absolute bottom-0 left-0 right-0 bg-black/30 px-4 pt-2 pb-8">
+                                    <h3 className="text-base font-normal text-white">{advert?.title}</h3>
+                                  </div>
+                                )}
                               </div>
                             ))}
                           </div>
 
                           {/* Indicator dots */}
-                          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                            {scrollSnaps?.map((_, index) => (
-                              <div
-                                key={index}
-                                onClick={() => onDotButtonClick(index)}
-                                className={cx("w-2 h-2 rounded-full cursor-pointer", {
-                                  "bg-white": index === selectedIndex,
-                                  "bg-lightGrayText": index !== selectedIndex,
-                                })}
-                              ></div>
-                            ))}
-                          </div>
+                          {isCarouselRequired && (
+                            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                              {scrollSnaps?.map((_, index) => (
+                                <div
+                                  key={index}
+                                  onClick={() => onDotButtonClick(index)}
+                                  className={cx("w-2 h-2 rounded-full cursor-pointer", {
+                                    "bg-white": index === selectedIndex,
+                                    "bg-lightGrayText": index !== selectedIndex,
+                                  })}
+                                ></div>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>
