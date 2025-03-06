@@ -78,7 +78,7 @@ const NavLinks = (props) => {
             {/* Level 0 */}
             <Link
               href={link?.url}
-              className="text-darkGrayText text-base font-semibold inline-flex items-center group-hover:text-[#0774F5]"
+              className="text-darkGrayText text-base font-semibold inline-flex items-center group-hover:text-lightBlue"
             >
               {link.title}
               {hasNavigationLinks > 0 && <IconChevronDown className="ml-2" />}
@@ -108,7 +108,7 @@ const NavLinks = (props) => {
                             onClick={onHoverLeaveHandler}
                           >
                             {iconUrl && (
-                              <div className="w-10 h-10 rounded-full flex flex-shrink-0 items-center justify-center bg-darkGrayText group-hover/sublink:bg-lightBlue">
+                              <div className="w-10 h-10 rounded-full flex flex-shrink-0 items-center justify-center bg-darkGrayText group-hover/sublink:bg-lightBlue group-active/sublink:bg-lightBlue">
 
                                 <Image
                                   src={getStrapiMedia(iconUrl)}
@@ -121,7 +121,7 @@ const NavLinks = (props) => {
                               </div>
                             )}
                             {heading && (
-                              <span className="text-base font-medium text-darkGrayText group-hover/sublink:text-lightBlue">
+                              <span className="text-base font-medium text-darkGrayText group-hover/sublink:text-lightBlue group-active/sublink:text-lightBlue">
                                 {heading}
                               </span>
                             )}
@@ -137,7 +137,7 @@ const NavLinks = (props) => {
                           className="overflow-hidden w-[240px] h-[320px] rounded-md">
                           <div className="flex h-full">
                             {advertisements?.Advert?.map((advert) => (
-                              <div key={advert.id} className="flex-[0_0_100%] min-w-0 relative h-full">
+                              <Link key={advert.id} href={advert?.url || "/"} className="flex-[0_0_100%] min-w-0 relative h-full">
                                 {advert?.media?.data?.attributes?.url && (
                                   <Image
                                     src={getStrapiMedia(advert?.media?.data?.attributes?.url)}
@@ -163,7 +163,7 @@ const NavLinks = (props) => {
                                     <h3 className="text-base font-normal text-white">{advert?.title}</h3>
                                   </div>
                                 )}
-                              </div>
+                              </Link>
                             ))}
                           </div>
 
