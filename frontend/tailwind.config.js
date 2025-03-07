@@ -22,6 +22,26 @@ module.exports = {
     },
   },
   plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        '.container-custom': {
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          '@screen md': {
+            maxWidth: '720px',
+          },
+          '@screen lg': {
+            maxWidth: '1000px',
+          },
+          '@screen xl': {
+            maxWidth: '1200px',
+          },
+          '@screen 2xl': {
+            maxWidth: '1680px',
+          },
+        },
+      });
+    },
     function ({ addVariant }) {
       addVariant("nth-child-3", "&:nth-child(3)");
     },
