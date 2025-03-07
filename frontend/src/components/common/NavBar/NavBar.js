@@ -13,6 +13,7 @@ const NavBar = (props) => {
 
   useScrollLock({ lock: open });
 
+  // toggle openning of mobile drawer and reset active menu and submenu
   const closeMenu = useCallback(() => {
     setOpen(!open);
     setActiveMenu(null);
