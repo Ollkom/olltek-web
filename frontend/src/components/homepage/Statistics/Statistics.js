@@ -7,7 +7,7 @@ const Statistics = (props) => {
   const { title, facts } = data;
   return (
     <section className="bg-darkBlue py-10 md:py-14">
-      <MotionContainer className="container-custom px-4 md:px-6">
+      <MotionContainer className="container-custom px-4 md:px-0">
         <div className="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
           {title && (
             <h2 className="text-2xl 2xl:text-3xl font-medium text-white mb-8 md:mb-0 md:w-1/6">
@@ -40,7 +40,7 @@ const Statistics = (props) => {
 
                   {/* Text content */}
                   {item?.title && (
-                    <p className="text-sm md:text-base font-normal text-white px-1 2xl:px-8">
+                    <p className="text-sm 2xl:text-base font-normal text-white px-3 2xl:px-8">
                       {item?.title}
                     </p>
                   )}
