@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_blog_posts",
+  "info": {
+    "displayName": "BlogPosts",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "latest",
+        "featured"
+      ],
+      "default": "latest",
+      "required": true
+    }
+  }
+}
