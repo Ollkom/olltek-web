@@ -29,7 +29,7 @@ export const typographyClasses = {
   h5: "text-2xs/4 font-semibold uppercase tracking-normal",
   h6: "text-2xs/4 font-semibold tracking-normal",
   paragraph: "text-2xs/5.5 tracking-normal",
-  body1: "font-normal text-sm md:text-xl tracking-normal text-lightGrayText",
+  body1: "font-normal text-sm md:text-lg tracking-normal text-lightGrayText",
   body2: "text-lg tracking-normal text-[#202529]",
   caption: "text-xs/3.5 tracking-normal",
   button1: "text-2xs/4 uppercase font-semibold tracking-normal",

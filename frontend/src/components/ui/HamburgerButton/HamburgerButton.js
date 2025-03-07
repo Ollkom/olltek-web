@@ -1,13 +1,23 @@
 import cx from "classnames";
+import { useCallback } from "react";
 
 const genericHamburgerLine = `block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out`;
 
 const HamburgerButton = (props) => {
-  const { open, setOpen } = props;
+  const { open, setOpen, closeMenu } = props;
+
+  const handleClick = useCallback(() => {
+    if (open) {
+      closeMenu()
+    } else {
+      setOpen(!open)
+    }
+  }, [open, setOpen, closeMenu])
+
   return (
     <button
-      className="text-white w-10 h-10 relative focus:outline-none"
-      onClick={() => setOpen(!open)}
+      className="text-darkGrayText w-10 h-10 relative focus:outline-none"
+      onClick={handleClick}
     >
       <div className="block w-5 absolute left-1/2 top-1/2   transform  -translate-x-1/2 -translate-y-1/2">
         <span
