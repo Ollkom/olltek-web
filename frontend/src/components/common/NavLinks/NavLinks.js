@@ -17,13 +17,6 @@ const NavLinks = (props) => {
   const hoverLeaveTimeout = useRef(null);
 
 
-  useEffect(() => {
-    return () => {
-      clearTimeout(hoverEnterTimeout.current);
-      clearTimeout(hoverLeaveTimeout.current);
-    };
-  }, []);
-
   // set hover menu item and delay to show the hover menu
   const onHoverEnterHandler = useCallback(
     (linkId) => {
