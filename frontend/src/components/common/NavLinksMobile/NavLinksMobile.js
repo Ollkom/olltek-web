@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import Link from "next/link";
 import { NavDetails } from "@/components/common";
 import cx from "classnames";
@@ -16,6 +15,7 @@ const NavLinksMobile = (props) => {
     setShowSubMenu
   } = props;
 
+  // open submenu and set the clicked links menu as active menu
   const openSubmenu = (link) => {
     setActiveMenu(link);
     setTimeout(() => {
@@ -23,6 +23,7 @@ const NavLinksMobile = (props) => {
     }, 10);
   };
 
+  // close submenu only
   const closeSubmenu = () => {
     setShowSubMenu(false);
     setTimeout(() => {
@@ -30,6 +31,7 @@ const NavLinksMobile = (props) => {
     }, 300);
   };
 
+  // close and reset menu and submenu when the final link is clicked in submenu
   const handleCloseMenu = () => {
     setActiveMenu(null);
     setShowSubMenu(false);
