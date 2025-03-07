@@ -45,15 +45,13 @@ export default async function RootLayout({ children }) {
   const mainMenu = await getMainMenu();
 
   if (!global.data || !mainMenu.data) return null;
-  const { navbar, footer, leadForm } = global.data.attributes;
+  const { navbar, footer, leadForm, Advertisements } = global.data.attributes;
 
   const { MainMenuItems } = mainMenu.data.attributes;
 
   const navbarLogo = navbar?.navbarLogo?.logoImg?.data?.attributes;
   const navbarLogoMobile = navbar?.navbarLogoMobile?.logoImg?.data?.attributes;
-
   const contactButton = navbar?.button;
-
   const menuLinks = footer?.menuLinks;
 
   return (
@@ -69,6 +67,7 @@ export default async function RootLayout({ children }) {
           socialLinks={footer?.socialLinks}
           menuLinks={menuLinks}
           navbarLogoMobile={navbarLogoMobile}
+          advertisements={Advertisements}
         />
         <main className="min-h-screen">{children}</main>
         <Footer footer={footer} leadForm={leadForm} />
