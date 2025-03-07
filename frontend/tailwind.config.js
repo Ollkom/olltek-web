@@ -19,29 +19,13 @@ module.exports = {
         lightGrayText: "#525D6A",
         lightGrayBackground: "#F8F9FB",
       },
+      container: {
+        center: true,
+        screens: { sm: "640px", md: "728px", lg: "950px", xl: "1100px", "2xl": "1680px", },
+      },
     },
   },
   plugins: [
-    function ({ addComponents }) {
-      addComponents({
-        '.container-custom': {
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          '@screen md': {
-            maxWidth: '720px',
-          },
-          '@screen lg': {
-            maxWidth: '1000px',
-          },
-          '@screen xl': {
-            maxWidth: '1200px',
-          },
-          '@screen 2xl': {
-            maxWidth: '1680px',
-          },
-        },
-      });
-    },
     function ({ addVariant }) {
       addVariant("nth-child-3", "&:nth-child(3)");
     },
