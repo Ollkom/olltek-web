@@ -9,29 +9,38 @@ const NavLinksMobile = (props) => {
     links,
     closeMenu,
     advertisements,
-    activeMenu,
-    setActiveMenu,
+    menuState,
+    setMenuState
   } = props;
 
-  // open submenu and set the clicked links menu as active menu
-  const openSubmenu = (link) => {
-    setActiveMenu(link);
-    setTimeout(() => {
-      setActiveMenu(link);
-    }, 10);
-  };
+  const { activeMenu, isAnimating } = menuState;
 
-  // close submenu only
-  const closeSubmenu = () => {
-    setActiveMenu(null);
-    setTimeout(() => {
-      if (!activeMenu) setActiveMenu(null);
-    }, 500);
+  const toggleSubmenu = (link) => {
+    if (!activeMenu) {
+      // Opening submenu
+      setMenuState({
+        activeMenu: link,
+        isAnimating: false
+      });
+    } else {
+      // Closing with animation
+      setMenuState(prev => ({
+        ...prev,
+        isAnimating: true
+      }));
+
+      // Reset state after animation completes
+      setTimeout(() => {
+        setMenuState({
+          activeMenu: null,
+          isAnimating: false
+        });
+      }, 300); // Match the transition-duration value
+    }
   };
 
   return (
     <div className="h-full flex flex-col">
-
       {/* Main menu (Level 0) */}
       <div className={cx("flex-1 overflow-y-auto", {
         "hidden": activeMenu
@@ -41,7 +50,7 @@ const NavLinksMobile = (props) => {
             <li key={link?.id} className="group">
               {link?.navigations?.data?.length > 0 ? (
                 <button
-                  onClick={() => openSubmenu(link)}
+                  onClick={() => toggleSubmenu(link)}
                   className="flex items-center justify-between w-full px-6"
                 >
                   {link?.title && <span className="text-base font-medium text-darkGrayText group-active:text-lightBlue">{link?.title}</span>}
@@ -61,18 +70,17 @@ const NavLinksMobile = (props) => {
         </ul>
       </div>
       {/* Submenu */}
-      <div className={cx("absolute inset-0 bg-white flex flex-col h-full transition-transform duration-500", {
+      <div className={cx("absolute inset-0 bg-white flex flex-col h-full transition-transform duration-300", {
         "translate-x-0": activeMenu,
-        "translate-x-full": !activeMenu
+        "translate-x-full": isAnimating || !activeMenu
       })}>
         <NavDetails
           menu={activeMenu}
-          closeSubmenu={closeSubmenu}
+          closeSubmenu={toggleSubmenu}
           closeMenu={closeMenu}
           advertisements={advertisements}
         />
       </div>
-
     </div>
   );
 };

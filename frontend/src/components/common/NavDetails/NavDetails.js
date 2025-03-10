@@ -10,10 +10,10 @@ const NavDetails = (props) => {
   return (
     <div className="flex flex-col h-full">
       {/* Submenu items */}
-      <div className="flex flex-col px-4 pt-4 pb-8 gap-8">
-        {/* Back button */}
+      <div className="flex flex-col px-6 pt-4 pb-8 gap-8">
+        {/* Back button - calling closeSubmenu without arguments since it doesn't need a link */}
         <button
-          onClick={closeSubmenu}
+          onClick={() => closeSubmenu()}
           className="group flex items-center gap-4 text-darkGrayText"
         >
           <div className="w-10 h-10 rounded-full border border-darkGrayText group-active:border-lightBlue flex items-center justify-center">
