@@ -5,7 +5,7 @@ import { IconChevronDown } from "@/assets/images";
 import { AdvertisementSlider } from "@/components/common";
 
 const NavDetails = (props) => {
-  const { menu, closeSubmenu, closeMenu, advertisements } = props || {};
+  const { menu, closeSubmenu, toggleDrawer, advertisements } = props || {};
 
   return (
     <div className="flex flex-col h-full">
@@ -33,7 +33,7 @@ const NavDetails = (props) => {
                 <Link
                   href={slug || "/"}
                   className="group flex items-center gap-4"
-                  onClick={closeMenu}
+                  onClick={toggleDrawer}
                 >
                   {icon?.url && (
                     <div className="flex-shrink-0 w-10 h-10 rounded-full bg-darkGrayText flex items-center justify-center group-active:bg-lightBlue">
@@ -62,7 +62,7 @@ const NavDetails = (props) => {
           isMenuOpen={true}
           isMobileMenu={true}
           hoverMenuItem={true}
-          closeMenu={closeMenu}
+          closeMenu={toggleDrawer}
         />
       </div>
     </div>

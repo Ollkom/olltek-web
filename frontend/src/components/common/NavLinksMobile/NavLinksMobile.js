@@ -7,10 +7,10 @@ import { IconChevronDown } from "@/assets/images";
 const NavLinksMobile = (props) => {
   const {
     links,
-    closeMenu,
     advertisements,
     menuState,
-    setMenuState
+    setMenuState,
+    toggleDrawer
   } = props;
 
   const { activeMenu, isAnimating } = menuState;
@@ -18,10 +18,11 @@ const NavLinksMobile = (props) => {
   const toggleSubmenu = (link) => {
     if (!activeMenu) {
       // Opening submenu
-      setMenuState({
+      setMenuState(prev => ({
+        ...prev,
         activeMenu: link,
         isAnimating: false
-      });
+      }));
     } else {
       // Closing with animation
       setMenuState(prev => ({
@@ -29,12 +30,13 @@ const NavLinksMobile = (props) => {
         isAnimating: true
       }));
 
-      // Reset state after animation completes
+      // Reset only submenu state after animation completes
       setTimeout(() => {
-        setMenuState({
+        setMenuState(prev => ({
+          ...prev,
           activeMenu: null,
           isAnimating: false
-        });
+        }));
       }, 300); // Match the transition-duration value
     }
   };
@@ -60,7 +62,7 @@ const NavLinksMobile = (props) => {
                 <Link
                   href={link?.url || "#"}
                   className="block px-6 text-base font-medium text-darkGrayText"
-                  onClick={closeMenu}
+                  onClick={toggleDrawer}
                 >
                   {link?.title}
                 </Link>
@@ -77,7 +79,7 @@ const NavLinksMobile = (props) => {
         <NavDetails
           menu={activeMenu}
           closeSubmenu={toggleSubmenu}
-          closeMenu={closeMenu}
+          toggleDrawer={toggleDrawer}
           advertisements={advertisements}
         />
       </div>
