@@ -21,7 +21,7 @@ const Hero = async (props) => {
       <div className="absolute flex flex-col gap-2 md:gap-3 justify-center items-center text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:max-w-[615px] z-10 px-6 md:px-0">
         {title && (
           <h2 className="text-[28px] text-center md:text-[52px] md:pb-4 font-medium leading-tight md:leading-[1.1]">
-            Cross-Border Solutions to GCC from
+            Cross-Border Solutions to <span className="inline-block italic">GCC</span> from
             <CountryScroll countries={countries} />
           </h2>
         )}

@@ -1,59 +1,59 @@
 "use client"
 import { getStrapiMedia } from "@/utils/api-helpers";
 import Image from "next/image";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const CountryScroll = ({ countries }) => {
     const countryArray = countries?.country || [];
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-    const OPTIONS = {
-        loop: true,
-        axis: "y",
-    };
-
-    const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [
-        Autoplay({
-            playOnInit: true,
-            delay: 3000
-        })
-    ]);
-
-    // Return early if no countries
     if (!countryArray || countryArray.length === 0) return null;
-    const isCarouselRequired = countryArray.length > 1;
+    const isAnimationRequired = countryArray.length > 1;
+
+    useEffect(() => {
+        if (!isAnimationRequired) return;
+
+        const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % countryArray.length);
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [countryArray.length, isAnimationRequired]);
+    // TODO: implement solution for max div width using framer motion
     return (
-        <span className="inline-flex items-start justify-start relative ml-1">
-            <div
-                className="overflow-hidden h-[40px] md:h-[52px] w-full"
-                ref={isCarouselRequired ? emblaRef : null}
-            >
-                <div className="flex flex-col h-[40px] md:h-[55px]">
-                    {countryArray.map((country) => {
-                        const countryMedia = country.media.file.data.attributes
-                        return (
-                            <div key={country.id}
-                                className="flex flex-[0_0_100%] items-center min-h-0"
-                            >
-                                {country?.title && <span className="italic">{country.title}</span>}
-                                {countryMedia?.url && (
-                                    <span className="inline-block ms-2">
-                                        <Image
-                                            src={getStrapiMedia(countryMedia.url)}
-                                            alt={countryMedia.alternativeText || "Icon"}
-                                            width={countryMedia.width || 40}
-                                            height={countryMedia.height || 40}
-                                            className="w-[26px] h-[26px] md:w-[40px] md:h-[40px]"
-                                        />
-                                    </span>
-                                )}
-                            </div>
-                        )
-                    })}
-                </div>
+        <span className="inline-flex items-start justify-start flex-[0_0_100%] relative ms-1">
+            <div className="overflow-hidden h-[40px] md:h-[52px]">
+                <AnimatePresence mode="popLayout">
+                    <motion.div
+                        key={countryArray[currentIndex].id}
+                        initial={{ y: 40, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -40, opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="flex items-center w-full"
+                    >
+
+                        {countryArray[currentIndex]?.title &&
+                            <span className="italic">{countryArray[currentIndex].title}</span>
+                        }
+                        {countryArray[currentIndex]?.media?.file?.data?.attributes?.url && (
+                            <span className="inline-block ms-2">
+                                <Image
+                                    src={getStrapiMedia(countryArray[currentIndex].media.file.data.attributes.url)}
+                                    alt={countryArray[currentIndex].media.file.data.attributes.alternativeText || "Icon"}
+                                    width={countryArray[currentIndex].media.file.data.attributes.width || 40}
+                                    height={countryArray[currentIndex].media.file.data.attributes.height || 40}
+                                    className="w-[26px] h-[26px] md:w-[40px] md:h-[40px]"
+                                />
+                            </span>
+                        )}
+
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </span>
-    )
-}
+    );
+};
 
-export default CountryScroll
+export default CountryScroll;
