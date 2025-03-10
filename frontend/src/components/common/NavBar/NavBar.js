@@ -7,34 +7,50 @@ import { useScrollLock } from "@/hooks";
 
 const NavBar = (props) => {
   const { links, advertisements } = props;
-  const [open, setOpen] = useState(false);
   const [menuState, setMenuState] = useState({
-    activeMenu: null,
-    isAnimating: false
+    isOpen: false,          // main drawer toggle
+    activeMenu: null,       // submenu toggle
+    isAnimating: false      // animation state
   });
 
-  useScrollLock({ lock: open });
+  const { isOpen } = menuState;
+  useScrollLock({ lock: isOpen });
 
   // toggle opening of mobile drawer and reset menu state
-  const closeMenu = useCallback(() => {
-    setOpen(!open);
+  const toggleDrawer = useCallback(() => {
+    if (!isOpen) {
+      // Opening the drawer
+      setMenuState(prev => ({
+        ...prev,
+        isOpen: true
+      }));
+    } else {
+      // closing the drawer
+      setMenuState(prev => ({
+        ...prev,
+        isAnimating: true,
+        isOpen: false
+      }));
 
-    // trigger animation then close menu
-    if (open) {
-      setMenuState(prev => ({ ...prev, isAnimating: true }));
-
-      // reset menu state after animation completes
+      // Reset entire menu state after animation completes
       setTimeout(() => {
-        setMenuState({ activeMenu: null, isAnimating: false });
+        setMenuState({
+          isOpen: false,
+          activeMenu: null,
+          isAnimating: false
+        });
       }, 500); // Match the animation duration
     }
-  }, [open]);
+  }, [isOpen]);
 
   return (
     <nav>
       <div className="flex">
         <div className="z-50 md:w-auto w-full flex justify-between md:hidden relative ml-auto">
-          <HamburgerButton closeMenu={closeMenu} setOpen={setOpen} open={open} />
+          <HamburgerButton
+            menuState={menuState}
+            toggleDrawer={toggleDrawer}
+          />
         </div>
         {/* Desktop nav */}
         <ul className="md:flex hidden items-center gap-8">
@@ -44,9 +60,9 @@ const NavBar = (props) => {
         {
           <div
             className={cx(
-              "md:hidden fixed bottom-0 top-[86px] z-40 w-full bg-white transition-all duration-500 left-0",
+              "md:hidden fixed bottom-0 top-[86px] z-40 w-full bg-white transition-all duration-300 left-0",
               {
-                "-translate-x-full": !open,
+                "-translate-x-full": !isOpen,
               }
             )}
           >
@@ -54,9 +70,9 @@ const NavBar = (props) => {
               <NavLinksMobile
                 links={links}
                 advertisements={advertisements}
-                closeMenu={closeMenu}
                 menuState={menuState}
                 setMenuState={setMenuState}
+                toggleDrawer={toggleDrawer}
               />
             </ul>
           </div>
