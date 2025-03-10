@@ -64,8 +64,8 @@ const Footer = (props) => {
           {/* footer menu */}
           {FooterMenu?.length > 0 && <div className="grid grid-cols-2 md:flex md:flex-row w-full">
             {FooterMenu?.map((item, index) => (
-              <>
-                <div key={item.id} className="mb-8 md:mb-0 md:px-8 2xl:md:px-16">
+              <div key={item?.id} className="flex">
+                <div className="mb-8 md:mb-0 md:px-8 2xl:md:px-16">
                   {item?.Heading && <h3 className="text-base font-semibold mb-4">{item?.Heading}</h3>}
                   {item?.FooterLinks?.length > 0 && (
                     <nav>
@@ -92,7 +92,7 @@ const Footer = (props) => {
                 {index !== FooterMenu.length - 1 && (
                   <div className="hidden md:block w-px border-l border-[#979AA0] h-[102px]"></div>
                 )}
-              </>
+              </div>
             ))}
           </div>}
         </div>
