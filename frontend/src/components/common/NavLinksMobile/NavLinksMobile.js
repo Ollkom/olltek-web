@@ -11,31 +11,22 @@ const NavLinksMobile = (props) => {
     advertisements,
     activeMenu,
     setActiveMenu,
-    showSubMenu,
-    setShowSubMenu
   } = props;
 
   // open submenu and set the clicked links menu as active menu
   const openSubmenu = (link) => {
     setActiveMenu(link);
     setTimeout(() => {
-      setShowSubMenu(true);
+      setActiveMenu(link);
     }, 10);
   };
 
   // close submenu only
   const closeSubmenu = () => {
-    setShowSubMenu(false);
-    setTimeout(() => {
-      if (!showSubMenu) setActiveMenu(null);
-    }, 300);
-  };
-
-  // close and reset menu and submenu when the final link is clicked in submenu
-  const handleCloseMenu = () => {
     setActiveMenu(null);
-    setShowSubMenu(false);
-    closeMenu();
+    setTimeout(() => {
+      if (!activeMenu) setActiveMenu(null);
+    }, 500);
   };
 
   return (
@@ -43,7 +34,7 @@ const NavLinksMobile = (props) => {
 
       {/* Main menu (Level 0) */}
       <div className={cx("flex-1 overflow-y-auto", {
-        "hidden": showSubMenu
+        "hidden": activeMenu
       })}>
         <ul className="flex flex-col gap-8 py-10 pe-5">
           {links?.map((link) => (
@@ -69,20 +60,19 @@ const NavLinksMobile = (props) => {
           ))}
         </ul>
       </div>
+      {/* Submenu */}
+      <div className={cx("absolute inset-0 bg-white flex flex-col h-full transition-transform duration-500", {
+        "translate-x-0": activeMenu,
+        "translate-x-full": !activeMenu
+      })}>
+        <NavDetails
+          menu={activeMenu}
+          closeSubmenu={closeSubmenu}
+          closeMenu={closeMenu}
+          advertisements={advertisements}
+        />
+      </div>
 
-      {activeMenu && (
-        <div className={cx("absolute inset-0 bg-white flex flex-col h-full transition-transform duration-300", {
-          "translate-x-0": showSubMenu,
-          "translate-x-full": !showSubMenu
-        })}>
-          <NavDetails
-            menu={activeMenu}
-            onBack={closeSubmenu}
-            closeMenu={handleCloseMenu}
-            advertisements={advertisements}
-          />
-        </div>
-      )}
     </div>
   );
 };
