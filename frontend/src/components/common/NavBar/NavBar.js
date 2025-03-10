@@ -9,7 +9,6 @@ const NavBar = (props) => {
   const { links, advertisements } = props;
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
-  const [showSubMenu, setShowSubMenu] = useState(false);
 
   useScrollLock({ lock: open });
 
@@ -17,7 +16,6 @@ const NavBar = (props) => {
   const closeMenu = useCallback(() => {
     setOpen(!open);
     setActiveMenu(null);
-    setShowSubMenu(false);
   }, [open]);
 
   return (
@@ -47,8 +45,6 @@ const NavBar = (props) => {
                 closeMenu={closeMenu}
                 activeMenu={activeMenu}
                 setActiveMenu={setActiveMenu}
-                showSubMenu={showSubMenu}
-                setShowSubMenu={setShowSubMenu}
               />
             </ul>
           </div>
