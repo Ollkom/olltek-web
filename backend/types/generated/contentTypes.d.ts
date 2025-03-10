@@ -828,6 +828,9 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'api::author.author'
     >;
     seo: Attribute.Component<'shared.seo'>;
+    featured: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1068,6 +1071,12 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
         };
       }>;
     countries: Attribute.Component<'sections.countries'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Advertisements: Attribute.Component<'sections.advertisements'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1384,7 +1393,8 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.retail-application-form',
         'sections.our-brands',
         'sections.show-reel',
-        'sections.featured-products'
+        'sections.featured-products',
+        'sections.blog-posts'
       ]
     > &
       Attribute.SetPluginOptions<{
