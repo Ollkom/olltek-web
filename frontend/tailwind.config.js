@@ -19,6 +19,10 @@ module.exports = {
         lightGrayText: "#525D6A",
         lightGrayBackground: "#F8F9FB",
       },
+      container: {
+        center: true,
+        screens: { sm: "640px", md: "728px", lg: "950px", xl: "1100px", "2xl": "1680px", },
+      },
     },
   },
   plugins: [

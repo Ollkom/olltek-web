@@ -28,6 +28,8 @@ import IcoFeaturedProductLink from "./ico_featured_product_link.svg";
 import IconPlaySM from "./icon_play_sm.svg";
 import IconPlayXS from "./icon_play_xs.svg";
 import IconBack from "./icon_back.svg";
+import IconForwardArrow from "./icon_forward_arrow.svg";
+import IconChevronDown from "./icon_chevron_down.svg";
 
 export {
   ButtonIcon,
@@ -60,4 +62,6 @@ export {
   IconPlaySM,
   IconPlayXS,
   IconBack,
+  IconForwardArrow,
+  IconChevronDown,
 };

@@ -423,6 +423,17 @@ export interface SectionsAboutUs extends Schema.Component {
   };
 }
 
+export interface SectionsAdvertisements extends Schema.Component {
+  collectionName: 'components_sections_advertisements';
+  info: {
+    displayName: 'Advertisements';
+    description: '';
+  };
+  attributes: {
+    Advert: Attribute.Component<'elements.feature', true> & Attribute.Required;
+  };
+}
+
 export interface SectionsBannerSlider extends Schema.Component {
   collectionName: 'components_sections_banner_sliders';
   info: {
@@ -433,6 +444,21 @@ export interface SectionsBannerSlider extends Schema.Component {
     title: Attribute.String;
     description: Attribute.Text;
     Slides: Attribute.Component<'shared.slider'>;
+  };
+}
+
+export interface SectionsBlogPosts extends Schema.Component {
+  collectionName: 'components_sections_blog_posts';
+  info: {
+    displayName: 'BlogPosts';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    type: Attribute.Enumeration<['latest', 'featured']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'latest'>;
   };
 }
 
@@ -1105,7 +1131,9 @@ declare module '@strapi/types' {
       'menu.menu-link': MenuMenuLink;
       'meta.metadata': MetaMetadata;
       'sections.about-us': SectionsAboutUs;
+      'sections.advertisements': SectionsAdvertisements;
       'sections.banner-slider': SectionsBannerSlider;
+      'sections.blog-posts': SectionsBlogPosts;
       'sections.bottom-actions': SectionsBottomActions;
       'sections.career-form': SectionsCareerForm;
       'sections.ceo-message': SectionsCeoMessage;

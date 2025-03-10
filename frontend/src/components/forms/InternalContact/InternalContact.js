@@ -147,7 +147,7 @@ export default function InternalContact({ data, department }) {
             {description && <p className="text-white font-normal text-sm md:text-lg">{description}</p>}
           </div>
           {/* Form */}
-          <div className="md:max-w-4xl mx-auto bg-white p-4 md:p-8 rounded-md">
+          <div className="md:max-w-[840px] mx-auto bg-white p-4 md:p-8 rounded-md">
             <div className="flex flex-col">
               <form onSubmit={handleSubmit}>
                 <div className="md:flex md:space-x-3">
