@@ -1,50 +1,47 @@
 "use client";
-import Link from "next/link";
 import cx from "classnames";
-import { useState, useCallback } from "react";
 import { NavLinks, NavLinksMobile } from "@/components/common";
 import { HamburgerButton } from "@/components/ui";
-import { useScrollLock } from "@/hooks";
+import { useScrollLock, useNavbar } from "@/hooks";
 
 const NavBar = (props) => {
-  const { links, topLinks, showMenuOverlay, setShowMenuOverlay } = props;
-  const [open, setOpen] = useState(false);
+  const { links, advertisements } = props;
+  const { menuState, toggleDrawer, toggleSubmenu } = useNavbar();
+  const { isOpen } = menuState;
 
-  useScrollLock({ lock: open });
-
-  const closeMenu = useCallback(() => {
-    setOpen(!open);
-  }, [open]);
+  useScrollLock({ lock: isOpen });
 
   return (
     <nav>
       <div className="flex">
         <div className="z-50 md:w-auto w-full flex justify-between md:hidden relative ml-auto">
-          <HamburgerButton setOpen={setOpen} open={open} />
+          <HamburgerButton
+            menuState={menuState}
+            toggleDrawer={toggleDrawer}
+          />
         </div>
         {/* Desktop nav */}
-        <ul className="md:flex hidden items-center">
-          <NavLinks links={links} setShowMenuOverlay={setShowMenuOverlay} />
+        <ul className="md:flex hidden items-center gap-8">
+          <NavLinks links={links} advertisements={advertisements} />
         </ul>
         {/* Mobile nav */}
         {
           <div
             className={cx(
-              "md:hidden fixed bottom-0 top-20 z-40 w-full bg-white transition-all duration-300 left-0 md:w-[27rem]",
+              "md:hidden fixed bottom-0 top-[86px] z-40 w-full bg-white transition-all duration-500 left-0",
               {
-                "-translate-x-full": !open,
+                "-translate-x-full": !isOpen,
               }
             )}
           >
-            <ul className="relative h-full overflow-y-auto mx-6">
-              <NavLinksMobile links={links} closeMenu={closeMenu} />
-              {topLinks.map((links) => (
-                <li key={links?.id} className="py-3 border-b border-[#A9B7BD]">
-                  <Link href={links?.url} onClick={closeMenu}>
-                    {links?.text}
-                  </Link>
-                </li>
-              ))}
+            <ul className="relative h-full overflow-y-auto">
+              <NavLinksMobile
+                links={links}
+                advertisements={advertisements}
+                menuState={menuState}
+                toggleDrawer={toggleDrawer}
+                toggleSubmenu={toggleSubmenu}
+              />
             </ul>
           </div>
         }
