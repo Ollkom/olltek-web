@@ -1,41 +1,33 @@
 import cx from "classnames";
-import { useCallback } from "react";
 
 const genericHamburgerLine = `block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out`;
 
 const HamburgerButton = (props) => {
-  const { open, setOpen, closeMenu } = props;
-
-  const handleClick = useCallback(() => {
-    if (open) {
-      closeMenu()
-    } else {
-      setOpen(!open)
-    }
-  }, [open, setOpen, closeMenu])
+  const { menuState, toggleDrawer } = props;
+  const { isOpen } = menuState;
 
   return (
     <button
       className="text-darkGrayText w-10 h-10 relative focus:outline-none"
-      onClick={handleClick}
+      onClick={toggleDrawer}
     >
-      <div className="block w-5 absolute left-1/2 top-1/2   transform  -translate-x-1/2 -translate-y-1/2">
+      <div className="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <span
           className={cx(`${genericHamburgerLine}`, {
-            "rotate-45": open,
-            "-translate-y-1.5": !open,
+            "rotate-45": isOpen,
+            "-translate-y-1.5": !isOpen,
           })}
         />
         <span
           className={cx(`${genericHamburgerLine}`, {
-            "opacity-0": open,
-            "opacity-100": !open,
+            "opacity-0": isOpen,
+            "opacity-100": !isOpen,
           })}
         />
         <span
           className={cx(`${genericHamburgerLine}`, {
-            "-rotate-45": open,
-            "translate-y-1.5": !open,
+            "-rotate-45": isOpen,
+            "translate-y-1.5": !isOpen,
           })}
         />
       </div>
