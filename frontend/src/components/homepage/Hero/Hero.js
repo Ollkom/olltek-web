@@ -3,7 +3,7 @@ import { getStrapiMedia } from "@/utils/api-helpers";
 import { getGlobal } from "@/utils/api-loaders";
 import Image from "next/image";
 import Link from "next/link";
-import CountryScroll from "@/components/homepage/CountryScroll";
+import { CountryScroll } from "@/components/homepage";
 
 const Hero = async (props) => {
   const { data } = props;
