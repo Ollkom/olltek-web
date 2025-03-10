@@ -73,21 +73,23 @@ const populate = {
       },
       service: {
         populate: {
-          product_features: true,
-          icon: {
-            fields: ["url", "alternativeText", "caption", "width", "height"],
+          feature: {
+            populate: {
+              icon: true,
+            },
           },
-          video: {
-            fields: ["url", "alternativeText", "caption", "width", "height"],
-          },
-          Button: true,
+          picture: true,
         },
       },
       submitButton: {
         populate: true,
       },
       // Platform Data
-      Button: true,
+      Button: {
+        populate: {
+          icon: true,
+        },
+      },
       Heading: true,
       PlatformList: {
         fields: ["title"],

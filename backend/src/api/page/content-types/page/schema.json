@@ -62,7 +62,8 @@
         "sections.retail-application-form",
         "sections.our-brands",
         "sections.show-reel",
-        "sections.featured-products"
+        "sections.featured-products",
+        "sections.blog-posts"
       ],
       "pluginOptions": {
         "i18n": {

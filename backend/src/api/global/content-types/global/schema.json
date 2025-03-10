@@ -89,6 +89,26 @@
         }
       },
       "component": "sections.testimonials-group"
+    },
+    "countries": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "sections.countries"
+    },
+    "Advertisements": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "sections.advertisements"
     }
   }
 }

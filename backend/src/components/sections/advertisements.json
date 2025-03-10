@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_advertisements",
+  "info": {
+    "displayName": "Advertisements",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Advert": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.feature",
+      "required": true
+    }
+  }
+}

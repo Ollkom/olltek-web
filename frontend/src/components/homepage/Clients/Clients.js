@@ -1,79 +1,55 @@
 "use client";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { getStrapiMedia } from "@/utils/api-helpers";
 import Image from "next/image";
-import { Typography, Button } from "@/components/ui";
-
-const Slider = dynamic(() => import("react-slick"));
+import { SectionHeader } from "@/components/common";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
 const Clients = (props) => {
   const { data } = props;
-  const { heading, Client, subtitle, Button: btnJoin, enable } = data;
-  if (enable === false) return;
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    autoplay: true,
-    responsive: [
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+  const { heading, Client, subtitle, enable } = data;
+
+  const OPTIONS = {
+    loop: true,
+    align: "start",
   };
+  const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [
+    Autoplay({ playOnInit: true, stopOnMouseEnter: true, stopOnInteraction: false })
+  ]);
+
+  // TODO: Need to find solution for autoplay for 7 slider per view
+
+  const isCarouselRequired = Client?.length > 6;
+  if (enable === false) return;
+  if (Client?.length === 0) return null;
   return (
-    <section className="py-12 md:py-24 px-5 md:px-0 mx-auto border-b border-[#E2E2E2]">
-      <div className="items-center text-white">
-        {heading && (
-          <div className="text-center">
-            <Typography variant="gradient">{heading}</Typography>
+    <section className="py-12 px-5 md:px-0 mx-auto bg-lightGrayBackground border-b border-lightGrayBackground">
+      <div className="container-custom">
+        <SectionHeader title={heading} header={subtitle} />
+        <div
+          ref={isCarouselRequired ? emblaRef : null}
+          className="overflow-hidden">
+          <div className="flex items-center">
+            {Client?.map((item) => {
+              const client = item?.media?.data?.attributes;
+              if (!client?.url) return null;
+              return (
+                <div key={item?.id} className="min-w-0 flex-[0_0_33%] md:flex-[0_0_17%] ps-3">
+                  <Image
+                    src={getStrapiMedia(client?.url)}
+                    alt={
+                      client?.alternativeText ||
+                      client?.title ||
+                      `Client ${item?.id}`
+                    }
+                    width={client?.width}
+                    height={client?.height}
+                    className="mx-auto"
+                  />
+                </div>
+              );
+            })}
           </div>
-        )}
-        <div className="overflow-hidden py-6 md:py-12 md:px-24 mx-auto">
-          <Slider {...settings}>
-            {Client?.map((item) => (
-              <div key={item?.id} className="px-6 md:px-8">
-                <Image
-                  src={getStrapiMedia(item?.media?.data?.attributes?.url)}
-                  alt={
-                    item?.media?.data?.attributes?.alternativeText ||
-                    item?.title ||
-                    `Client ${item?.id}`
-                  }
-                  width={item?.media?.data?.attributes?.width}
-                  height={item?.media?.data?.attributes?.height}
-                  className="mx-auto"
-                />
-              </div>
-            ))}
-          </Slider>
-        </div>
-        <div className="md:flex items-center justify-center space-x-6 text-center">
-          {subtitle && (
-            <div className="text-center">
-              <Typography variant="body1">
-                <span className="text-sm md:text-lg 2xl:text-2xl">
-                  {subtitle}
-                </span>
-              </Typography>
-            </div>
-          )}
-          {btnJoin && (
-            <Link href={btnJoin?.url}>
-              <Button type="button" variant={btnJoin?.type} icon={false}>
-                {btnJoin?.text}
-              </Button>
-            </Link>
-          )}
         </div>
       </div>
     </section>

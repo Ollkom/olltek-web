@@ -15,50 +15,19 @@ import {
 } from "@/components/ui";
 import { getStrapiMedia } from "@/utils/api-helpers";
 import { validation } from "@/utils/form-validations";
+import { SectionHeader } from "@/components/common";
 
 const formFields = {
   firstName: "",
   lastName: "-",
-  phoneNumber: "00000000",
+  phoneNumber: "",
   email: "",
   organization: "-",
   message: "",
 };
 
-const ContactDetail = ({ item, isFirst }) => (
-  <div className="mb-6 rounded-xl">
-    <div className="flex space-x-4 items-center">
-      <div className="w-[36px]">
-        {item?.media.data && (
-          <Image
-            src={getStrapiMedia(item?.media?.data?.attributes?.url)}
-            alt={
-              item?.media?.data?.attributes?.alternativeText ||
-              item?.title ||
-              `Contact Details ${item?.id}`
-            }
-            width={item?.media?.data?.attributes?.width}
-            height={item?.media?.data?.attributes?.height}
-          />
-        )}
-      </div>
-      <div>
-        <p
-          className={cx(`md:text-xl`, {
-            "font-bold": isFirst,
-            "font-light": !isFirst,
-          })}
-        >
-          {item?.title}
-        </p>
-        {item?.description && <p className="text-sm">{item?.description}</p>}
-      </div>
-    </div>
-  </div>
-);
-
 export default function InternalContact({ data, department }) {
-  const { title, ContactDetails } = data;
+  const { title, description, picture } = data;
   const [formValues, setFormValues] = useState(formFields);
   const [formerror, setFormerror] = useState({});
   const [snackbar, setSnackbar] = useState({
@@ -154,37 +123,35 @@ export default function InternalContact({ data, department }) {
   return (
     <>
       <SnackBar snackbar={snackbar} setSnackbar={setSnackbar} />
-      <MotionContainer>
-        <div className="py-8 px-5 md:px-0">
-          {title && (
-            <div className="text-center">
-              <Typography variant="gradient" className="py-4">
-                <span className="text-black normal-case tracking-normal font-normal text-lg md:text-3xl">
-                  {title}
-                </span>
-              </Typography>
-            </div>
-          )}
-          <div className="md:max-w-4xl mx-auto mt-5">
-            {/* TODO: Need to remove below commented code once ollkom site is stable */}
-            {/*
-              <div>
-              <p className="mb-8">Contact Person</p>
-              {ContactDetails?.map((item, index) => (
-                <ContactDetail
-                  key={item?.id}
-                  item={item}
-                  isFirst={index === 0}
-                />
-              ))}
-            </div>
-              */}
-            <div>
-              {/* TODO: Need to remove below commented code once ollkom site is stable */}
-              {/*<p className="mb-8">Contact Form</p> */}
+      <MotionContainer className="py-12 md:py-14 text-white relative">
+        {picture?.data?.attributes?.url && (
+          <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+            <Image
+              src={getStrapiMedia(picture.data.attributes.url)}
+              alt="Background"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-[#273665]/90"></div>
+          </div>
+        )}
+        <div className="container-custom px-5 md:px-0 relative z-10">
+          {/* Section Header */}
+          <div className="flex flex-col gap-4 max-w-3xl mx-auto text-center pb-4 md:pb-8 2xl:pb-12">
+            {title && (
+              <h2 className="text-white font-medium text-2xl md:text-3xl">
+                {title}
+              </h2>
+            )}
+            {description && <p className="text-white font-normal text-sm md:text-lg">{description}</p>}
+          </div>
+          {/* Form */}
+          <div className="md:max-w-[840px] mx-auto bg-white p-4 md:p-8 rounded-md">
+            <div className="flex flex-col">
               <form onSubmit={handleSubmit}>
                 <div className="md:flex md:space-x-3">
-                  <div className="w-full md:w-1/2 mb-6">
+                  <div className="w-full mb-6">
                     <Input
                       type="text"
                       value={formValues?.firstName}
@@ -194,6 +161,8 @@ export default function InternalContact({ data, department }) {
                     />
                     <ErrorMessage message={formerror?.firstName} />
                   </div>
+                </div>
+                <div className="md:flex md:space-x-3">
                   <div className="w-full md:w-1/2 mb-6">
                     <Input
                       type="text"
@@ -203,6 +172,16 @@ export default function InternalContact({ data, department }) {
                       onChange={handleValidation}
                     />
                     <ErrorMessage message={formerror?.email} />
+                  </div>
+                  <div className="w-full md:w-1/2 mb-6">
+                    <Input
+                      type="text"
+                      placeholder="Phone Number"
+                      name="phoneNumber"
+                      value={formValues?.phoneNumber}
+                      onChange={handleValidation}
+                    />
+                    <ErrorMessage message={formerror?.phoneNumber} />
                   </div>
                 </div>
                 <div className="flex mb-6">
@@ -218,11 +197,9 @@ export default function InternalContact({ data, department }) {
                     <ErrorMessage message={formerror?.message} />
                   </div>
                 </div>
-                <div className="text-center">
-                  <Button type="submit" variant="primary">
-                    Submit
-                  </Button>
-                </div>
+                <Button type="submit" variant="primary" className="w-full md:w-auto">
+                  Submit
+                </Button>
               </form>
             </div>
           </div>

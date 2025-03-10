@@ -15,7 +15,7 @@ const Input = ({ value, label, name, placeholder, type, onChange, onBlur }) => (
       onBlur={onBlur}
       placeholder={placeholder}
       onChange={onChange}
-      className={`bg-white appearance-none block w-full text-gray-700 rounded px-4 py-3 leading-tight focus:outline-[#0D6EFD] focus:bg-white border border-[#999999]`}
+      className={`bg-lightGrayBackground appearance-none block w-full text-gray-700 rounded px-4 py-3 leading-tight focus:outline-[#0D6EFD] focus:bg-white border border-[#E5E5E7] placeholder:text-lightGrayText text-base placeholder:text-base`}
     />
   </div>
 );

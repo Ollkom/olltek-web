@@ -29,6 +29,10 @@ export async function getGlobal() {
       "testimonials",
       "testimonials.Testimonial",
       "testimonials.Testimonial.picture",
+      "countries",
+      "countries.country.media.file",
+      "Advertisements.Advert.media",
+      "Advertisements.Advert.MediaHover",
     ],
   };
   return await fetchAPI(path, urlParamsObject, options, tag);
@@ -98,5 +102,62 @@ export async function getPostBySlug(slug, collections) {
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const response = await fetchAPI(path, urlParamsObject, options);
+  return response;
+}
+
+export async function getPageArticles(
+  path,
+  category = null,
+  start = 0,
+  limit = DEFAULT_COLLECTION_LIMIT,
+  filterType = "latest",
+  postId = null
+) {
+
+  const urlParamsObject = {
+    sort: { createdAt: "desc" },
+    populate: {
+      cover: { fields: ["url", "alternativeText", "width", "height"] },
+      category: { populate: "*" },
+      authorsBio: { populate: "*" },
+      blocks: {
+        populate: "*"
+      },
+      seo: { populate: "*" }
+    },
+    pagination: {
+      start: start,
+      limit: limit,
+    },
+  };
+  if (filterType === "featured") {
+    urlParamsObject.filters = {
+      featured: {
+        $eq: true,
+      },
+    };
+  }
+  if (category) {
+    urlParamsObject.filters = {
+      category: {
+        slug: {
+          $eq: category,
+        },
+      },
+      ...(postId && {
+        id: {
+          $notIn: postId,
+        },
+      }),
+    };
+  }
+
+  const options = { headers: { Authorization: `Bearer ${token}` } };
+  const cacheOptions = {
+    next: {
+      tags: ['article', 'event']
+    }
+  }
+  const response = await fetchAPI(path, urlParamsObject, options, cacheOptions);
   return response;
 }

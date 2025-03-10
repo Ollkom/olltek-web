@@ -1,7 +1,7 @@
 "use client";
 import cx from "classnames";
-import { motion } from "framer-motion";
 import { ButtonIcon } from "@/assets/images";
+import { motion } from "framer-motion";
 
 const Button = (props) => {
   const {
@@ -24,9 +24,9 @@ const Button = (props) => {
           {
             "pointer-events-none opacity-50": disabled,
 
-            "text-[#1010B7] bg-white px-6 py-2 md:py-3 transition-colors duration-300 ease-in-out hover:bg-[#070751] hover:text-white":
+            "text-darkGrayText bg-white px-5 py-2.5 hover:bg-lightBlue border border-darkGrayText hover:border-lightBlue hover:text-white active:bg-darkBlue transition-colors duration-300 ease-in-out":
               variant === "secondary",
-            "hover:bg-[#070751] py-2.5 px-8 border-2 border-black hover:text-white transition-colors duration-300 ease-in-out 2xl:text-2xl":
+            "bg-lightBlue text-white px-5 py-2.5 border border-lightBlue hover:border-lightBlue hover:bg-white hover:text-lightBlue active:bg-lightGrayBackground transition-colors duration-300 ease-in-out":
               variant === "primary",
             "bg-gradient-to-r from-[#08B1F6] to-[#2F4BDF] py-1.5 px-8 text-white text-2xl 2xl:text-3xl":
               variant === "subsecondary",

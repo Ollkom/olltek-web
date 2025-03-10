@@ -24,7 +24,7 @@ const TextArea = ({
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      className="appearance-none block w-full text-gray-700 rounded leading-tight focus:outline-[#0D6EFD] focus:bg-white focus:border-gray-500 p-3 border border-[#999999]"
+      className="appearance-none block w-full text-gray-700 rounded leading-tight bg-lightGrayBackground focus:outline-[#0D6EFD] focus:bg-white focus:border-gray-500 p-3 border border-[#E5E5E7] placeholder:text-lightGrayText text-base placeholder:text-base"
     />
   </div>
 );

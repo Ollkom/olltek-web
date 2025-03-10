@@ -29,7 +29,7 @@ export const typographyClasses = {
   h5: "text-2xs/4 font-semibold uppercase tracking-normal",
   h6: "text-2xs/4 font-semibold tracking-normal",
   paragraph: "text-2xs/5.5 tracking-normal",
-  body1: "text-base md:text-lg 2xl:text-2xl tracking-normal text-[#202529]",
+  body1: "font-normal text-sm md:text-lg tracking-normal text-lightGrayText",
   body2: "text-lg tracking-normal text-[#202529]",
   caption: "text-xs/3.5 tracking-normal",
   button1: "text-2xs/4 uppercase font-semibold tracking-normal",
@@ -42,14 +42,14 @@ export const typographyClasses = {
   gradient2:
     "inline-block bg-gradient-to-r from-[#08B1F6] to-[#2F4BDF] bg-clip-text text-transparent font-bold text-lg 2xl:text-2xl",
   heading1:
-    "py-4 md:py-8 text-base md:text-4xl md:leading-[44px] 2xl:text-5xl 2xl:leading-[62px] font-medium tracking-normal text-[#202529]",
+    "text-lightBlue font-semibold text-sm",
   heading2:
     "text-xs md:text-xl 2xl:text-2xl tracking-widest text-center uppercase",
   heading4: "text-xl md:text-2xl leading-9 font-bold tracking-normal",
   heading5:
     "text-xl leading-8 md:text-xl 2xl:text-2xl md:leading-9 font-semibold tracking-normal",
   title:
-    "inline-block text-[#333333] uppercase font-bold text-base text-xs md:text-xl 2xl:text-2xl tracking-widest",
+    "inline-block text-darkGrayText font-medium text-2xl md:text-3xl",
 };
 
 const Typography = forwardRef(function Typography(props, ref) {

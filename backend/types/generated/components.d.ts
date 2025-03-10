@@ -47,7 +47,7 @@ export interface ElementsFeatureColumn extends Schema.Component {
   attributes: {
     title: Attribute.String & Attribute.Required;
     description: Attribute.Text;
-    icon: Attribute.Media & Attribute.Required;
+    icon: Attribute.Media;
   };
 }
 
@@ -157,11 +157,10 @@ export interface ElementsService extends Schema.Component {
   attributes: {
     name: Attribute.String;
     description: Attribute.Text;
-    isRecommended: Attribute.Boolean;
-    icon: Attribute.Media;
-    video: Attribute.Media;
-    Button: Attribute.Component<'links.button-link'>;
-    subheader: Attribute.Text;
+    feature: Attribute.Component<'elements.feature-column', true>;
+    picture: Attribute.Media;
+    type: Attribute.Enumeration<['bullet', 'icon']> &
+      Attribute.DefaultTo<'icon'>;
   };
 }
 
@@ -424,6 +423,17 @@ export interface SectionsAboutUs extends Schema.Component {
   };
 }
 
+export interface SectionsAdvertisements extends Schema.Component {
+  collectionName: 'components_sections_advertisements';
+  info: {
+    displayName: 'Advertisements';
+    description: '';
+  };
+  attributes: {
+    Advert: Attribute.Component<'elements.feature', true> & Attribute.Required;
+  };
+}
+
 export interface SectionsBannerSlider extends Schema.Component {
   collectionName: 'components_sections_banner_sliders';
   info: {
@@ -434,6 +444,21 @@ export interface SectionsBannerSlider extends Schema.Component {
     title: Attribute.String;
     description: Attribute.Text;
     Slides: Attribute.Component<'shared.slider'>;
+  };
+}
+
+export interface SectionsBlogPosts extends Schema.Component {
+  collectionName: 'components_sections_blog_posts';
+  info: {
+    displayName: 'BlogPosts';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    type: Attribute.Enumeration<['latest', 'featured']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'latest'>;
   };
 }
 
@@ -536,6 +561,16 @@ export interface SectionsContactForm extends Schema.Component {
   };
 }
 
+export interface SectionsCountries extends Schema.Component {
+  collectionName: 'components_sections_countries';
+  info: {
+    displayName: 'Countries';
+  };
+  attributes: {
+    country: Attribute.Component<'elements.brand', true>;
+  };
+}
+
 export interface SectionsFaq extends Schema.Component {
   collectionName: 'components_sections_faqs';
   info: {
@@ -579,10 +614,10 @@ export interface SectionsFeatures extends Schema.Component {
       ['threeColumn', 'fourColumn', 'fiveColumn', 'sixColumn']
     >;
     bgColor: Attribute.String;
-    Button: Attribute.Component<'links.button-link'>;
+    Button: Attribute.Component<'links.social-link'>;
     showFilter: Attribute.Boolean & Attribute.DefaultTo<false>;
     enable: Attribute.Boolean;
-    titleColor: Attribute.String;
+    ctaTitle: Attribute.Text;
   };
 }
 
@@ -649,11 +684,13 @@ export interface SectionsInnovations extends Schema.Component {
   collectionName: 'components_sections_innovations';
   info: {
     displayName: 'Innovations';
+    description: '';
   };
   attributes: {
     feature: Attribute.Component<'elements.feature', true>;
     title: Attribute.String;
     description: Attribute.Text;
+    picture: Attribute.Media;
   };
 }
 
@@ -666,6 +703,8 @@ export interface SectionsInternalContactForm extends Schema.Component {
   attributes: {
     title: Attribute.String;
     ContactDetails: Attribute.Component<'elements.feature', true>;
+    picture: Attribute.Media;
+    description: Attribute.Text;
   };
 }
 
@@ -1092,13 +1131,16 @@ declare module '@strapi/types' {
       'menu.menu-link': MenuMenuLink;
       'meta.metadata': MetaMetadata;
       'sections.about-us': SectionsAboutUs;
+      'sections.advertisements': SectionsAdvertisements;
       'sections.banner-slider': SectionsBannerSlider;
+      'sections.blog-posts': SectionsBlogPosts;
       'sections.bottom-actions': SectionsBottomActions;
       'sections.career-form': SectionsCareerForm;
       'sections.ceo-message': SectionsCeoMessage;
       'sections.clients': SectionsClients;
       'sections.company': SectionsCompany;
       'sections.contact-form': SectionsContactForm;
+      'sections.countries': SectionsCountries;
       'sections.faq': SectionsFaq;
       'sections.featured-products': SectionsFeaturedProducts;
       'sections.features': SectionsFeatures;
