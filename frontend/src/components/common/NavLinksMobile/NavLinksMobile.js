@@ -9,37 +9,11 @@ const NavLinksMobile = (props) => {
     links,
     advertisements,
     menuState,
-    setMenuState,
-    toggleDrawer
+    toggleDrawer,
+    toggleSubmenu
   } = props;
 
   const { activeMenu, isAnimating } = menuState;
-
-  const toggleSubmenu = (link) => {
-    if (!activeMenu) {
-      // Opening submenu
-      setMenuState(prev => ({
-        ...prev,
-        activeMenu: link,
-        isAnimating: false
-      }));
-    } else {
-      // Closing with animation
-      setMenuState(prev => ({
-        ...prev,
-        isAnimating: true
-      }));
-
-      // Reset only submenu state after animation completes
-      setTimeout(() => {
-        setMenuState(prev => ({
-          ...prev,
-          activeMenu: null,
-          isAnimating: false
-        }));
-      }, 300); // Match the transition-duration value
-    }
-  };
 
   return (
     <div className="h-full flex flex-col">

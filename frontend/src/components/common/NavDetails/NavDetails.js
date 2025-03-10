@@ -11,7 +11,6 @@ const NavDetails = (props) => {
     <div className="flex flex-col h-full">
       {/* Submenu items */}
       <div className="flex flex-col px-6 pt-4 pb-8 gap-8">
-        {/* Back button - calling closeSubmenu without arguments since it doesn't need a link */}
         <button
           onClick={() => closeSubmenu()}
           className="group flex items-center gap-4 text-darkGrayText"
