@@ -265,6 +265,7 @@ export interface LayoutPageHeader extends Schema.Component {
     title: Attribute.Text;
     description: Attribute.Text;
     media: Attribute.Component<'shared.media'>;
+    logo: Attribute.Component<'shared.media'>;
     FeaturedProducts: Attribute.Component<'sections.featured-products'>;
   };
 }

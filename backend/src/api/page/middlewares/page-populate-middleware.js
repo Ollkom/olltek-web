@@ -354,6 +354,13 @@ const populate = {
           Button: true,
         },
       },
+      logo: {
+        populate: {
+          file: {
+            fields: ["url", "alternativeText", "width", "height"],
+          },
+        },
+      },
     },
   },
 
