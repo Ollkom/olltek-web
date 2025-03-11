@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getStrapiMedia } from "@/utils/api-helpers";
+import { formatDate, getStrapiMedia } from "@/utils/api-helpers";
 import { IconLinkArrow } from "@/assets/images";
+import cx from "classnames";
 
 const EnhancedCard = ({
   title,
@@ -9,7 +10,9 @@ const EnhancedCard = ({
   media,
   url,
   text,
+  publishedAt,
 }) => {
+
   const DynamicTag = url ? Link : "div";
   return (
     <DynamicTag
@@ -21,26 +24,33 @@ const EnhancedCard = ({
             src={getStrapiMedia(media?.url)}
             width={media?.width}
             height={media?.height}
-            className="object-cover"
+            className="object-cover h-full w-full"
             alt={media?.alternativeText || title || "Enhanced Card"}
           />
         </div>
       )}
       <div
-        className="bg-white py-4 flex-grow flex flex-col"
+        className="bg-white py-4 flex-grow flex flex-col gap-y-3"
       >
         {title && (
-          <h4 className="text-darkGrayText text-xl font-medium mb-2">
+          <h4 className={cx("text-darkGrayText text-xl font-medium line-clamp-2", {
+            "group-hover:text-lightBlue transition-colors duration-200": url
+          })}>
             {title}
           </h4>
         )}
         {description && (
-          <p className="text-lightGrayText text-sm 2xl:text-base font-normal flex-grow">
+          <p className="text-lightGrayText text-sm 2xl:text-base font-normal flex-grow line-clamp-4">
             {description}
           </p>
         )}
+        {publishedAt && (
+          <p className="font-semibold text-darkGrayText text-xs md:test-md">
+            {formatDate(publishedAt)}
+          </p>
+        )}
         {text && url && (
-          <div className="mt-4 flex items-center text-lightBlue font-semibold text-base">
+          <div className="flex items-center text-lightBlue font-semibold text-base">
             {text}
             <IconLinkArrow className="ms-2 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
           </div>
