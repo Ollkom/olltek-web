@@ -21,3 +21,4 @@ export { default as Accordion } from "./Accordion";
 export { default as MotionContainer } from "./MotionContainer";
 export { default as MotionCard } from "./MotionCard";
 export { default as MotionCardStaggered } from "./MotionCardStaggered";
+export { default as Media } from "./Media";
