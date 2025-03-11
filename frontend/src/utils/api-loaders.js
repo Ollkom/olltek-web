@@ -1,5 +1,5 @@
 import { fetchAPI } from "@/utils/fetch-api";
-
+import { DEFAULT_COLLECTION_LIMIT } from "@/utils/constants";
 const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
 export async function getGlobal() {
@@ -33,6 +33,7 @@ export async function getGlobal() {
       "countries.country.media.file",
       "Advertisements.Advert.media",
       "Advertisements.Advert.MediaHover",
+      "backgroundImage"
     ],
   };
   return await fetchAPI(path, urlParamsObject, options, tag);
@@ -74,30 +75,11 @@ export async function getPostBySlug(slug, collections) {
     filters: { slug },
     populate: {
       blocks: {
-        populate: {
-          __component: "*",
-          feature: {
-            populate: {
-              media: {
-                fields: [
-                  "url",
-                  "alternativeText",
-                  "caption",
-                  "width",
-                  "height",
-                ],
-              },
-            },
-          },
-          Bullets: "*",
-          buttons: "*",
-          media: {
-            populate: {
-              file: "*",
-            },
-          },
-        },
+        populate: true,
       },
+      category: true,
+      cover: true,
+      description: true,
     },
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
@@ -153,11 +135,32 @@ export async function getPageArticles(
   }
 
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const cacheOptions = {
-    next: {
-      tags: ['article', 'event']
-    }
-  }
-  const response = await fetchAPI(path, urlParamsObject, options, cacheOptions);
+  const tag = "article";
+  const response = await fetchAPI(path, urlParamsObject, options, tag);
+  return response;
+}
+
+export async function getCategories(path, start = 0, limit = 100) {
+  const urlParamsObject = {
+    populate: {
+      name: true,
+      slug: true,
+      description: true,
+    },
+    filters: {
+      articles: {
+        id: {
+          $notNull: true,
+        },
+      },
+    },
+    pagination: {
+      start: start,
+      limit: limit,
+    },
+  };
+  const options = { headers: { Authorization: `Bearer ${token}` } };
+  const tag = "category";
+  const response = await fetchAPI(path, urlParamsObject, options, tag);
   return response;
 }
