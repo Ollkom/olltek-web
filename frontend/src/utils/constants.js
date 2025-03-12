@@ -5522,3 +5522,5 @@ export const cities = [
     tier: "tier4",
   },
 ];
+
+export const DEFAULT_COLLECTION_LIMIT = 6;
