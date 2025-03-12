@@ -123,7 +123,7 @@ export default function InternalContact({ data, department }) {
   return (
     <>
       <SnackBar snackbar={snackbar} setSnackbar={setSnackbar} />
-      <MotionContainer className="py-12 md:py-14 text-white relative">
+      <MotionContainer className="py-12 md:py-14 text-white relative bg-darkBlue">
         {picture?.data?.attributes?.url && (
           <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
             <Image
@@ -136,7 +136,7 @@ export default function InternalContact({ data, department }) {
             <div className="absolute inset-0 bg-[#273665]/90"></div>
           </div>
         )}
-        <div className="container-custom px-5 md:px-0 relative z-10">
+        <div className="container px-5 md:px-0 relative z-10">
           {/* Section Header */}
           <div className="flex flex-col gap-4 max-w-3xl mx-auto text-center pb-4 md:pb-8 2xl:pb-12">
             {title && (
