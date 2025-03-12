@@ -24,12 +24,10 @@ const BlogPosts = async (props) => {
     const sidebarPosts = blogPosts.data.slice(1);
 
     return (
-        <section className="pb-8 md:pb-16">
+        <section className="py-8 md:py-16">
             <MotionContainer>
-                <div className="px-5 md:px-0 container-custom mx-auto">
-                    <div className="pb-8">
-                        <SectionHeader title={title} description={description} />
-                    </div>
+                <div className="px-5 md:px-0 container mx-auto">
+                    <SectionHeader title={title} description={description} />
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
                         {/* Featured Article */}
                         <MotionCardStaggered>
