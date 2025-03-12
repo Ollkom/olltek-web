@@ -33,7 +33,7 @@ export async function getGlobal() {
       "countries.country.media.file",
       "Advertisements.Advert.media",
       "Advertisements.Advert.MediaHover",
-      "backgroundImage"
+      "contactBackground"
     ],
   };
   return await fetchAPI(path, urlParamsObject, options, tag);
