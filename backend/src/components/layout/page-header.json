@@ -21,6 +21,11 @@
       "repeatable": false,
       "component": "shared.media"
     },
+    "logo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.media"
+    },
     "FeaturedProducts": {
       "type": "component",
       "repeatable": false,
