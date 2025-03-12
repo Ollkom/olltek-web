@@ -21,7 +21,7 @@ const EnhancedFeatures = (props) => {
   return (
     <section
       className="py-10 md:py-14">
-      <div className="px-5 md:px-0 container-custom mx-auto">
+      <div className="px-5 md:px-0 container">
         {/* Section Header */}
         <div className="flex flex-col items-center justify-center text-center mb-12">
           <SectionHeader title={title} description={description} />
