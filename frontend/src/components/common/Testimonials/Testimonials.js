@@ -99,7 +99,7 @@ export default function Testimonials({ data }) {
               </div>
             </div>
 
-            <div className="hidden md:flex md:min-w-[80px]">
+            <div className="hidden md:flex md:min-w-20">
               <CarouselButton
                 direction="next"
                 onClick={onNextButtonClick}
@@ -114,9 +114,9 @@ export default function Testimonials({ data }) {
                 <DotButton
                   key={index}
                   onClick={() => onDotButtonClick(index)}
-                  className={cx("h-[12px] rounded-full transition-all duration-300", {
-                    "bg-lightBlue border-lightBlue w-[32px]": index === selectedIndex,
-                    "border-[#E5E5E7] bg-[#E5E5E7] w-[12px]": index !== selectedIndex,
+                  className={cx("rounded-full transition-all duration-300", {
+                    "bg-lightBlue border-lightBlue h-[12px] w-[32px]": index === selectedIndex,
+                    "border-[#E5E5E7] bg-[#E5E5E7] h-[12px] w-[12px]": index !== selectedIndex,
                   })}
                   aria-label={`Go to slide ${index + 1}`}
                 />
