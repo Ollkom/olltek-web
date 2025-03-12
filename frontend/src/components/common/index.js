@@ -21,3 +21,4 @@ export { default as CarouselButton } from "./CarouselButton";
 export { default as DotButton } from "./DotButton";
 export { default as BlogPosts } from "./BlogPosts";
 export { default as AdvertisementSlider } from "./AdvertisementSlider";
+export { default as Pagination } from "./Pagination";
