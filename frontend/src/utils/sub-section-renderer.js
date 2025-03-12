@@ -6,6 +6,7 @@ import {
   BottomActions,
   BannerSlider,
   Faq,
+  BlogPosts,
 } from "@/components/common";
 import {
   Features,
@@ -29,6 +30,8 @@ export function subSectionRenderer(section, index, pageName) {
   switch (section.__component) {
     case "layout.page-header":
       return <PageHeader key={index} data={section} fontInter={inter} />;
+    case "sections.blog-posts":
+      return <BlogPosts key={index} data={section} />;
     case "sections.contact-form":
       return (
         <Suspense fallback={<div>Loading...</div>}>
@@ -38,14 +41,7 @@ export function subSectionRenderer(section, index, pageName) {
     case "sections.career-form":
       return <Careers key={index} data={section} />;
     case "sections.features":
-      if (pageName === "brands") {
-        return <Features key={index} data={section} fontInter={inter} />;
-      } else {
-        return (
-          <EnhancedFeatures key={index} data={section} fontInter={inter} />
-        );
-      }
-      break;
+      return <EnhancedFeatures key={index} data={section} fontInter={inter} />;
     case "sections.logistics":
       return <Products key={index} data={section} />;
     case "sections.marketing":
@@ -84,6 +80,7 @@ export function subSectionRenderer(section, index, pageName) {
       return <ShowReel key={index} data={section} />;
     case "sections.featured-products":
       return <FeaturedProductsHorizontal key={index} data={section} />;
+
     default:
       return null;
   }
