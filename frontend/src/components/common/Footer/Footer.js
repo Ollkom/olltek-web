@@ -12,7 +12,7 @@ const Footer = (props) => {
 
   return (
     <footer className="bg-darkBlue text-white py-12 px-6">
-      <div className="container-custom mx-auto">
+      <div className="container mx-auto">
         {/* Main footer content */}
         <div className="flex flex-col md:flex-row">
           {/* social links */}

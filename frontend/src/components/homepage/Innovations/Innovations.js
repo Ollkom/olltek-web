@@ -75,7 +75,7 @@ const Innovations = (props) => {
           <div className="absolute inset-0 bg-[#273665E5]/90"></div>
         </div>
       )}
-      <div className="container-custom px-5 md:px-0 relative z-10">
+      <div className="container px-5 md:px-0 relative z-10">
         {/* TODO: Use SectionHeader component with text-white update */}
         <div className="flex flex-col gap-4 max-w-3xl mx-auto text-center pb-4 md:pb-12">
           {title && (
