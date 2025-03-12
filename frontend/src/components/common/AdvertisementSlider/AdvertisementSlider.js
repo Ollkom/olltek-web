@@ -6,6 +6,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
+import { DotButton } from "@/components/common";
 import cx from "classnames";
 
 function AdvertisementSlider({ advertisements, hoverMenuItem, isMenuOpen, isMobileMenu }) {
@@ -91,14 +92,15 @@ function AdvertisementSlider({ advertisements, hoverMenuItem, isMenuOpen, isMobi
                                 "bottom-10": isMobileMenu
                             })}>
                                 {scrollSnaps?.map((_, index) => (
-                                    <div
+                                    <DotButton
                                         key={index}
                                         onClick={() => onDotButtonClick(index)}
-                                        className={cx("w-2 h-2 rounded-full cursor-pointer", {
-                                            "bg-white": index === selectedIndex,
-                                            "bg-lightGrayText": index !== selectedIndex,
+                                        className={cx("rounded-full transition-all duration-300", {
+                                            "bg-white border-white h-2.5 w-6": index === selectedIndex,
+                                            "border-lightGrayText bg-lightGrayText h-2.5 w-2.5": index !== selectedIndex,
                                         })}
-                                    ></div>
+                                        aria-label={`Go to slide ${index + 1}`}
+                                    />
                                 ))}
                             </div>
                         )}
