@@ -13,7 +13,7 @@ export default function PageHeader({ data }) {
       {mediaData?.url && (
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <Image
-            src={getStrapiMedia(mediaData.url) || "/placeholder-image.png"}
+            src={getStrapiMedia(mediaData.url)}
             alt={mediaData.alternativeText || "Page header background"}
             width={mediaData.width}
             height={mediaData.height}
