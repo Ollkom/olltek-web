@@ -97,7 +97,7 @@ function AdvertisementSlider({ advertisements, hoverMenuItem, isMenuOpen, isMobi
                                         onClick={() => onDotButtonClick(index)}
                                         className={cx("h-[10px] rounded-full transition-all duration-300", {
                                             "bg-white border-white w-[25px]": index === selectedIndex,
-                                            "border-[#E5E5E7] bg-[#E5E5E7] w-[10px]": index !== selectedIndex,
+                                            "border-lightGrayText bg-lightGrayText w-[10px]": index !== selectedIndex,
                                         })}
                                         aria-label={`Go to slide ${index + 1}`}
                                     />
