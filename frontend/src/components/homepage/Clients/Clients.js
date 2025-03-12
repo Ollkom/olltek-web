@@ -3,7 +3,8 @@ import { getStrapiMedia } from "@/utils/api-helpers";
 import Image from "next/image";
 import { SectionHeader } from "@/components/common";
 import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
+import AutoScroll from "embla-carousel-auto-scroll";
+import { MotionContainer } from "@/components/ui";
 
 const Clients = (props) => {
   const { data } = props;
@@ -14,7 +15,7 @@ const Clients = (props) => {
     align: "start",
   };
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [
-    Autoplay({ playOnInit: true, stopOnMouseEnter: true, stopOnInteraction: false })
+    AutoScroll({ playOnInit: true, stopOnMouseEnter: true, stopOnInteraction: false })
   ]);
 
   // TODO: Need to find solution for autoplay for 7 slider per view
@@ -24,7 +25,7 @@ const Clients = (props) => {
   if (Client?.length === 0) return null;
   return (
     <section className="py-12 px-5 md:px-0 mx-auto bg-lightGrayBackground border-b border-lightGrayBackground">
-      <div className="container-custom">
+      <MotionContainer className="container">
         <SectionHeader title={heading} header={subtitle} />
         <div
           ref={isCarouselRequired ? emblaRef : null}
@@ -51,7 +52,7 @@ const Clients = (props) => {
             })}
           </div>
         </div>
-      </div>
+      </MotionContainer>
     </section>
   );
 };
