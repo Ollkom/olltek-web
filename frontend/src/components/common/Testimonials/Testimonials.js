@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { getStrapiMedia } from "@/utils/api-helpers";
-import { Typography, MotionContainer } from "@/components/ui";
+import { MotionContainer } from "@/components/ui";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { CarouselButton, DotButton, SectionHeader } from "@/components/common";
@@ -62,9 +62,9 @@ export default function Testimonials({ data }) {
   if (data?.Testimonial?.length === 0) return null;
 
   return (
-    <section className="py-12 px-6 relative container-custom md:px-0">
+    <section className="py-12 relative container">
       <MotionContainer>
-        <div className="mx-auto">
+        <div className="mx-auto px-4">
           <SectionHeader
             title={data?.title}
             description={data?.description}
@@ -74,11 +74,12 @@ export default function Testimonials({ data }) {
         <div className="mt-10">
           <div className="flex justify-between items-center">
             {isCarouselRequired && (
-              <div className="hidden md:flex">
+              <div className="hidden md:flex md:min-w-[80px]">
                 <CarouselButton
                   direction="prev"
                   onClick={onPrevButtonClick}
                   disabled={prevBtnDisabled}
+                  className="mx-auto"
                 />
 
               </div>
@@ -91,18 +92,19 @@ export default function Testimonials({ data }) {
                 {data?.Testimonial?.map((testimonial, index) => (
                   <div
                     key={testimonial?.id}
-                    className="min-w-0 flex-[0_0_100%] md:flex-[0_0_33.333%] px-4">
+                    className="min-w-0 flex-[0_0_70%] md:flex-[0_0_33.333%] px-4">
                     <Testimonial {...testimonial} />
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="hidden md:flex">
+            <div className="hidden md:flex md:min-w-[80px]">
               <CarouselButton
                 direction="next"
                 onClick={onNextButtonClick}
                 disabled={nextBtnDisabled}
+                className="mx-auto"
               />
             </div>
           </div>
@@ -112,9 +114,9 @@ export default function Testimonials({ data }) {
                 <DotButton
                   key={index}
                   onClick={() => onDotButtonClick(index)}
-                  className={cx("h-[12px] w-[12px] rounded-full", {
-                    "bg-lightBlue border-lightBlue": index === selectedIndex,
-                    "border-[#E5E5E7] bg-[#E5E5E7]": index !== selectedIndex,
+                  className={cx("h-[12px] rounded-full transition-all duration-300", {
+                    "bg-lightBlue border-lightBlue w-[32px]": index === selectedIndex,
+                    "border-[#E5E5E7] bg-[#E5E5E7] w-[12px]": index !== selectedIndex,
                   })}
                   aria-label={`Go to slide ${index + 1}`}
                 />
