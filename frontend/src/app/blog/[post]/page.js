@@ -31,8 +31,8 @@ export default async function PostRoute({ params, searchParams }) {
       </div>
       <InternalContact
         data={{
-          title: "Contact Us",
-          description: "We're here to help you with any questions or concerns you may have. Please fill out the form below and we'll get back to you as soon as possible.",
+          title: "Contact Us For Further Assistance",
+          description: "We're here to help—reach out to our team today!",
           picture: contactBackground
         }}
       />
