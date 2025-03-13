@@ -4,7 +4,7 @@ import { SectionHeader } from "@/components/common";
 import Image from "next/image";
 import { getStrapiMedia } from "@/utils/api-helpers";
 import { IconLinkArrow } from "@/assets/images";
-
+import cx from "classnames";
 
 const EnhancedFeatures = (props) => {
   const { data } = props;
@@ -14,8 +14,12 @@ const EnhancedFeatures = (props) => {
     description,
     feature,
     ctaTitle,
-    Button
+    Button,
+    columns
   } = data;
+
+  // apply default when columns is null or undefined
+  const columnLayout = columns ?? "fourColumn";
 
   if (enable === false) return null;
   return (
@@ -23,15 +27,21 @@ const EnhancedFeatures = (props) => {
       className="py-10 md:py-14">
       <div className="px-5 md:px-0 container">
         {/* Section Header */}
-        <div className="flex flex-col items-center justify-center text-center mb-12">
+        <div className="flex flex-col items-center justify-center text-center mb-8 md:mb-12">
           <SectionHeader title={title} description={description} />
         </div>
 
         {/* Feature Cards Grid */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6`}>
+        <div className={cx("grid grid-cols-1 gap-2 md:gap-6", {
+          "md:grid-cols-3": columnLayout === "threeColumn",
+          "md:grid-cols-4": columnLayout === "fourColumn",
+          "md:grid-cols-5": columnLayout === "fiveColumn",
+          "md:grid-cols-6": columnLayout === "sixColumn"
+        })}>
           {feature?.map((item, index) => {
             const media = item?.media?.data?.attributes;
             const url = item?.url || null;
+
             return (
               <MotionCardStaggered
                 key={item?.id}
@@ -43,6 +53,7 @@ const EnhancedFeatures = (props) => {
                   description={item?.description}
                   media={media}
                   text={item?.text}
+                  type={item?.type}
                 />
               </MotionCardStaggered>
             );

@@ -11,15 +11,21 @@ const EnhancedCard = ({
   url,
   text,
   publishedAt,
+  type = "image"
 }) => {
 
   const DynamicTag = url ? Link : "div";
   return (
     <DynamicTag
       {...(url && { href: url })}
-      className="h-full flex flex-col overflow-hidden rounded-md group">
+      className={cx("h-full flex flex-col overflow-hidden rounded-md group", {
+        "p-4 border border-[#E5E5E7]": type === "icon"
+      })}>
       {media?.url && (
-        <div className="relative w-full aspect-[4/3] overflow-hidden">
+        <div className={cx("relative overflow-hidden", {
+          "w-full aspect-[4/3]": type === "image",
+          "w-16 h-16": type === "icon"
+        })}>
           <Image
             src={getStrapiMedia(media?.url)}
             width={media?.width}
