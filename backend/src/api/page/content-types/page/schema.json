@@ -63,7 +63,8 @@
         "sections.our-brands",
         "sections.show-reel",
         "sections.featured-products",
-        "sections.blog-posts"
+        "sections.blog-posts",
+        "sections.single-feature"
       ],
       "pluginOptions": {
         "i18n": {
