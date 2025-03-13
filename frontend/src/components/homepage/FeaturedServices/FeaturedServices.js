@@ -9,9 +9,9 @@ const FeaturedServices = (props) => {
   const { title, service, description } = data;
 
   return (
-    <section className="py-10">
+    <section className="bg-lightGrayBackground">
       <>
-        <div className="pb-4">
+        <div className="pb-8 pt-16">
           <SectionHeader
             title={title}
             description={description}
