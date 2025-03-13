@@ -6,7 +6,6 @@ import cx from "classnames";
 
 const SingleFeature = (props) => {
     const { data } = props;
-    console.log(data);
     const { title, service, description } = data;
     const { name, description: serviceDescription, type, feature, picture } = service;
     const pictureData = picture?.data?.attributes;
