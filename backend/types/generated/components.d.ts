@@ -82,9 +82,7 @@ export interface ElementsFeature extends Schema.Component {
     url: Attribute.String;
     text: Attribute.String;
     MediaHover: Attribute.Media;
-    brandCategory: Attribute.Enumeration<
-      ['logistics', 'retail', 'marketing', 'technology']
-    >;
+    type: Attribute.Enumeration<['image', 'icon']>;
   };
 }
 
@@ -592,6 +590,8 @@ export interface SectionsFeaturedProducts extends Schema.Component {
   };
   attributes: {
     title: Attribute.String;
+    description: Attribute.Text;
+    Button: Attribute.Component<'links.social-link'>;
     ProductItem: Attribute.Component<'shared.product-item', true>;
   };
 }
@@ -933,6 +933,18 @@ export interface SectionsShowReel extends Schema.Component {
   };
 }
 
+export interface SectionsSingleFeature extends Schema.Component {
+  collectionName: 'components_sections_single_features';
+  info: {
+    displayName: 'SingleFeature';
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    service: Attribute.Component<'elements.service'>;
+  };
+}
+
 export interface SectionsTechExpertise extends Schema.Component {
   collectionName: 'components_sections_tech_expertises';
   info: {
@@ -1166,6 +1178,7 @@ declare module '@strapi/types' {
       'sections.rich-text': SectionsRichText;
       'sections.services': SectionsServices;
       'sections.show-reel': SectionsShowReel;
+      'sections.single-feature': SectionsSingleFeature;
       'sections.tech-expertise': SectionsTechExpertise;
       'sections.tech-products': SectionsTechProducts;
       'sections.testimonials-group': SectionsTestimonialsGroup;

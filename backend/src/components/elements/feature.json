@@ -48,13 +48,11 @@
         "audios"
       ]
     },
-    "brandCategory": {
+    "type": {
       "type": "enumeration",
       "enum": [
-        "logistics",
-        "retail",
-        "marketing",
-        "technology"
+        "image",
+        "icon"
       ]
     }
   }

@@ -1400,7 +1400,8 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.our-brands',
         'sections.show-reel',
         'sections.featured-products',
-        'sections.blog-posts'
+        'sections.blog-posts',
+        'sections.single-feature'
       ]
     > &
       Attribute.SetPluginOptions<{
