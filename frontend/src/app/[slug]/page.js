@@ -21,30 +21,31 @@ export async function generateMetadata(props) {
 
 export default async function PageRoute(props) {
   const params = await props.params;
-  const page = await getPageBySlug(params?.slug, params?.lang);
-  const testimonial = await getGlobal();
-
-  const ShouldDisplayTestimonials = ["technology"];
+  const [page, global] = await Promise.all([
+    getPageBySlug(params?.slug),
+    getGlobal()
+  ]);
+  const contentSections = page?.data?.[0]?.attributes?.contentSections;
+  const contactBackground = global?.data?.attributes?.contactBackground;
+  const testimonials = global?.data?.attributes?.testimonials;
 
   if (page?.data?.length === 0) return notFound();
-  const contentSections = page?.data[0]?.attributes?.contentSections;
-  const testimonialBlock = testimonial?.data?.attributes?.testimonials;
-  const InternalContactForm = contentSections.find(
-    (item) => item.__component === "sections.internal-contact-form"
-  );
   return (
     <>
       {contentSections.map((section, index) =>
         subSectionRenderer(section, index)
       )}
-      {!ShouldDisplayTestimonials.includes(params?.slug) && (
-        <div className="bg-[#F6F6F6]">
-          <Testimonials data={testimonialBlock} />
-        </div>
-      )}
-      {InternalContactForm && (
-        <InternalContact data={InternalContactForm} department="retail" />
-      )}
+
+      <InternalContact
+        data={{
+          title: "Contact Us For Further Assistance",
+          description: "We're here to help—reach out to our team today!",
+          picture: contactBackground
+        }}
+      />
+      <Testimonials
+        data={testimonials}
+      />
     </>
   );
 }
@@ -60,9 +61,15 @@ export async function generateStaticParams() {
         "careers",
         "about-us",
         "logistics",
-        "retail",
-        "marketing",
         "technology",
+        "blog",
+        "legal",
+        "payment",
+        "warehousing",
+        "customer-service",
+        "brands",
+        "partners",
+        "locations"
       ],
     },
   };
