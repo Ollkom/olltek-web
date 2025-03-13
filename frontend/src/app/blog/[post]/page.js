@@ -15,7 +15,7 @@ export default async function PostRoute({ params, searchParams }) {
   const contactBackground = global?.data?.attributes?.contactBackground;
   const testimonials = global?.data?.attributes?.testimonials;
   if (data?.data?.length === 0) return notFound();
-  console.log("global", global);
+
   return (
     <>
       <PostHeader
