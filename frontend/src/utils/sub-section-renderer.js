@@ -7,6 +7,7 @@ import {
   BannerSlider,
   Faq,
   BlogPosts,
+  SingleFeature,
 } from "@/components/common";
 import {
   Features,
@@ -80,7 +81,8 @@ export function subSectionRenderer(section, index, pageName) {
       return <ShowReel key={index} data={section} />;
     case "sections.featured-products":
       return <FeaturedProductsHorizontal key={index} data={section} />;
-
+    case "sections.single-feature":
+      return <SingleFeature key={index} data={section} />;
     default:
       return null;
   }
