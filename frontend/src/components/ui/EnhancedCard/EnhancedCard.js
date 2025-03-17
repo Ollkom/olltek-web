@@ -56,9 +56,9 @@ const EnhancedCard = ({
           </p>
         )}
         {text && url && (
-          <div className="flex items-center text-lightBlue font-semibold text-base">
+          <div className="flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-100 text-lightBlue font-semibold text-base">
             {text}
-            <IconLinkArrow className="ms-2 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
+            <IconLinkArrow className="ms-2 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
           </div>
         )}
       </div>
