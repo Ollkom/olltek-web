@@ -28,7 +28,7 @@ export const typographyClasses = {
   h4: "text-base/5.5 font-semibold tracking-normal",
   h5: "text-2xs/4 font-semibold uppercase tracking-normal",
   h6: "text-2xs/4 font-semibold tracking-normal",
-  paragraph: "text-2xs/5.5 tracking-normal",
+  paragraph: "font-normal text-sm md:text-base tracking-normal text-lightGrayText",
   body1: "font-normal text-sm md:text-lg tracking-normal text-lightGrayText",
   body2: "text-lg tracking-normal text-[#202529]",
   caption: "text-xs/3.5 tracking-normal",
@@ -45,6 +45,8 @@ export const typographyClasses = {
     "text-lightBlue font-semibold text-sm",
   heading2:
     "text-xs md:text-xl 2xl:text-2xl tracking-widest text-center uppercase",
+  heading3:
+    "text-xl 2xl:text-2xl font-medium text-darkGrayText",
   heading4: "text-xl md:text-2xl leading-9 font-bold tracking-normal",
   heading5:
     "text-xl leading-8 md:text-xl 2xl:text-2xl md:leading-9 font-semibold tracking-normal",
