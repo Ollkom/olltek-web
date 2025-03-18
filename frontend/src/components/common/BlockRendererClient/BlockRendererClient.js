@@ -12,7 +12,7 @@ export default function BlockRendererClient({ content }) {
       content={content}
       blocks={{
         paragraph: ({ children }) => (
-          <Typography variant="body2">
+          <Typography variant="paragraph">
             <p className="pb-3">{children}</p>
           </Typography>
         ),
@@ -26,8 +26,14 @@ export default function BlockRendererClient({ content }) {
               );
             case 2:
               return (
-                <Typography variant="heading5" className="mb-3">
+                <Typography variant="heading2" className="mb-3">
                   {children}
+                </Typography>
+              );
+            case 3:
+              return (
+                <Typography variant="heading3">
+                  <h3 className="pb-3">{children}</h3>
                 </Typography>
               );
             case 6:
@@ -43,6 +49,7 @@ export default function BlockRendererClient({ content }) {
               width={image.width}
               height={image.height}
               alt={image.alternativeText || ""}
+              className="mx-auto"
             />
           );
         },
@@ -57,13 +64,10 @@ export default function BlockRendererClient({ content }) {
         list: ({ children, format }) => {
           if (format === "unordered") {
             return (
-              <ul>
+              <ul className="list-disc pl-5 [&>li::marker]:text-lightGrayText">
                 {children.map((element, index) => (
-                  <li key={index} className="py-2">
-                    <span className="flex items-center">
-                      <IconBulletList className="mr-4 min-w-6" />
-                      {element?.props?.content?.children[0]?.text}
-                    </span>
+                  <li key={index} className="pb-3">
+                    <Typography variant="paragraph">{element?.props?.content?.children[0]?.text}</Typography>
                   </li>
                 ))}
               </ul>
