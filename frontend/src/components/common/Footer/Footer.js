@@ -27,12 +27,12 @@ const Footer = (props) => {
                   className="w-32"
                 />
               )}
-              {logoText && <p className="text-sm md:text-base font-medium">
+              {logoText && <p className="text-sm md:text-base font-medium text-lightGrayBorder">
                 {logoText}
               </p>}
             </div>
             {socialLinks?.length > 0 && <div className="flex flex-col gap-3">
-              <p className="text-base md:text-lg font-medium">Follow us on</p>
+              <p className="text-base md:text-lg font-medium text-lightGrayBorder">Follow us on</p>
               <div className="flex space-x-3">
                 {socialLinks?.map((link) => {
                   const icon = link?.icon?.data?.attributes;
@@ -78,7 +78,7 @@ const Footer = (props) => {
                               <Link
                                 href={link.url || "/"}
                                 target={link.newTab ? "_blank" : ""}
-                                className="text-sm md:text-base font-medium hover:underline whitespace-nowrap text-[#E5E5E7]"
+                                className="text-sm md:text-base font-medium hover:underline whitespace-nowrap text-white"
                               >
                                 {link.text}
                               </Link>
