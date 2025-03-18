@@ -1,65 +1,61 @@
 import Image from "next/image";
-import Link from "next/link";
 import { getStrapiMedia } from "@/utils/api-helpers";
-import { IcoFeaturedProductLink } from "@/assets/images";
-
-const ProductList = ({ item }) => (
-  <div className="flex items-center space-x-5">
-    {item.media && (
-      <Image
-        src={
-          item.media?.file?.data &&
-          getStrapiMedia(item.media?.file?.data?.attributes?.url)
-        }
-        alt={
-          item.media?.file?.data?.attributes?.alternativeText ||
-          item?.title ||
-          `Product ${item?.id}`
-        }
-        width={item.media?.file?.data?.attributes?.width}
-        height={item.media?.file?.data?.attributes?.height}
-        className="mt-1.5"
-      />
-    )}
-    <div className="relative w-full pr-6">
-      <h3 className="text-[#333333] text-lg md:text-xl font-medium mb-1">
-        {item.title}
-      </h3>
-      <p className="min-h-[48px] text-sm md:text-base">{item.description}</p>
-      {item.url && (
-        <IcoFeaturedProductLink className="absolute top-1/2 -translate-y-1/2 right-0" />
-      )}
-    </div>
-  </div>
-);
+import React from "react";
+import Link from "next/link";
 
 const FeaturedProductsHorizontal = ({ data }) => {
-  const { ProductItem, title } = data || {};
+  const { ProductItem, title, description, Button } = data || {};
+
   return (
-    <section className="py-16 bg-[#EEF0F5] px-6">
-      <div className="container-custom">
-        {title && (
-          <h4 className="text-xs px-6 text-[#666666] uppercase border-b border-[#E2E2E2] py-4 md:px-8 md:text-sm">
-            {data?.title}
-          </h4>
-        )}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {ProductItem?.map((item) => {
-            return (
-              <div className="bg-white flex items-center px-8 py-3 hover:bg-[#E2E2E2] transition-colors duration-300 ease-in-out md:py-6">
-                {item.url ? (
-                  <Link key={item?.id} href={item?.url} className="">
-                    <ProductList item={item} />
-                  </Link>
-                ) : (
-                  <div key={item?.id} className="px-8 py-6 flex space-x-6 items-start">
-                    <ProductList item={item} />
-                  </div>
-                )}
-              </div>
-            );
-          })}
+    <section className="py-16 bg-darkBlue px-6">
+      <div className="container flex flex-col gap-4 md:gap-0">
+        {/* Section Header */}
+        <div className="flex flex-col gap-4 max-w-3xl mx-auto text-center pb-4 md:pb-8 2xl:pb-12">
+          {title && (
+            <h2 className="text-white font-medium text-2xl md:text-3xl">
+              {title}
+            </h2>
+          )}
+          {description && <p className="text-white font-normal text-sm md:text-lg">{description}</p>}
         </div>
+        {ProductItem?.length > 0 && (
+          <div className="flex justify-center items-center">
+            <div className="inline-flex flex-col items-start justify-center md:flex md:flex-row md:items-center md:justify-between">
+              {ProductItem?.map((item, index) => {
+                const { media, title } = item || {};
+                const image = media?.file?.data?.attributes
+                return (
+                  <React.Fragment key={item?.id}>
+                    <div className="flex md:flex-col md:justify-center items-center text-white gap-2 md:gap-0 md:px-1 2xl:px-2">
+                      {media && <div className="bg-transparent w-10 h-10 2xl:w-12 2xl:h-12 flex items-center justify-center md:mb-2">
+                        <Image
+                          src={getStrapiMedia(image.url)}
+                          alt={title}
+                          width={image.width}
+                          height={image.height}
+                        />
+                      </div>}
+                      {title && <span className="text-sm 2xl:text-base font-normal 2xl:whitespace-nowrap text-center">{title}</span>}
+                    </div>
+                    {index < ProductItem.length - 1 && (
+                      <div className="h-[24px] w-[2px] md:h-[2px] md:w-6 2xl:h-[2px] 2xl:w-14 bg-white ms-5 md:ms-0 my-2"></div>
+                    )}
+                  </React.Fragment>
+                )
+              })}
+
+              <div className="h-[24px] w-[2px] md:h-[2px] md:w-6 2xl:h-[2px] 2xl:w-14 bg-white ms-5 md:ms-0 my-2"></div>
+              {Button?.url && (
+                <Link
+                  href={Button?.url || "/"}
+                  className="rounded-full font-normal text-sm 2xl:text-base text-darkGrayText bg-white px-5 py-1 hover:bg-lightBlue border border-darkGrayText hover:border-lightBlue hover:text-white active:bg-darkBlue transition-colors duration-300 ease-in-out whitespace-nowrap md:mx-4"
+                >
+                  {Button?.text}
+                </Link>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
