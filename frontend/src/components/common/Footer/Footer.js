@@ -27,12 +27,12 @@ const Footer = (props) => {
                   className="w-32"
                 />
               )}
-              {logoText && <p className="text-sm md:text-base font-medium text-[#E5E5E7]">
+              {logoText && <p className="text-sm md:text-base font-medium text-lightGrayBorder">
                 {logoText}
               </p>}
             </div>
             {socialLinks?.length > 0 && <div className="flex flex-col gap-3">
-              <p className="text-base md:text-lg font-medium text-[#E5E5E7]">Follow us on</p>
+              <p className="text-base md:text-lg font-medium text-lightGrayBorder">Follow us on</p>
               <div className="flex space-x-3">
                 {socialLinks?.map((link) => {
                   const icon = link?.icon?.data?.attributes;
