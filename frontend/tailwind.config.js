@@ -18,6 +18,7 @@ module.exports = {
         darkGrayText: "#323539",
         lightGrayText: "#525D6A",
         lightGrayBackground: "#F8F9FB",
+        lightGrayBorder: "#E5E5E7",
       },
       container: {
         center: true,
