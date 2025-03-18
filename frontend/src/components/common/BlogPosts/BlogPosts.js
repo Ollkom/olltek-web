@@ -30,7 +30,7 @@ const BlogPosts = async (props) => {
                     <SectionHeader title={title} description={description} />
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
                         {/* Featured Article */}
-                        <MotionCardStaggered>
+                        <div>
                             <div className="lg:col-span-1">
                                 <Link href={`/blog/${featuredPost.attributes.slug}` || "/"}
                                     className="rounded-md overflow-hidden flex flex-col gap-2">
@@ -65,14 +65,14 @@ const BlogPosts = async (props) => {
                                     </div>
                                 </Link>
                             </div>
-                        </MotionCardStaggered>
+                        </div>
                         {/* Related Articles - Vertical stack */}
                         <div className="lg:col-span-1">
                             <div className="space-y-6">
                                 {sidebarPosts.map((post, index) => {
                                     const postImage = post?.attributes?.cover?.data?.attributes;
                                     return (
-                                        <MotionCardStaggered key={post.id} index={index}>
+                                        <div key={post.id} index={index}>
                                             <div className="flex flex-col md:flex-row gap-x-4 gap-y-2">
                                                 <div className="flex-shrink-0">
                                                     {postImage &&
@@ -101,7 +101,7 @@ const BlogPosts = async (props) => {
                                                     </p>}
                                                 </div>
                                             </div>
-                                        </MotionCardStaggered>
+                                        </div>
                                     )
                                 })}
                             </div>
