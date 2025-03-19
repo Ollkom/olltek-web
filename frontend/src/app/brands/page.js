@@ -1,30 +1,32 @@
 import { notFound } from "next/navigation";
-import { subSectionRenderer } from "@/utils/sub-section-renderer";
-import { getGlobal, getPageBySlug } from "@/utils/api-loaders";
-import { Testimonials } from "@/components/common";
-import { InternalContact } from "@/components/forms";
+import { getLocations, getPageBySlug } from "@/utils/api-loaders";
+import { OurBrands } from "@/components/brands";
 
 export default async function PageRoute({ params }) {
-  const page = await getPageBySlug("brands");
-  const testimonial = await getGlobal();
+  const [page, locations] = await Promise.all([getPageBySlug("brands"), getLocations("/locations")])
 
-  if (page?.data?.length === 0) return notFound();
   const contentSections = page?.data[0]?.attributes?.contentSections;
-  const testimonialBlock = testimonial?.data?.attributes?.testimonials;
-  const InternalContactForm = contentSections.find(
-    (item) => item.__component === "sections.internal-contact-form"
-  );
+
+  let pageHeader = null
+  let ourBrands = null
+
+  contentSections.forEach((item) => {
+    if (item.__component === "layout.page-header") {
+      pageHeader = item
+    }
+    if (item.__component === "sections.our-brands") {
+      ourBrands = item
+    }
+
+    if (pageHeader && ourBrands) {
+      return
+    }
+  })
+
+  if (page?.data?.length === 0 || ourBrands?.data?.length === 0) return notFound();
   return (
     <>
-      {contentSections.map((section, index) =>
-        subSectionRenderer(section, index, "brands")
-      )}
-      <div className="bg-[#F6F6F6]">
-        <Testimonials data={testimonialBlock} />
-      </div>
-      {InternalContactForm && (
-        <InternalContact data={InternalContactForm} department="retail" />
-      )}
+      {ourBrands && <OurBrands data={ourBrands} pageHeader={pageHeader} locations={locations} />}
     </>
   );
 }
