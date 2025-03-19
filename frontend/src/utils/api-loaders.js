@@ -164,3 +164,23 @@ export async function getCategories(path, start = 0, limit = 100) {
   const response = await fetchAPI(path, urlParamsObject, options, tag);
   return response;
 }
+
+export async function getLocations(path, start = 0, limit = 100) {
+  const urlParamsObject = {
+    populate: {
+      name: true,
+      description: true,
+      icon: true,
+      image: true,
+      geolocation: true,
+    },
+    pagination: {
+      start: start,
+      limit: limit,
+    },
+  };
+  const options = { headers: { Authorization: `Bearer ${token}` } };
+  const tag = "location";
+  const response = await fetchAPI(path, urlParamsObject, options, tag);
+  return response;
+}
