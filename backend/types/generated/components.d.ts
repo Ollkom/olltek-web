@@ -9,6 +9,11 @@ export interface ElementsBrand extends Schema.Component {
   attributes: {
     title: Attribute.String;
     media: Attribute.Component<'shared.media'>;
+    locations: Attribute.Relation<
+      'elements.brand',
+      'oneToMany',
+      'api::location.location'
+    >;
   };
 }
 
@@ -19,7 +24,7 @@ export interface ElementsBrandsCategory extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String;
+    title: Attribute.String & Attribute.Required;
     description: Attribute.Text;
     Brand: Attribute.Component<'elements.brand', true>;
   };
