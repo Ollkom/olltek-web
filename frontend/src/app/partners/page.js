@@ -7,21 +7,8 @@ export default async function PageRoute({ params }) {
 
   const contentSections = page?.data[0]?.attributes?.contentSections;
 
-  let pageHeader = null
-  let ourBrands = null
-
-  contentSections?.forEach((item) => {
-    if (item.__component === "layout.page-header") {
-      pageHeader = item
-    }
-    if (item.__component === "sections.our-brands") {
-      ourBrands = item
-    }
-
-    if (pageHeader && ourBrands) {
-      return
-    }
-  })
+  const pageHeader = contentSections?.find(item => item.__component === "layout.page-header") || null;
+  const ourBrands = contentSections?.find(item => item.__component === "sections.our-brands") || null;
 
   if (page?.data?.length === 0 || ourBrands?.data?.length === 0) return notFound();
   return (
