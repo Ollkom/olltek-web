@@ -886,6 +886,49 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
   };
 }
 
+export interface ApiBrandBrand extends Schema.CollectionType {
+  collectionName: 'brands';
+  info: {
+    singularName: 'brand';
+    pluralName: 'brands';
+    displayName: 'Brand';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    locations: Attribute.Relation<
+      'api::brand.brand',
+      'oneToMany',
+      'api::location.location'
+    >;
+    media: Attribute.Media;
+    industries: Attribute.Relation<
+      'api::brand.brand',
+      'manyToMany',
+      'api::industry.industry'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::brand.brand',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::brand.brand',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCareerFormSubmissionCareerFormSubmission
   extends Schema.CollectionType {
   collectionName: 'career_form_submissions';
@@ -1123,10 +1166,15 @@ export interface ApiIndustryIndustry extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
+    title: Attribute.String & Attribute.Required;
     slug: Attribute.String;
     description: Attribute.Text;
     media: Attribute.Component<'shared.media'>;
+    brands: Attribute.Relation<
+      'api::industry.industry',
+      'manyToMany',
+      'api::brand.brand'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1197,6 +1245,16 @@ export interface ApiLocationLocation extends Schema.CollectionType {
     geolocation: Attribute.Text;
     icon: Attribute.Media;
     image: Attribute.Media;
+    brand: Attribute.Relation<
+      'api::location.location',
+      'manyToOne',
+      'api::brand.brand'
+    >;
+    partner: Attribute.Relation<
+      'api::location.location',
+      'manyToOne',
+      'api::partner.partner'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1484,6 +1542,49 @@ export interface ApiPagePage extends Schema.CollectionType {
   };
 }
 
+export interface ApiPartnerPartner extends Schema.CollectionType {
+  collectionName: 'partners';
+  info: {
+    singularName: 'partner';
+    pluralName: 'partners';
+    displayName: 'Partner';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    media: Attribute.Media;
+    locations: Attribute.Relation<
+      'api::partner.partner',
+      'oneToMany',
+      'api::location.location'
+    >;
+    solutions: Attribute.Relation<
+      'api::partner.partner',
+      'manyToMany',
+      'api::solution.solution'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::partner.partner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::partner.partner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiRetailRetail extends Schema.CollectionType {
   collectionName: 'retails';
   info: {
@@ -1567,6 +1668,43 @@ export interface ApiRetailApplicationFormSubmissionRetailApplicationFormSubmissi
   };
 }
 
+export interface ApiSolutionSolution extends Schema.CollectionType {
+  collectionName: 'solutions';
+  info: {
+    singularName: 'solution';
+    pluralName: 'solutions';
+    displayName: 'Solution';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    partners: Attribute.Relation<
+      'api::solution.solution',
+      'manyToMany',
+      'api::partner.partner'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::solution.solution',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::solution.solution',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1587,6 +1725,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
+      'api::brand.brand': ApiBrandBrand;
       'api::career-form-submission.career-form-submission': ApiCareerFormSubmissionCareerFormSubmission;
       'api::category.category': ApiCategoryCategory;
       'api::contact-form-submission.contact-form-submission': ApiContactFormSubmissionContactFormSubmission;
@@ -1599,8 +1738,10 @@ declare module '@strapi/types' {
       'api::marketing.marketing': ApiMarketingMarketing;
       'api::navigation.navigation': ApiNavigationNavigation;
       'api::page.page': ApiPagePage;
+      'api::partner.partner': ApiPartnerPartner;
       'api::retail.retail': ApiRetailRetail;
       'api::retail-application-form-submission.retail-application-form-submission': ApiRetailApplicationFormSubmissionRetailApplicationFormSubmission;
+      'api::solution.solution': ApiSolutionSolution;
     }
   }
 }
