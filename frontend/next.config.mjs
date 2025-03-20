@@ -14,11 +14,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "necessary-cuddle-967ab031b0.strapiapp.com",
+        hostname: "joyful-friendship-7edb050249.strapiapp.com",
       },
       {
         protocol: "https",
-        hostname: "necessary-cuddle-967ab031b0.media.strapiapp.com",
+        hostname: "joyful-friendship-7edb050249.media.strapiapp.com",
       },
     ],
   },
