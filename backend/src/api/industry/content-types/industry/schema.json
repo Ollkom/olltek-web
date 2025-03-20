@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "slug": {
       "type": "string"
@@ -25,6 +26,12 @@
       "type": "component",
       "repeatable": false,
       "component": "shared.media"
+    },
+    "brands": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::brand.brand",
+      "inversedBy": "industries"
     }
   }
 }

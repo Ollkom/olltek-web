@@ -35,6 +35,18 @@
       ],
       "type": "media",
       "multiple": false
+    },
+    "brand": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::brand.brand",
+      "inversedBy": "locations"
+    },
+    "partner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::partner.partner",
+      "inversedBy": "locations"
     }
   }
 }

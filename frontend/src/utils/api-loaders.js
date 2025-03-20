@@ -184,3 +184,78 @@ export async function getLocations(path, start = 0, limit = 100) {
   const response = await fetchAPI(path, urlParamsObject, options, tag);
   return response;
 }
+
+export async function getBrands(path, start = 0, limit = 100) {
+  const urlParamsObject = {
+    populate: {
+      title: true,
+      description: true,
+      media: true,
+      locations: true,
+    },
+    pagination: {
+      start: start,
+      limit: limit,
+    },
+  };
+  const options = { headers: { Authorization: `Bearer ${token}` } };
+  const tag = "brand";
+  const response = await fetchAPI(path, urlParamsObject, options, tag);
+  return response;
+}
+
+export async function getIndustries(path, start = 0, limit = 100) {
+  const urlParamsObject = {
+    populate: {
+      title: true,
+      slug: true,
+      description: true,
+      media: true,
+      brands: {
+        populate: {
+          title: true,
+          slug: true,
+          description: true,
+          media: true,
+          locations: true,
+        }
+      },
+    },
+    pagination: {
+      start: start,
+      limit: limit,
+    },
+  };
+  const options = { headers: { Authorization: `Bearer ${token}` } };
+  const tag = "brand";
+  const response = await fetchAPI(path, urlParamsObject, options, tag);
+  return response;
+}
+
+export async function getSolutions(path, start = 0, limit = 100) {
+  const urlParamsObject = {
+    populate: {
+      title: true,
+      slug: true,
+      description: true,
+      media: true,
+      partners: {
+        populate: {
+          title: true,
+          slug: true,
+          description: true,
+          media: true,
+          locations: true,
+        }
+      },
+    },
+    pagination: {
+      start: start,
+      limit: limit,
+    },
+  };
+  const options = { headers: { Authorization: `Bearer ${token}` } };
+  const tag = "solution";
+  const response = await fetchAPI(path, urlParamsObject, options, tag);
+  return response;
+}
