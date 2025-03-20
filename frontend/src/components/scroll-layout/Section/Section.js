@@ -1,10 +1,9 @@
 import cx from "classnames";
-import { Typography } from "@/components/ui";
 
-const Section = ({ title, subtitle, description, flip, id, grid }) => (
+const Section = ({ title, flip, id, grid }) => (
   <>
     <div
-      className={cx("grid grid-cols-1 md:grid-cols-2 gap-5 pt-[70px] md:pt-4", {
+      className={cx("grid grid-cols-1 md:grid-cols-2 pt-4", {
         "md:gap-16": flip,
         "md:gap-28": !flip,
       })}
@@ -16,21 +15,12 @@ const Section = ({ title, subtitle, description, flip, id, grid }) => (
         })}
       >
         {title && (
-          <Typography variant="title" className="tracking-widest">
-            <span className="pb-5 block">{title}</span>
-          </Typography>
-        )}
-        {subtitle && (
-          <p className="md:text-2xl 2xl:text-[32px] 2xl:leading-[36px] text-[#202529] pb-4">
-            {subtitle}
-          </p>
-        )}
-        {description && (
-          <p className="text-sm md:text-base text-[#0d0d0e]">{description}</p>
+          <h5 className="font-medium text-xl md:text-2xl 2xl:text-3xl text-darkGrayText">{title}</h5>
         )}
       </div>
     </div>
     {grid}
+    <div className="h-[1px] bg-[#E5E5E7] my-5"></div>
   </>
 );
 

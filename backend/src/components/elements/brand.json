@@ -13,6 +13,11 @@
       "type": "component",
       "repeatable": false,
       "component": "shared.media"
+    },
+    "locations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::location.location"
     }
   }
 }

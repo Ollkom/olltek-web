@@ -331,6 +331,9 @@ const populate = {
                   },
                 },
               },
+              locations: {
+                populate: true,
+              },
             },
           },
         },
