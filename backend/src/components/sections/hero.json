@@ -21,7 +21,8 @@
       "multiple": false,
       "required": true,
       "allowedTypes": [
-        "images"
+        "images",
+        "videos"
       ]
     },
     "buttons": {
@@ -35,9 +36,7 @@
       "required": false,
       "allowedTypes": [
         "images",
-        "files",
-        "videos",
-        "audios"
+        "videos"
       ]
     }
   }
