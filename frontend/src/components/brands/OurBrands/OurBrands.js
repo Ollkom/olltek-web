@@ -5,12 +5,13 @@ import { getStrapiMedia } from "@/utils/api-helpers";
 import { PageHeader } from "@/components/common";
 import { useState, useCallback } from "react";
 import { IconChevronDown } from "@/assets/images";
+
 const Grid = ({ items }) => {
   if (items?.length === 0) return <div className="text-center text-gray-500 py-10">Stay tuned for more brands!</div>;
   return (
     <div className="grid grid-cols-3 gap-2 md:gap-3 md:grid-cols-4 py-5">
       {items?.map((item) => {
-        const { media } = item;
+        const media = item.attributes?.media?.data;
         return (
           <div
             key={item.id}
@@ -18,13 +19,13 @@ const Grid = ({ items }) => {
           >
             {media && (
               <Image
-                src={getStrapiMedia(media?.file?.data?.attributes?.url)}
-                width={media?.file?.data?.attributes?.width}
-                height={media?.file?.data?.attributes?.height}
+                src={getStrapiMedia(media.attributes.url)}
+                width={media.attributes.width}
+                height={media.attributes.height}
                 alt={
-                  media?.file?.data?.attributes?.alternativeText ||
-                  item?.title ||
-                  `Brand ${item?.id}`
+                  media.attributes.alternativeText ||
+                  item.attributes.title ||
+                  `Brand ${item.id}`
                 }
                 className="w-full h-full min-w-[105px] object-contain"
               />
@@ -36,54 +37,59 @@ const Grid = ({ items }) => {
   );
 };
 
-const OurBrands = ({ data, pageHeader, locations }) => {
-
-  const { title, Button, description, BrandsCategory } = data;
+const OurBrands = ({ pageHeader, locations, industries }) => {
   const [selectedLocation, setSelectedLocation] = useState("All Locations");
-  const [filteredBrands, setFilteredBrands] = useState(BrandsCategory);
+  const [filteredIndustries, setFilteredIndustries] = useState(industries?.data || []);
 
   const handleLocationChange = useCallback((e) => {
     const locationValue = e.target.value;
     setSelectedLocation(locationValue);
 
-    if (!locationValue) {
-      setFilteredBrands(BrandsCategory);
+    if (!locationValue || locationValue === "") {
+      setFilteredIndustries(industries?.data || []);
     } else {
-      const filtered = BrandsCategory.map(category => {
-        const filteredCategory = { ...category };
+      const filtered = industries?.data.map(industry => {
+        const filteredIndustry = {
+          ...industry,
+          attributes: {
+            ...industry.attributes,
+            brands: {
+              data: industry.attributes.brands.data.filter(brand =>
+                brand.attributes?.locations?.data?.some(location =>
+                  location.attributes?.name === locationValue
+                )
+              )
+            }
+          }
+        };
 
-        filteredCategory.Brand = category.Brand?.filter(brand =>
-          brand.locations?.data?.some(location =>
-            location.attributes?.name === locationValue
-          )
-        );
+        return filteredIndustry;
 
-        return filteredCategory;
-      }).filter(category => category.Brand?.length > 0);
+      }).filter(industry => industry.attributes.brands.data.length > 0);
 
-      setFilteredBrands(filtered);
+      setFilteredIndustries(filtered);
     }
-  }, [BrandsCategory]);
+  }, [industries]);
 
-  const menuItem = BrandsCategory?.map((item) => item?.title);
+  const menuItem = industries?.data?.map((industry) => industry.attributes.title);
 
-  if (BrandsCategory?.length === 0) return null;
+  if (!industries?.data?.length) return null;
+
   return (
     <section className="bg-white">
       <div className="md:ps-[60px] 2xl:ps-[86px]">
         {pageHeader && <div className="md:hidden"><PageHeader data={pageHeader} /></div>}
         <div className="flex flex-col md:flex-row">
           <Sidebar
-            title={title}
+            title="Our Brands"
             menuItem={menuItem}
-            Button={Button}
-            description={description}
+            Button={null}
+            description="Explore our brands by industry"
           />
           <div className="bg-lightGrayBackground md:w-[80%] 2xl:w-[85%]">
             <div className="hidden md:block">
               {pageHeader && <PageHeader data={pageHeader} />}
             </div>
-            {/* LocationFilter */}
             {locations?.data?.length > 0 &&
               <div className="py-8 bg-white px-5 xl:px-0">
                 <div className="mx-auto md:max-w-[800px] 2xl:max-w-[1200px]">
@@ -94,6 +100,7 @@ const OurBrands = ({ data, pageHeader, locations }) => {
                       onChange={handleLocationChange}
                       name="location"
                       id="location"
+                      value={selectedLocation}
                     >
                       <option value="">All Locations</option>
                       {locations?.data?.map((location) => (
@@ -110,13 +117,13 @@ const OurBrands = ({ data, pageHeader, locations }) => {
               </div>
             }
             <div className="ps-5 pe-5 md:ps-12 md:pe-[86px] py-8">
-              {filteredBrands?.map((section) => (
+              {filteredIndustries?.map((industry) => (
                 <Section
-                  key={section?.id}
-                  title={section?.title}
-                  subtitle={section?.description}
-                  id={section?.title}
-                  grid={<Grid items={section?.Brand} />}
+                  key={industry.id}
+                  title={industry.attributes.title}
+                  subtitle={industry.attributes.description}
+                  id={industry.attributes.title}
+                  grid={<Grid items={industry.attributes.brands.data} />}
                 />
               ))}
             </div>
