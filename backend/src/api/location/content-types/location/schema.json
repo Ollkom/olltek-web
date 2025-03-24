@@ -36,15 +36,15 @@
       "type": "media",
       "multiple": false
     },
-    "brand": {
+    "brands": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::brand.brand",
       "inversedBy": "locations"
     },
-    "partner": {
+    "partners": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::partner.partner",
       "inversedBy": "locations"
     }

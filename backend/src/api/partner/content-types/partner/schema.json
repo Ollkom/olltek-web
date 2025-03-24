@@ -28,9 +28,9 @@
     },
     "locations": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::location.location",
-      "mappedBy": "partner"
+      "mappedBy": "partners"
     },
     "solutions": {
       "type": "relation",
