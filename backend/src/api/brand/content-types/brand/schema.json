@@ -20,9 +20,9 @@
     },
     "locations": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::location.location",
-      "mappedBy": "brand"
+      "mappedBy": "brands"
     },
     "media": {
       "type": "media",

@@ -227,7 +227,7 @@ export async function getIndustries(path, start = 0, limit = 100) {
     },
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const tag = "brand";
+  const tag = "industry";
   const response = await fetchAPI(path, urlParamsObject, options, tag);
   return response;
 }

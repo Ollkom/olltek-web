@@ -902,7 +902,7 @@ export interface ApiBrandBrand extends Schema.CollectionType {
     description: Attribute.Text;
     locations: Attribute.Relation<
       'api::brand.brand',
-      'oneToMany',
+      'manyToMany',
       'api::location.location'
     >;
     media: Attribute.Media;
@@ -1245,14 +1245,14 @@ export interface ApiLocationLocation extends Schema.CollectionType {
     geolocation: Attribute.Text;
     icon: Attribute.Media;
     image: Attribute.Media;
-    brand: Attribute.Relation<
+    brands: Attribute.Relation<
       'api::location.location',
-      'manyToOne',
+      'manyToMany',
       'api::brand.brand'
     >;
-    partner: Attribute.Relation<
+    partners: Attribute.Relation<
       'api::location.location',
-      'manyToOne',
+      'manyToMany',
       'api::partner.partner'
     >;
     createdAt: Attribute.DateTime;
@@ -1559,7 +1559,7 @@ export interface ApiPartnerPartner extends Schema.CollectionType {
     media: Attribute.Media;
     locations: Attribute.Relation<
       'api::partner.partner',
-      'oneToMany',
+      'manyToMany',
       'api::location.location'
     >;
     solutions: Attribute.Relation<
