@@ -62,14 +62,10 @@ export async function generateStaticParams() {
         "about-us",
         "logistics",
         "technology",
-        "blog",
         "legal",
         "payment",
         "warehousing",
         "customer-service",
-        "brands",
-        "partners",
-        "locations"
       ],
     },
   };
