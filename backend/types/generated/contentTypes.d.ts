@@ -1245,15 +1245,15 @@ export interface ApiLocationLocation extends Schema.CollectionType {
     geolocation: Attribute.Text;
     icon: Attribute.Media;
     image: Attribute.Media;
-    partner: Attribute.Relation<
-      'api::location.location',
-      'manyToOne',
-      'api::partner.partner'
-    >;
     brands: Attribute.Relation<
       'api::location.location',
       'manyToMany',
       'api::brand.brand'
+    >;
+    partners: Attribute.Relation<
+      'api::location.location',
+      'manyToMany',
+      'api::partner.partner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1559,7 +1559,7 @@ export interface ApiPartnerPartner extends Schema.CollectionType {
     media: Attribute.Media;
     locations: Attribute.Relation<
       'api::partner.partner',
-      'oneToMany',
+      'manyToMany',
       'api::location.location'
     >;
     solutions: Attribute.Relation<
