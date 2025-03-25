@@ -1,4 +1,5 @@
 "use client";
+import cx from "classnames";
 import { useState } from "react";
 
 export default function Tabs({ children }) {
@@ -13,29 +14,31 @@ export default function Tabs({ children }) {
 
   return (
     <div className="mx-auto">
-      <div className="overflow-auto [&::-webkit-scrollbar]:hidden border-b border-[#D5D5D5]">
-        <div className="flex flex-nowrap w-full ">
-          {children?.map((child) => (
-            <button
-              key={child?.props?.label}
-              className={`${
-                activeTab === child?.props?.label ? "" : ""
-              }  text-[#333] p-4 px-6 text-base whitespace-nowrap text-center relative`}
-              onClick={(e) => handleClick(e, child?.props?.label)}
-            >
-              {child?.props?.label}
-              {activeTab === child?.props?.label && (
-                <span className="block h-1 bg-[#08B1F6] absolute w-full bottom-0 left-0 right-0 mx-auto" />
-              )}
-            </button>
-          ))}
+      <div className="overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex flex-nowrap md:gap-x-4 gap-x-2 min-w-max border-b border-[#D5D5D5]">
+          {children?.map((child) => {
+            return (
+              <button
+                key={child?.key}
+                className={cx(`cursor-pointer whitespace-nowrap py-2 text-sm font-medium transition-colors`, {
+                  "text-lightBlue border-b-2 border-lightBlue font-semibold -mb-px": activeTab === child?.props?.label,
+                  "text-lightGrayText hover:text-lightBlue": activeTab !== child?.props?.label,
+                })}
+                onClick={(e) => handleClick(e, child?.props?.label)}
+              >
+                {child?.props?.label}
+              </button>
+            );
+          })}
         </div>
       </div>
-      <div className="py-4">
+      <div className="py-4 md:py-8">
         {children?.map((child) => {
           if (child?.props?.label === activeTab) {
             return (
-              <div key={child?.props?.label}>{child?.props?.children}</div>
+              <div key={child?.key}>
+                {child?.props?.children}
+              </div>
             );
           }
           return null;
