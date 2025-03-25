@@ -64,7 +64,8 @@
         "sections.show-reel",
         "sections.featured-products",
         "sections.blog-posts",
-        "sections.single-feature"
+        "sections.single-feature",
+        "sections.tab-sections"
       ],
       "pluginOptions": {
         "i18n": {
