@@ -950,6 +950,30 @@ export interface SectionsSingleFeature extends Schema.Component {
   };
 }
 
+export interface SectionsTabSections extends Schema.Component {
+  collectionName: 'components_sections_tab_sections';
+  info: {
+    displayName: 'TabSections';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    Tabs: Attribute.Component<'sections.tab', true>;
+  };
+}
+
+export interface SectionsTab extends Schema.Component {
+  collectionName: 'components_sections_tabs';
+  info: {
+    displayName: 'Tab';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    blocks: Attribute.Blocks;
+  };
+}
+
 export interface SectionsTechExpertise extends Schema.Component {
   collectionName: 'components_sections_tech_expertises';
   info: {
@@ -1184,6 +1208,8 @@ declare module '@strapi/types' {
       'sections.services': SectionsServices;
       'sections.show-reel': SectionsShowReel;
       'sections.single-feature': SectionsSingleFeature;
+      'sections.tab-sections': SectionsTabSections;
+      'sections.tab': SectionsTab;
       'sections.tech-expertise': SectionsTechExpertise;
       'sections.tech-products': SectionsTechProducts;
       'sections.testimonials-group': SectionsTestimonialsGroup;
