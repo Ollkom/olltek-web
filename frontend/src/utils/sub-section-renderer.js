@@ -8,6 +8,7 @@ import {
   Faq,
   BlogPosts,
   SingleFeature,
+  TabSections,
 } from "@/components/common";
 import {
   Features,
@@ -59,8 +60,8 @@ export function subSectionRenderer(section, index, pageName) {
       return <Tabs key={index} data={section} />;
     case "sections.tech-products":
       return <TechProducts key={index} data={section} />;
-    case "sections.tech-expertise":
-      return <TechExpertise key={index} data={section} />;
+    case "sections.tab-sections":
+      return <TabSections key={index} data={section} />;
     case "sections.services":
       return <FeaturedServices key={index} data={section} fontInter={inter} />;
     case "sections.package":
