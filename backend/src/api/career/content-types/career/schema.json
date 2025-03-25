@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "careers",
+  "info": {
+    "singularName": "career",
+    "pluralName": "careers",
+    "displayName": "Career",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "role": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::career-role.career-role"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Supervisor",
+        "Strategist",
+        "Administrator",
+        "Developer"
+      ]
+    },
+    "location": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::career-location.career-location"
+    },
+    "team": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::career-team.career-team"
+    }
+  }
+}

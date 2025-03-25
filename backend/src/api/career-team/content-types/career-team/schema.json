@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "career_teams",
+  "info": {
+    "singularName": "career-team",
+    "pluralName": "career-teams",
+    "displayName": "Career Team"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}
