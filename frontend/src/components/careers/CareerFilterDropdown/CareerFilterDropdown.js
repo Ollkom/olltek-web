@@ -2,7 +2,7 @@
 
 import { IconChevronDown } from "@/assets/images";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useMemo, useState, useTransition } from "react";
 
 function CareerFilterDropdown({ label, options, activeValue, paramName }) {
     const router = useRouter();
@@ -10,6 +10,10 @@ function CareerFilterDropdown({ label, options, activeValue, paramName }) {
     const searchParams = useSearchParams();
     const [isPending, startTransition] = useTransition();
     const [currentValue, setCurrentValue] = useState(activeValue || "all");
+
+    const isDisabled = useMemo(() => {
+        return options.length === 0;
+    }, [options]);
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -36,7 +40,7 @@ function CareerFilterDropdown({ label, options, activeValue, paramName }) {
                     className={`block w-full p-2.5 border border-lightGrayBorder bg-lightGrayBackground rounded-md appearance-none pr-10 text-sm md:text-base ${isPending ? 'opacity-70' : ''}`}
                     value={currentValue}
                     onChange={handleChange}
-                    disabled={isPending}
+                    disabled={isPending || isDisabled}
                 >
                     <option value="all">All</option>
                     {options.map((option) => (
@@ -49,7 +53,7 @@ function CareerFilterDropdown({ label, options, activeValue, paramName }) {
                     {isPending ? (
                         <span className="w-4 h-4 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></span>
                     ) : (
-                        <IconChevronDown />
+                        <IconChevronDown className={`${isDisabled ? 'opacity-50' : ''}`} />
                     )}
                 </div>
             </div>
