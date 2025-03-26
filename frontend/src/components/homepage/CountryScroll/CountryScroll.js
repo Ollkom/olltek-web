@@ -22,8 +22,8 @@ const CountryScroll = ({ countries }) => {
     }, [countryArray.length, isAnimationRequired]);
     // TODO: implement solution for max div width using framer motion
     return (
-        <span className="inline-flex items-start justify-start min-w-[180px] md:min-w-[365px] relative ms-1">
-            <div className="overflow-hidden h-[40px] md:h-[52px]">
+        <span className="inline-flex items-start justify-start min-w-[185px] md:min-w-[372px] relative ms-1">
+            <div className="overflow-hidden">
                 <AnimatePresence mode="popLayout">
                     <motion.div
                         key={countryArray[currentIndex].id}
