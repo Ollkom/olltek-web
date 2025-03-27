@@ -27,9 +27,11 @@ const EnhancedFeatures = (props) => {
       className="py-10 md:py-14">
       <div className="px-5 md:px-0 container">
         {/* Section Header */}
-        <div className="flex flex-col items-center justify-center text-center mb-8 md:mb-12">
-          <SectionHeader title={title} description={description} />
-        </div>
+        {(title || description) && (
+          <div className="flex flex-col items-center justify-center text-center mb-8 md:mb-12">
+            <SectionHeader title={title} description={description} />
+          </div>
+        )}
 
         {/* Feature Cards Grid */}
         <div className={cx("grid grid-cols-1 gap-2 md:gap-6", {
