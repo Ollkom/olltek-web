@@ -42,21 +42,17 @@ const Sidebar = ({ menuItem, title, Button: button, description }) => {
             })}
           </ul>
         </div>
-        {description && (
-          <p className="hidden font-medium py-5 pe-4 text-sm border-t border-[#E5E5E7] md:block">
-            {description}
-          </p>
-        )}
-        {button && (
-          <Link
-            href={button?.url || "/"}
-            className="hidden md:block"
-          >
-            <Button variant={button?.type}>
-              {button?.text}
-            </Button>
-          </Link>
-        )}
+        <p className="hidden font-medium py-5 pe-4 text-darkGrayText text-sm border-t border-[#E5E5E7] md:block">
+          Your trusted partner for business growth in the GCC
+        </p>
+        <Link
+          href={button?.url || "/"}
+          className="hidden md:block"
+        >
+          <Button variant="secondary">
+            Contact Us
+          </Button>
+        </Link>
       </div>
     </div>
   );
