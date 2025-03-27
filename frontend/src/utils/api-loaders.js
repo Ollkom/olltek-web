@@ -259,3 +259,69 @@ export async function getSolutions(path, start = 0, limit = 100) {
   const response = await fetchAPI(path, urlParamsObject, options, tag);
   return response;
 }
+
+export async function getCareers(path, role, location, team, start = 0, limit = 10) {
+  const urlParamsObject = {
+    populate: {
+      role: true,
+      type: true,
+      location: true,
+      team: true,
+    },
+    pagination: {
+      start: start,
+      limit: limit,
+    },
+  };
+
+  // Add filters if provided
+  if (role || location || team) {
+    urlParamsObject.filters = {};
+
+    if (role) {
+      urlParamsObject.filters.role = {
+        title: {
+          $eq: role,
+        },
+      };
+    }
+
+    if (location) {
+      urlParamsObject.filters.location = {
+        title: {
+          $eq: location,
+        },
+      };
+    }
+
+    if (team) {
+      urlParamsObject.filters.team = {
+        title: {
+          $eq: team,
+        },
+      };
+    }
+  }
+
+  const options = { headers: { Authorization: `Bearer ${token}` } };
+  const tag = "career";
+  const response = await fetchAPI(path, urlParamsObject, options, tag);
+
+  return response;
+}
+
+export async function getCareerFields(path, start = 0, limit = 100) {
+  const urlParamsObject = {
+    populate: {
+      title: true,
+    },
+    pagination: {
+      start: start,
+      limit: limit,
+    },
+  };
+  const options = { headers: { Authorization: `Bearer ${token}` } };
+  const tag = "career-field";
+  const response = await fetchAPI(path, urlParamsObject, options, tag);
+  return response;
+}
