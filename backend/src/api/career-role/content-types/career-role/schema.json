@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "career_roles",
+  "info": {
+    "singularName": "career-role",
+    "pluralName": "career-roles",
+    "displayName": "Career Role",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}
