@@ -7,3 +7,4 @@ export { default as PostHeader } from "./PostHeader";
 export { default as SimilarPosts } from "./SimilarPosts";
 export { default as Post } from "./Post";
 export { default as AllBlogPosts } from "./AllBlogPosts";
+export { default as PostCategoryFilterTabs } from "./PostCategoryFilterTabs";
