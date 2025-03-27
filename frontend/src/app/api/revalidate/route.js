@@ -62,9 +62,15 @@ export async function POST(req) {
       case "partner":
         pathToRevalidate = "partner";
         break;
+      case "career":
+        pathToRevalidate = "career";
+        break;
+      case "career-field":
+        pathToRevalidate = "career-field";
+        break;
       default:
         return new Response(
-          JSON.stringify({ revalidated: false, message: "Unknown model type" }),
+          JSON.stringify({ revalidated: false, message: "Unknown model type for revalidation", model }),
           { status: 400 }
         );
     }
