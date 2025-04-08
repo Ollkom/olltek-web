@@ -929,6 +929,54 @@ export interface ApiBrandBrand extends Schema.CollectionType {
   };
 }
 
+export interface ApiCareerCareer extends Schema.CollectionType {
+  collectionName: 'careers';
+  info: {
+    singularName: 'career';
+    pluralName: 'careers';
+    displayName: 'Career';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    role: Attribute.Relation<
+      'api::career.career',
+      'oneToOne',
+      'api::career-role.career-role'
+    >;
+    type: Attribute.Enumeration<
+      ['Supervisor', 'Strategist', 'Administrator', 'Developer']
+    >;
+    location: Attribute.Relation<
+      'api::career.career',
+      'oneToOne',
+      'api::career-location.career-location'
+    >;
+    team: Attribute.Relation<
+      'api::career.career',
+      'oneToOne',
+      'api::career-team.career-team'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::career.career',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::career.career',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCareerFormSubmissionCareerFormSubmission
   extends Schema.CollectionType {
   collectionName: 'career_form_submissions';
@@ -968,6 +1016,97 @@ export interface ApiCareerFormSubmissionCareerFormSubmission
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::career-form-submission.career-form-submission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCareerLocationCareerLocation extends Schema.CollectionType {
+  collectionName: 'career_locations';
+  info: {
+    singularName: 'career-location';
+    pluralName: 'career-locations';
+    displayName: 'Career Location';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::career-location.career-location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::career-location.career-location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCareerRoleCareerRole extends Schema.CollectionType {
+  collectionName: 'career_roles';
+  info: {
+    singularName: 'career-role';
+    pluralName: 'career-roles';
+    displayName: 'Career Role';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::career-role.career-role',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::career-role.career-role',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCareerTeamCareerTeam extends Schema.CollectionType {
+  collectionName: 'career_teams';
+  info: {
+    singularName: 'career-team';
+    pluralName: 'career-teams';
+    displayName: 'Career Team';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::career-team.career-team',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::career-team.career-team',
       'oneToOne',
       'admin::user'
     > &
@@ -1494,7 +1633,8 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.show-reel',
         'sections.featured-products',
         'sections.blog-posts',
-        'sections.single-feature'
+        'sections.single-feature',
+        'sections.tab-sections'
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1726,7 +1866,11 @@ declare module '@strapi/types' {
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::brand.brand': ApiBrandBrand;
+      'api::career.career': ApiCareerCareer;
       'api::career-form-submission.career-form-submission': ApiCareerFormSubmissionCareerFormSubmission;
+      'api::career-location.career-location': ApiCareerLocationCareerLocation;
+      'api::career-role.career-role': ApiCareerRoleCareerRole;
+      'api::career-team.career-team': ApiCareerTeamCareerTeam;
       'api::category.category': ApiCategoryCategory;
       'api::contact-form-submission.contact-form-submission': ApiContactFormSubmissionContactFormSubmission;
       'api::global.global': ApiGlobalGlobal;

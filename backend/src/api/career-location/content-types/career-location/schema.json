@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "career_locations",
+  "info": {
+    "singularName": "career-location",
+    "pluralName": "career-locations",
+    "displayName": "Career Location"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

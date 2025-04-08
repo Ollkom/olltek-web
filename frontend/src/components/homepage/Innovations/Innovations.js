@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { getStrapiMedia } from "@/utils/api-helpers";
-
+import cx from "classnames";
 
 const Innovations = (props) => {
   const { data } = props;
@@ -96,20 +96,34 @@ const Innovations = (props) => {
                   <div key={item.id} className="flex flex-col items-start justify-center">
                     {/* Item content */}
                     <div
-                      className={`
-                      inline-flex w-fit items-start cursor-pointer transition-all duration-200 ease-in-out border hover:border-[#E5E5E7]/50 rounded-full
-                      ${index === selectedIndex ? 'border-[#E5E5E7] bg-white/10' : 'border-transparent'}
-                    `}
+                      className={cx(
+                        "inline-flex w-fit items-start cursor-pointer transition-all duration-300 ease-in-out border hover:border-[#E5E5E7]/50 rounded-full",
+                        {
+                          "border-[#E5E5E7] bg-white shadow-md transform scale-[1.02] translate-x-[1%]": index === selectedIndex,
+                          "border-transparent opacity-80 hover:opacity-100": index !== selectedIndex
+                        }
+                      )}
                       onClick={() => onThumbClick(index)}
                     >
                       <div className="flex items-center">
-                        <div className={`flex items-center justify-center w-8 h-8 rounded-full mr-2 md:mr-4 border-t border-r border-b border-[#E5E5E7] font-medium text-base transition-all duration-200 ease-in-out flex-shrink-0
-                          ${index === selectedIndex ? 'text-white font-semibold' : 'bg-[#FFFFFF] text-[#525D6A]'}
-                        `}
+                        <div className={cx(
+                          "flex items-center justify-center w-8 h-8 rounded-full mr-2 md:mr-4 border-t border-r border-b border-[#E5E5E7] font-medium transition-all duration-300 ease-in-out flex-shrink-0 text-xs md:text-sm",
+                          {
+                            "text-white font-semibold bg-darkBlue": index === selectedIndex,
+                            "bg-[#FFFFFF] text-[#525D6A]": index !== selectedIndex
+                          }
+                        )}
                         >
                           {index + 1}
                         </div>
-                        {item?.title && <h3 className={`text-white pe-4 text-sm ${index === selectedIndex ? 'font-semibold' : 'font-normal'}`}>
+                        {item?.title && <h3 className={cx(
+                          "pe-4 md:pe-6 py-2 transition-all duration-300 ease-in-out text-xs md:text-sm",
+                          {
+                            "font-semibold text-lightBlue": index === selectedIndex,
+                            "font-normal text-white": index !== selectedIndex
+                          }
+                        )}
+                        >
                           {item.title}
                         </h3>}
                       </div>
@@ -117,7 +131,7 @@ const Innovations = (props) => {
 
                     {/* Divider */}
                     {index < feature.length - 1 && (
-                      <div className="h-6 w-[2px] bg-[#FFFFFF] ml-4 my-2"></div>
+                      <div className="h-6 w-[2px] bg-[#FFFFFF] ml-4 my-2 transition-all duration-300 ease-in-out"></div>
                     )}
                   </div>
                 )

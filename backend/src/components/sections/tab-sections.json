@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_sections_tab_sections",
+  "info": {
+    "displayName": "TabSections",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "Tabs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.tab"
+    }
+  }
+}

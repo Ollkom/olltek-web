@@ -11,7 +11,6 @@ const Pagination = (
         totalItems,
         currentItems,
         buttonText = "Load more",
-        collectionName
     }) => {
 
     const { replace } = useRouter();
@@ -32,14 +31,14 @@ const Pagination = (
 
     return (
         <div className="flex flex-col justify-center items-center mt-4 md:mt-8 mb-4 md:mb-8 gap-y-3">
-            {/* <p className="text-sm md:text-base">{currentItems} / {totalItems} {collectionName.toLowerCase()}</p> */}
-            <button
-                className="text-sm md:text-base font-semibold text-lightBlue hover:text-darkBlue flex items-center gap-x-2"
+            <Button
+                variant="primary"
                 onClick={handleLoadMore}
+                className="flex items-center gap-x-2"
             >
                 {buttonText}
                 <IconChevronDown className="inline-block" />
-            </button>
+            </Button>
         </div>
     )
 };

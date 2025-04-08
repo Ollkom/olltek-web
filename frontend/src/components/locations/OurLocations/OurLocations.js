@@ -27,7 +27,7 @@ const LocationSection = ({ location, index }) => {
                 "md:order-1": !isEven,
                 "md:order-2": isEven
             })}>
-                <div className="bg-white max-w-[455px] ps-10 pe-5">
+                <div className="bg-white max-w-[455px] ps-5 pe-5 py-5 md:py-0 md:ps-10 md:pe-5">
                     {location?.attributes?.name && <h2 className="text-xl 2xl:text-2xl font-medium mb-4 text-lightGrayText">{location?.attributes?.name}</h2>}
                     {location?.attributes?.description && <p className="font-normal text-sm 2xl:text-base text-lightGrayText">
                         {location?.attributes?.description}

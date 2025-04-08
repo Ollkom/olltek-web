@@ -364,6 +364,9 @@ const populate = {
           },
         },
       },
+      Tabs: {
+        populate: true,
+      },
     },
   },
 

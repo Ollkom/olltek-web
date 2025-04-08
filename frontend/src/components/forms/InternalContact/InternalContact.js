@@ -1,11 +1,9 @@
 "use client";
-import cx from "classnames";
 import Image from "next/image";
 import { useState } from "react";
 
 import { getStrapiURL } from "@/utils/api-helpers";
 import {
-  Typography,
   Input,
   ErrorMessage,
   TextArea,
@@ -15,7 +13,6 @@ import {
 } from "@/components/ui";
 import { getStrapiMedia } from "@/utils/api-helpers";
 import { validation } from "@/utils/form-validations";
-import { SectionHeader } from "@/components/common";
 
 const formFields = {
   firstName: "",
@@ -121,7 +118,7 @@ export default function InternalContact({ data, department }) {
   };
 
   return (
-    <>
+    <div id="contact-form">
       <SnackBar snackbar={snackbar} setSnackbar={setSnackbar} />
       <MotionContainer className="py-12 md:py-14 text-white relative bg-darkBlue">
         {picture?.data?.attributes?.url && (
@@ -205,6 +202,6 @@ export default function InternalContact({ data, department }) {
           </div>
         </div>
       </MotionContainer>
-    </>
+    </div>
   );
 }
