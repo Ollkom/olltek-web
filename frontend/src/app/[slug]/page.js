@@ -58,7 +58,6 @@ export async function generateStaticParams() {
     filters: {
       slug: [
         "contact-us",
-        "careers",
         "about-us",
         "logistics",
         "technology",
