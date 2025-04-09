@@ -3,6 +3,7 @@ import Link from "next/link";
 import { NavBar, Logo } from "@/components/common";
 import { Button } from "@/components/ui";
 import { useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 const Header = (props) => {
   const {
@@ -13,11 +14,14 @@ const Header = (props) => {
     advertisements,
   } = props;
 
+  const router = useRouter();
   const handleContactClick = useCallback((e) => {
     e.preventDefault();
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
       contactForm.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      router.push(contactButton.url || "/");
     }
   }, []);
 
@@ -33,11 +37,11 @@ const Header = (props) => {
             />
           </div>
           {/* Desktop contact button */}
-          <div className="hidden md:block ml-6">
+          <Link href={contactButton?.url || "/"} className="hidden md:block ml-6">
             <Button type="button" variant={contactButton?.type} icon={false} onClick={handleContactClick}>
               {contactButton?.text}
             </Button>
-          </div>
+          </Link>
         </div>
       </div>
 
