@@ -22,27 +22,33 @@ const NavLinksMobile = (props) => {
         "hidden": activeMenu
       })}>
         <ul className="flex flex-col gap-8 py-10 pe-5">
-          {links?.map((link) => (
-            <li key={link?.id} className="group">
-              {link?.navigations?.data?.length > 0 ? (
-                <button
-                  onClick={() => toggleSubmenu(link)}
-                  className="flex items-center justify-between w-full px-6"
-                >
-                  {link?.title && <span className="text-base font-medium text-darkGrayText group-active:text-lightBlue">{link?.title}</span>}
-                  <IconChevronDown className="rotate-[270deg] text-darkGrayText group-active:text-lightBlue" />
-                </button>
-              ) : (
-                <Link
-                  href={link?.url || "#"}
-                  className="block px-6 text-base font-medium text-darkGrayText"
-                  onClick={toggleDrawer}
-                >
-                  {link?.title}
-                </Link>
-              )}
-            </li>
-          ))}
+          {links?.map((link) => {
+            const DynamicTag = link?.url ? Link : "div";
+            return (
+              <li key={link?.id} className="group">
+                {link?.navigations?.data?.length > 0 ? (
+                  <button
+                    onClick={() => toggleSubmenu(link)}
+                    className="flex items-center justify-between w-full px-6"
+                  >
+                    {link?.title && <span className="text-base font-medium text-darkGrayText group-active:text-lightBlue">{link?.title}</span>}
+                    <IconChevronDown className="rotate-[270deg] text-darkGrayText group-active:text-lightBlue" />
+                  </button>
+                ) : (
+                  <DynamicTag
+                    {...(link?.url && { href: link?.url })}
+                    className={cx("block px-6 text-base font-medium text-darkGrayText", {
+                      "cursor-pointer": link?.url,
+                      "cursor-default": !link?.url
+                    })}
+                    onClick={toggleDrawer}
+                  >
+                    {link?.title}
+                  </DynamicTag>
+                )}
+              </li>
+            );
+          })}
         </ul>
       </div>
       {/* Submenu */}
