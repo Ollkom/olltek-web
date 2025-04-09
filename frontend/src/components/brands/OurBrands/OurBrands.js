@@ -77,11 +77,11 @@ const OurBrands = ({ pageHeader, locations, industries }) => {
 
   return (
     <section className="bg-white">
-      <div className="md:ps-[60px] 2xl:ps-[86px]">
+      <div className="md:ps-[60px] lg:ps-[86px]">
         {pageHeader && <div className="md:hidden"><PageHeader data={pageHeader} /></div>}
         <div className="flex flex-col md:flex-row">
           <Sidebar
-            title="Our Brands"
+            title="Industries"
             menuItem={menuItem}
             Button={null}
             description="Explore our brands by industry"

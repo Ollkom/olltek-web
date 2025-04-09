@@ -46,11 +46,11 @@ const OurLocations = ({ data, pageHeader }) => {
 
     return (
         <section className="bg-white">
-            <div className="md:ps-[60px] 2xl:ps-[86px]">
+            <div className="md:ps-[60px] lg:ps-[86px]">
                 {pageHeader && <div className="md:hidden"><PageHeader data={pageHeader} /></div>}
                 <div className="flex flex-col md:flex-row">
                     <Sidebar
-                        title="Our Locations"
+                        title="Countries"
                         menuItem={menuItems}
                         description="Discover our global presence and local expertise in payment solutions."
                     />
