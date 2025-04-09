@@ -38,10 +38,11 @@ const Pagination = (
                 variant="primary"
                 onClick={handleLoadMore}
                 className="flex items-center gap-x-2"
+                disabled={isPending}
             >
-                {isPending ? "Loading..." : buttonText}
+                {!isPending && buttonText}
                 {isPending ? (
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin ml-1"></div>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mx-5"></div>
                 ) : (
                     <IconChevronDown className="inline-block" />
                 )}
