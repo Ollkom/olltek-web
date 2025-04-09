@@ -34,11 +34,9 @@ const Header = (props) => {
           </div>
           {/* Desktop contact button */}
           <div className="hidden md:block ml-6">
-            <Link href="#contact-form" onClick={handleContactClick}>
-              <Button type="button" variant={contactButton?.type} icon={false}>
-                {contactButton?.text}
-              </Button>
-            </Link>
+            <Button type="button" variant={contactButton?.type} icon={false} onClick={handleContactClick}>
+              {contactButton?.text}
+            </Button>
           </div>
         </div>
       </div>
