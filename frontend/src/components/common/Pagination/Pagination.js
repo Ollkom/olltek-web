@@ -3,7 +3,7 @@ import { IconChevronDown } from "@/assets/images";
 import { Button } from "@/components/ui";
 import { DEFAULT_COLLECTION_LIMIT } from "@/utils/constants";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useMemo, useCallback } from 'react';
+import { useMemo, useCallback, useTransition } from 'react';
 
 const Pagination = (
     {
@@ -16,15 +16,18 @@ const Pagination = (
     const { replace } = useRouter();
     const searchParams = useSearchParams();
     const pathname = usePathname();
+    const [isPending, startTransition] = useTransition();
 
     const limitParam = searchParams.get("limit");
     const limitParamNumber = useMemo(() => parseInt(limitParam || range), [limitParam, range])
 
     const handleLoadMore = useCallback(() => {
-        const params = new URLSearchParams(searchParams);
-        const nextLimit = Math.min(limitParamNumber + range, totalItems);
-        params.set("limit", nextLimit.toString());
-        replace(`${pathname}?${params.toString()}`, { scroll: false })
+        startTransition(() => {
+            const params = new URLSearchParams(searchParams);
+            const nextLimit = Math.min(limitParamNumber + range, totalItems);
+            params.set("limit", nextLimit.toString());
+            replace(`${pathname}?${params.toString()}`, { scroll: false })
+        })
     }, [limitParamNumber, range, totalItems, searchParams, pathname, replace]);
 
     if (!totalItems || currentItems >= totalItems) return null;
@@ -35,9 +38,14 @@ const Pagination = (
                 variant="primary"
                 onClick={handleLoadMore}
                 className="flex items-center gap-x-2"
+                disabled={isPending}
             >
-                {buttonText}
-                <IconChevronDown className="inline-block" />
+                {!isPending && buttonText}
+                {isPending ? (
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mx-5"></div>
+                ) : (
+                    <IconChevronDown className="inline-block" />
+                )}
             </Button>
         </div>
     )

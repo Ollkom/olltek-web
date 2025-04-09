@@ -102,7 +102,7 @@ const Footer = (props) => {
         <div className="border-t border-white/20 mt-4 md:mt-8"></div>
         {/* Copyright */}
         <div className="text-center font-medium text-sm md:text-base mt-3 md:mt-8 text-lightGrayBackground">
-          © 2025 Ollkom Technologies All rights reserved.
+          © 2025 Olltek Technologies All rights reserved.
         </div>
       </div>
     </footer>

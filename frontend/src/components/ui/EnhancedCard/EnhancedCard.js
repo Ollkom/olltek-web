@@ -3,6 +3,7 @@ import Link from "next/link";
 import { formatDate, getStrapiMedia } from "@/utils/api-helpers";
 import { IconLinkArrow } from "@/assets/images";
 import cx from "classnames";
+import { shimmer, toBase64 } from "@/utils/image-helpers";
 
 const EnhancedCard = ({
   title,
@@ -32,6 +33,10 @@ const EnhancedCard = ({
             height={media?.height}
             className="object-cover h-full w-full"
             alt={media?.alternativeText || title || "Enhanced Card"}
+            placeholder={`data:image/svg+xml;base64,${toBase64(
+              shimmer(media?.width, media?.height)
+            )}`}
+            quality={50}
           />
         </div>
       )}
