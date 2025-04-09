@@ -35,7 +35,7 @@ const CountryScroll = ({ countries }) => {
                     >
 
                         {countryArray[currentIndex]?.title &&
-                            <span className="italic">{countryArray[currentIndex].title}</span>
+                            <span className="italic me-1">{countryArray[currentIndex].title}</span>
                         }
                         {countryArray[currentIndex]?.media?.file?.data?.attributes?.url && (
                             <span className="inline-block ms-2">
