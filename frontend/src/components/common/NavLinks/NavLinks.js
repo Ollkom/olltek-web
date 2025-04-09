@@ -38,7 +38,7 @@ const NavLinks = (props) => {
       {links?.map((link) => {
         const hasNavigationLinks = link?.navigations?.data?.length > 0;
         const isMenuOpen = activeMenu?.id === link?.id;
-
+        const DynamicTag = link?.url ? Link : "div";
         return (
           <li
             className="group"
@@ -47,13 +47,16 @@ const NavLinks = (props) => {
             key={link?.id}
           >
             {/* Level 0 */}
-            <Link
-              href={link?.url}
-              className="text-darkGrayText text-base font-semibold inline-flex items-center group-hover:text-lightBlue"
+            <DynamicTag
+              {...(link?.url && { href: link?.url })}
+              className={cx("text-darkGrayText text-base font-semibold inline-flex items-center group-hover:text-lightBlue cursor-pointer", {
+                "cursor-pointer": link?.url,
+                "cursor-default": !link?.url
+              })}
             >
               {link.title}
               {hasNavigationLinks > 0 && <IconChevronDown className="ml-2" />}
-            </Link>
+            </DynamicTag>
             {hasNavigationLinks > 0 && (
               <div
                 className={cx(
