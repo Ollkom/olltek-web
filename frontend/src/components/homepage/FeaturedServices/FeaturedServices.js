@@ -84,7 +84,7 @@ const FeaturedServices = (props) => {
             </div>
 
             {pictureData?.url && (
-              <div className={cx("mx-auto", {
+              <div className={cx("mx-auto w-full h-full", {
                 "md:order-1": !isEven
               })}>
                 <Image
