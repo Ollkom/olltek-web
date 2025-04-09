@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { NavBar, Logo } from "@/components/common";
 import { Button } from "@/components/ui";
+import { useCallback } from "react";
 
 const Header = (props) => {
   const {
@@ -11,6 +12,14 @@ const Header = (props) => {
     navbarLogoMobile,
     advertisements,
   } = props;
+
+  const handleContactClick = useCallback((e) => {
+    e.preventDefault();
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
 
   return (
     <header className="relative z-50 bg-white border-b border-[#E5E5E7] h-[86px] flex items-center justify-center w-full">
@@ -25,7 +34,7 @@ const Header = (props) => {
           </div>
           {/* Desktop contact button */}
           <div className="hidden md:block ml-6">
-            <Link href={contactButton?.url}>
+            <Link href="#contact-form" onClick={handleContactClick}>
               <Button type="button" variant={contactButton?.type} icon={false}>
                 {contactButton?.text}
               </Button>
