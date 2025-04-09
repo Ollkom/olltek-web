@@ -37,11 +37,11 @@ const Header = (props) => {
             />
           </div>
           {/* Desktop contact button */}
-          <Link href={contactButton?.url || "/"} className="hidden md:block ml-6">
+          <div className="hidden md:block ml-6">
             <Button type="button" variant={contactButton?.type} icon={false} onClick={handleContactClick}>
               {contactButton?.text}
             </Button>
-          </Link>
+          </div>
         </div>
       </div>
 
