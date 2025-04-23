@@ -17,33 +17,36 @@ const Hero = async (props) => {
   if (!data) return null;
   return (
     <div className="relative w-full flex justify-center md:px-0 bg-black" role="banner">
-      <div className="absolute flex flex-col gap-2 md:gap-3 justify-center items-center text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:max-w-2xl z-10 px-6 md:px-0">
-        {title && (
-          <h2 className="font-bold text-2xl text-center md:text-[52px] md:pb-4 leading-tight md:leading-[1.1] [text-shadow:2px_2px_4px_rgba(0,0,0,0.5)]">
-            Cross-Border Solutions to <span className="inline-block italic">GCC</span> from
-            <CountryScroll countries={countries} />
-          </h2>
-        )}
-        {description && (
-          <p className="text-base md:text-2xl text-center font-semibold [text-shadow:2px_2px_4px_rgba(0,0,0,0.5)]">{description}</p>
-        )}
-        {buttons?.length > 0 && (
-          <div className="flex justify-center items-center flex-wrap gap-2 md:gap-3 pt-2">
-            {buttons.map((button) => {
-              if (!button?.text || !button?.url) return null;
-              return (
-                <Link key={button.id} href={button.url || "/"}>
-                  <Button variant={button.type} className="text-sm md:text-base">
-                    {button.text}
-                  </Button>
-                </Link>
-              );
-            })}
-          </div>
-        )}
+
+      <div className="absolute container flex flex-col items-start justify-center gap-2 md:gap-3 text-white w-full h-full z-10">
+        <div className="md:max-w-2xl px-6 md:px-0 flex flex-col gap-2 md:gap-3">
+          {title && (
+            <h2 className="font-bold text-2xl text-left md:text-[52px] leading-tight md:leading-[1.1] [text-shadow:2px_2px_4px_rgba(0,0,0,0.5)]">
+              Cross-Border Solutions to <span className="inline-block italic">GCC</span> from
+              <CountryScroll countries={countries} />
+            </h2>
+          )}
+          {description && (
+            <p className="text-base md:text-2xl text-left font-medium [text-shadow:2px_2px_4px_rgba(0,0,0,0.5)]">{description}</p>
+          )}
+          {buttons?.length > 0 && (
+            <div className="flex justify-start items-center flex-wrap gap-2 md:gap-3 pt-2">
+              {buttons.map((button) => {
+                if (!button?.text || !button?.url) return null;
+                return (
+                  <Link key={button.id} href={button.url || "/"}>
+                    <Button variant={button.type} className="text-sm md:text-base">
+                      {button.text}
+                    </Button>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </div>
       </div>
       <div className="relative w-full max-h-[640px] overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-40 z-[1]"></div>
+        <div className="absolute inset-0 bg-black opacity-50 z-[1]"></div>
         {heroImage?.url && (
           heroImage.url.endsWith('.mp4') || heroImage.url.endsWith('.webm') ? (
             <video
