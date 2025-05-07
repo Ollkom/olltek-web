@@ -1,3 +1,4 @@
+"use server";
 import { fetchAPI } from "@/utils/fetch-api";
 import { DEFAULT_COLLECTION_LIMIT } from "@/utils/constants";
 const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
