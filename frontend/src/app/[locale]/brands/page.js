@@ -8,7 +8,7 @@ export default async function PageRoute() {
   const contentSections = page?.data[0]?.attributes?.contentSections;
   const pageHeader = contentSections?.find(item => item.__component === "layout.page-header") || null;
 
-  if (page?.data?.length === 0) return notFound();
+  if (page?.data?.[0]?.attributes?.contentSections?.length === 0) return notFound();
 
   return (
     <>
