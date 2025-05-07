@@ -1,7 +1,7 @@
 "use client";
 import cx from "classnames";
 import { getStrapiMedia } from "@/utils/api-helpers";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { useFilter } from "@/hooks";
 

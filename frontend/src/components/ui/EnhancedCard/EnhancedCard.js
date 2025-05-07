@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { formatDate, getStrapiMedia } from "@/utils/api-helpers";
 import { IconLinkArrow } from "@/assets/images";
 import cx from "classnames";

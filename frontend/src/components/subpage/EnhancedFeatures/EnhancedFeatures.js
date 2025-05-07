@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { EnhancedCard, MotionCardStaggered } from "@/components/ui";
 import { SectionHeader } from "@/components/common";
 import Image from "next/image";

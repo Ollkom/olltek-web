@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { getStrapiMedia } from "@/utils/api-helpers";
 import { ScrollToTop } from "@/components/ui";
@@ -6,7 +6,7 @@ import { ScrollToTop } from "@/components/ui";
 const Footer = (props) => {
   const { footer } = props;
 
-  const { FooterMenu, socialLinks, footerLogo } = footer;
+  const { FooterMenu, socialLinks, footerLogo } = footer || {};
   const logo = footerLogo?.logoImg?.data?.attributes;
   const logoText = footerLogo?.logoText;
 

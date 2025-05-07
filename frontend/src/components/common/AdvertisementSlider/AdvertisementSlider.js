@@ -4,7 +4,7 @@ import { getStrapiMedia } from "@/utils/api-helpers";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useEffect } from "react";
 import { DotButton } from "@/components/common";
 import cx from "classnames";
@@ -28,7 +28,7 @@ function AdvertisementSlider({ advertisements, hoverMenuItem, isMenuOpen, isMobi
             emblaApi.reInit();
         }
     }, [emblaApi, hoverMenuItem, isMobileMenu]);
-
+    if (advertisements?.Advert?.length === 0) return null;
     return (
         <>
             {advertisements?.Advert?.length > 0 && (
