@@ -8,6 +8,10 @@ import { FALLBACK_SEO } from "@/utils/constants";
 import { getGlobal, getMainMenu } from "@/utils/api-loaders";
 import { GoogleAnalyticsTracking } from "@/components/analytics";
 import "./globals.css";
+import { routing } from "@/i18n/routing";
+import { getMessages, setRequestLocale } from "next-intl/server";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { notFound } from "next/navigation";
 
 {
   /* TODO: Removed dmsans font later */
@@ -40,14 +44,26 @@ export async function generateMetadata(props) {
   };
 }
 
-export default async function RootLayout({ children }) {
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function RootLayout({ children, params }) {
+  const { locale } = await params;
+  // Enable static rendering
+  setRequestLocale(locale);
   const global = await getGlobal();
   const mainMenu = await getMainMenu();
+  const direction = locale === "ar" ? "rtl" : "ltr";
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
 
-  if (!global.data || !mainMenu.data) return null;
-  const { navbar, footer, leadForm, Advertisements } = global.data.attributes;
+  const messages = await getMessages();
 
-  const { MainMenuItems } = mainMenu.data.attributes;
+  const { navbar, footer, leadForm, Advertisements } = global?.data?.attributes || {};
+  const { MainMenuItems } = mainMenu?.data?.attributes || {};
 
   const navbarLogo = navbar?.navbarLogo?.logoImg?.data?.attributes;
   const navbarLogoMobile = navbar?.navbarLogoMobile?.logoImg?.data?.attributes;
@@ -55,23 +71,31 @@ export default async function RootLayout({ children }) {
   const menuLinks = footer?.menuLinks;
 
   return (
-    <html lang="en">
+    <html lang={locale} dir={direction}>
       <GoogleTagManager gtmId="GTM-5LH3SXGT" />
       <GoogleAnalyticsTracking />
       <body className={inter.className}>
-        <NextTopLoader showSpinner={false} />
-        <Header
-          links={MainMenuItems}
-          navbarLogo={navbarLogo}
-          contactButton={contactButton}
-          socialLinks={footer?.socialLinks}
-          menuLinks={menuLinks}
-          navbarLogoMobile={navbarLogoMobile}
-          advertisements={Advertisements}
-        />
-        <main className="min-h-screen">{children}</main>
-        <Footer footer={footer} leadForm={leadForm} />
-        <Analytics />
+        <NextIntlClientProvider messages={messages}>
+          <NextTopLoader showSpinner={false} />
+          <Header
+            links={MainMenuItems}
+            navbarLogo={navbarLogo}
+            contactButton={contactButton}
+            socialLinks={footer?.socialLinks}
+            menuLinks={menuLinks}
+            navbarLogoMobile={navbarLogoMobile}
+            advertisements={Advertisements}
+          />
+
+          <main className="min-h-screen">
+
+            {children}
+
+          </main>
+
+          <Footer footer={footer} leadForm={leadForm} />
+          <Analytics />
+        </NextIntlClientProvider>
       </body>
     </html>
   );
