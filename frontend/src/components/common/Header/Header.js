@@ -1,9 +1,10 @@
 "use client";
-import Link from "next/link";
-import { NavBar, Logo } from "@/components/common";
+import { NavBar, Logo, LocaleSwitcher } from "@/components/common";
 import { Button } from "@/components/ui";
 import { useCallback } from "react";
 import { useRouter } from "next/navigation";
+
+const isArabicEnabled = process.env.NEXT_PUBLIC_LOCALE_ENABLE === "true";
 
 const Header = (props) => {
   const {
@@ -42,6 +43,7 @@ const Header = (props) => {
               {contactButton?.text}
             </Button>
           </div>
+          {isArabicEnabled && <LocaleSwitcher />}
         </div>
       </div>
 
