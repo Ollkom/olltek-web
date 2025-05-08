@@ -4,7 +4,7 @@ import { LocaleSwitcher, NavDetails } from "@/components/common";
 import cx from "classnames";
 import { IconChevronDown } from "@/assets/images";
 
-const isArabicEnabled = process.env.NEXT_PUBLIC_LOCALE_ENABLE === "true";
+const isLocaleSwitcherEnabled = process.env.NEXT_PUBLIC_LOCALE_ENABLE === "true";
 
 const NavLinksMobile = (props) => {
   const {
@@ -51,7 +51,7 @@ const NavLinksMobile = (props) => {
               </li>
             );
           })}
-          {isArabicEnabled && <LocaleSwitcher isMobile={true} />}
+          {isLocaleSwitcherEnabled && <LocaleSwitcher isMobile={true} />}
         </ul>
       </div>
       {/* Submenu */}

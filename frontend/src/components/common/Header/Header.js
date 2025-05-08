@@ -4,7 +4,7 @@ import { Button } from "@/components/ui";
 import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 
-const isArabicEnabled = process.env.NEXT_PUBLIC_LOCALE_ENABLE === "true";
+const isLocaleSwitcherEnabled = process.env.NEXT_PUBLIC_LOCALE_ENABLE === "true";
 
 const Header = (props) => {
   const {
@@ -43,7 +43,7 @@ const Header = (props) => {
               {contactButton?.text}
             </Button>
           </div>
-          {isArabicEnabled && <LocaleSwitcher />}
+          {isLocaleSwitcherEnabled && <LocaleSwitcher />}
         </div>
       </div>
 
