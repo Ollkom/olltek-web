@@ -4,7 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { routing } from "@/i18n/routing";
 import { IconUk, IconTurkey, IconChina, IconSaudiArabia, IconChevronDown, IconLangSwitcher } from "@/assets/images";
-import { useState, useTransition } from "react";
+import { useCallback, useState, useTransition } from "react";
 
 function LocaleSwitcher({ isMobile = false }) {
   const t = useTranslations("LocaleSwitcher");
@@ -23,16 +23,16 @@ function LocaleSwitcher({ isMobile = false }) {
   };
 
   const currentLocaleString = languageConfig[locale]?.name;
-  const handleLanguageChange = (newLocale) => {
+  const handleLanguageChange = useCallback((newLocale) => {
     startTransition(() => {
       router.push(pathname, { locale: newLocale });
       setIsOpen(false);
     });
-  };
+  }, [router, pathname, setIsOpen]);
 
-  const toggleDropdown = () => {
+  const toggleDropdown = useCallback(() => {
     setIsOpen(!isOpen);
-  };
+  }, [isOpen, setIsOpen]);
 
   return (
     <div className="relative md:min-w-32">
