@@ -1,32 +1,40 @@
 import { sectionRenderer } from "@/utils/section-renderer";
 import { Testimonials } from "@/components/common";
 import { getGlobal, getPageBySlug } from "@/utils/api-loaders";
+import { notFound } from "next/navigation";
+import { InternalContact } from "@/components/forms";
 
-export default async function RootRoute({ params, context }) {
+export default async function RootRoute() {
   try {
-    const page = await getPageBySlug("home");
-    const testimonial = await getGlobal();
+    const [page, global] = await Promise.all([
+      getPageBySlug("home"),
+      getGlobal()
+    ]);
 
-    if (page.error && page.error.status == 401)
+
+    if (page?.error && page?.error?.status == 401)
       throw new Error(
         "Missing or invalid credentials. Have you created an access token using the Strapi admin panel? http://localhost:1337/admin/"
       );
 
-    if (page.data.length === 0) return null;
-    const contentSections = page.data[0].attributes.contentSections;
-    const testimonialBlock = testimonial?.data?.attributes?.testimonials;
+    if (page?.data?.length === 0) return notFound();
+    const contentSections = page?.data?.[0]?.attributes?.contentSections;
+    const testimonialBlock = global?.data?.attributes?.testimonials;
+    const leadForm = global?.data?.attributes?.leadForm;
 
     return (
       <>
-        {contentSections.map((section, index) =>
+        {contentSections?.map((section, index) =>
           sectionRenderer(section, index)
         )}
-        <div className="bg-[#F6F6F6]">
-          <Testimonials data={testimonialBlock} />
-        </div>
+        <InternalContact
+          leadForm={leadForm}
+        />
+        <Testimonials data={testimonialBlock} />
       </>
     );
   } catch (error) {
-    window.alert("Missing or invalid credentials");
+    console.error("Missing or invalid credentials", error.message);
+    return notFound();
   }
 }

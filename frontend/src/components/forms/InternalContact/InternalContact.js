@@ -24,7 +24,7 @@ const formFields = {
 };
 
 export default function InternalContact({ leadForm, department }) {
-  const { title, description, background } = leadForm;
+  const { title, description, background } = leadForm || {};
   const [formValues, setFormValues] = useState(formFields);
   const [formerror, setFormerror] = useState({});
   const [snackbar, setSnackbar] = useState({
