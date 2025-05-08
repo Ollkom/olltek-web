@@ -26,8 +26,8 @@ export default async function PageRoute(props) {
     getGlobal()
   ]);
   const contentSections = page?.data?.[0]?.attributes?.contentSections;
-  const contactBackground = global?.data?.attributes?.contactBackground;
   const testimonials = global?.data?.attributes?.testimonials;
+  const leadForm = global?.data?.attributes?.leadForm;
 
   if (page?.data?.length === 0) return notFound();
   return (
@@ -35,14 +35,9 @@ export default async function PageRoute(props) {
       {contentSections.map((section, index) =>
         subSectionRenderer(section, index)
       )}
-
-      <InternalContact
-        data={{
-          title: "Contact Us For Further Assistance",
-          description: "We're here to help—reach out to our team today!",
-          picture: contactBackground
-        }}
-      />
+      {leadForm && <InternalContact
+        leadForm={leadForm}
+      />}
       <Testimonials
         data={testimonials}
       />

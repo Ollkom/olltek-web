@@ -12,7 +12,7 @@ export default async function PostRoute({ params, searchParams }) {
     getGlobal()
   ]);
   const { title, cover, description, category, publishedAt } = data?.data?.[0]?.attributes || [];
-  const contactBackground = global?.data?.attributes?.contactBackground;
+  const leadForm = global?.data?.attributes?.leadForm;
   const testimonials = global?.data?.attributes?.testimonials;
   if (data?.data?.length === 0) return notFound();
 
@@ -29,13 +29,9 @@ export default async function PostRoute({ params, searchParams }) {
         <Post data={data?.data?.[0]} />
         <SimilarPosts postId={data?.data?.[0]?.id} categorySlug={category?.data?.attributes?.slug} searchParams={searchParams} />
       </div>
-      <InternalContact
-        data={{
-          title: "Contact Us For Further Assistance",
-          description: "We're here to help—reach out to our team today!",
-          picture: contactBackground
-        }}
-      />
+      {leadForm && <InternalContact
+        leadForm={leadForm}
+      />}
       <Testimonials
         data={testimonials}
       />
