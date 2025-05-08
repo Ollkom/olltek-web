@@ -5524,3 +5524,5 @@ export const cities = [
 ];
 
 export const DEFAULT_COLLECTION_LIMIT = 6;
+
+export const LANG_COOKIE = "NEXT_LOCALE";
