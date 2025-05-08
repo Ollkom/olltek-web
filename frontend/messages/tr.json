@@ -1,0 +1,11 @@
+{
+  "Global": {
+  },
+  "LocaleSwitcher": {
+    "en": "English (UK)",
+    "tr": "Türkiye",
+    "cn": "中文",
+    "ar": "العربية",
+    "language": "Dil"
+  }
+}
