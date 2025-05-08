@@ -2,7 +2,7 @@ import { Button } from "@/components/ui";
 import { getStrapiMedia } from "@/utils/api-helpers";
 import { getGlobal } from "@/utils/api-loaders";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { CountryScroll } from "@/components/homepage";
 
 const Hero = async (props) => {

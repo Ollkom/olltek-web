@@ -1,6 +1,6 @@
 import { Media } from "@/components/ui";
 import { formatDate } from "@/utils/api-helpers";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 export default function PostHeader({ title, cover, description, publishedAt }) {
   return (
