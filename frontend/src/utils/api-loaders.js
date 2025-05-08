@@ -26,6 +26,7 @@ export async function getGlobal() {
       "footer.menuLinks",
       "leadForm",
       "leadForm.submitButton",
+      "leadForm.background",
       "footer.FooterMenu.FooterLinks",
       "testimonials",
       "testimonials.Testimonial",
@@ -33,8 +34,7 @@ export async function getGlobal() {
       "countries",
       "countries.country.media.file",
       "Advertisements.Advert.media",
-      "Advertisements.Advert.MediaHover",
-      "contactBackground"
+      "Advertisements.Advert.MediaHover"
     ],
   };
   return await fetchAPI(path, urlParamsObject, options, tag);

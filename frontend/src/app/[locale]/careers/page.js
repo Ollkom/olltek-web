@@ -14,7 +14,7 @@ export default async function PageRoute({ searchParams }) {
         getGlobal()
     ]);
     const contentSections = page?.data?.[0]?.attributes?.contentSections;
-    const contactBackground = global?.data?.attributes?.contactBackground;
+    const leadForm = global?.data?.attributes?.leadForm;
     const testimonials = global?.data?.attributes?.testimonials;
     return (
         <>
@@ -29,13 +29,9 @@ export default async function PageRoute({ searchParams }) {
                 team={team}
                 limit={limit}
             />
-            <InternalContact
-                data={{
-                    title: "Contact Us For Further Assistance",
-                    description: "We're here to help—reach out to our team today!",
-                    picture: contactBackground
-                }}
-            />
+            {leadForm && <InternalContact
+                leadForm={leadForm}
+            />}
             <Testimonials
                 data={testimonials}
             />
