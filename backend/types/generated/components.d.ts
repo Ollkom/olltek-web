@@ -744,6 +744,7 @@ export interface SectionsLeadForm extends Schema.Component {
     submitButton: Attribute.Component<'links.button'>;
     location: Attribute.String;
     description: Attribute.Text;
+    background: Attribute.Media;
   };
 }
 
