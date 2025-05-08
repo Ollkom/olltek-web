@@ -6,7 +6,7 @@ import { ScrollToTop } from "@/components/ui";
 const Footer = (props) => {
   const { footer } = props;
 
-  const { FooterMenu, socialLinks, footerLogo } = footer || {};
+  const { FooterMenu, socialLinks, footerLogo, copyright } = footer || {};
   const logo = footerLogo?.logoImg?.data?.attributes;
   const logoText = footerLogo?.logoText;
 
@@ -101,9 +101,9 @@ const Footer = (props) => {
         {/* Divider Line */}
         <div className="border-t border-white/20 mt-4 md:mt-8"></div>
         {/* Copyright */}
-        <div className="text-center font-medium text-sm md:text-base mt-3 md:mt-8 text-lightGrayBackground">
-          © 2025 Olltek Technologies All rights reserved.
-        </div>
+        {copyright && <div className="text-center font-medium text-sm md:text-base mt-3 md:mt-8 text-lightGrayBackground">
+          {copyright}
+        </div>}
       </div>
     </footer>
   );
