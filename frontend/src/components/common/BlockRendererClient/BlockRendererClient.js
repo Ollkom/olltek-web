@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Typography } from "@/components/ui";
 import { IconBulletList } from "@/assets/images";

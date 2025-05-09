@@ -214,6 +214,7 @@ export interface LayoutFooter extends Schema.Component {
     description: '';
   };
   attributes: {
+    copyright: Attribute.Text;
     footerLogo: Attribute.Component<'layout.logo'>;
     menuLinks: Attribute.Component<'links.link', true>;
     legalLinks: Attribute.Component<'links.link', true>;
@@ -236,7 +237,7 @@ export interface LayoutLogo extends Schema.Component {
   };
   attributes: {
     logoImg: Attribute.Media & Attribute.Required;
-    logoText: Attribute.String;
+    logoText: Attribute.Text;
   };
 }
 
@@ -743,6 +744,7 @@ export interface SectionsLeadForm extends Schema.Component {
     submitButton: Attribute.Component<'links.button'>;
     location: Attribute.String;
     description: Attribute.Text;
+    background: Attribute.Media;
   };
 }
 

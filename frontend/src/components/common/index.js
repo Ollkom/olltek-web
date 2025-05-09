@@ -24,3 +24,4 @@ export { default as AdvertisementSlider } from "./AdvertisementSlider";
 export { default as Pagination } from "./Pagination";
 export { default as SingleFeature } from "./SingleFeature";
 export { default as TabSections } from "./TabSections";
+export { default as LocaleSwitcher } from "./LocaleSwitcher";

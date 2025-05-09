@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { getStrapiMedia } from "@/utils/api-helpers";
 
@@ -7,7 +7,7 @@ const Logo = (props) => {
   return (
     <div className="max-w-[150px] md:max-w-[220px]">
       <Link href="/">
-        {navbarLogo && (
+        {navbarLogo?.url && (
           <Image
             src={getStrapiMedia(navbarLogo?.url)}
             alt="logo"
@@ -17,7 +17,7 @@ const Logo = (props) => {
             priority
           />
         )}
-        {navbarLogoMobile && (
+        {navbarLogoMobile?.url && (
           <Image
             src={getStrapiMedia(navbarLogoMobile?.url)}
             alt="logo"

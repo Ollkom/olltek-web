@@ -30,6 +30,11 @@ import IconPlayXS from "./icon_play_xs.svg";
 import IconBack from "./icon_back.svg";
 import IconForwardArrow from "./icon_forward_arrow.svg";
 import IconChevronDown from "./icon_chevron_down.svg";
+import IconLangSwitcher from "./icon_language_switcher.svg";
+import IconSaudiArabia from "./icon_saudi_arabia.svg";
+import IconTurkey from "./icon_turkey.svg";
+import IconUk from "./icon_uk.svg";
+import IconChina from "./icon_china.svg";
 
 export {
   ButtonIcon,
@@ -64,4 +69,9 @@ export {
   IconBack,
   IconForwardArrow,
   IconChevronDown,
+  IconLangSwitcher,
+  IconSaudiArabia,
+  IconTurkey,
+  IconUk,
+  IconChina
 };
