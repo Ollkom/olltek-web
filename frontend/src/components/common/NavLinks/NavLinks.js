@@ -106,16 +106,13 @@ const NavLinks = (props) => {
                         );
                       })}
                     </div>
-
                     {/* Right side featured content */}
-                    {advertisements?.length > 0 && (
-                      <AdvertisementSlider
-                        advertisements={advertisements}
-                        isMenuOpen={isMenuOpen}
-                        hoverMenuItem={activeMenu}
-                        closeMenu={handleMouseLeave}
-                      />
-                    )}
+                    <AdvertisementSlider
+                      advertisements={advertisements}
+                      isMenuOpen={isMenuOpen}
+                      hoverMenuItem={activeMenu}
+                      closeMenu={handleMouseLeave}
+                    />
                   </div>
                 </div>
               </div>
