@@ -1,6 +1,7 @@
 "use client";
 
 import { IconChevronDown } from "@/assets/images";
+import { useTranslations } from "next-intl";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useMemo, useState, useTransition } from "react";
 
@@ -10,7 +11,7 @@ function CareerFilterDropdown({ label, options, activeValue, paramName }) {
     const searchParams = useSearchParams();
     const [isPending, startTransition] = useTransition();
     const [currentValue, setCurrentValue] = useState(activeValue || "all");
-
+    const t = useTranslations("Global");
     const isDisabled = useMemo(() => {
         return options.length === 0;
     }, [options]);
@@ -42,7 +43,7 @@ function CareerFilterDropdown({ label, options, activeValue, paramName }) {
                     onChange={handleChange}
                     disabled={isPending || isDisabled}
                 >
-                    <option value="all">All</option>
+                    <option value="all">{t("all")}</option>
                     {options.map((option) => (
                         <option key={option.id} value={option.attributes.title}>
                             {option.attributes.title}

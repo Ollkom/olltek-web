@@ -51,7 +51,7 @@ const NavLinksMobile = (props) => {
               </li>
             );
           })}
-          {isLocaleSwitcherEnabled && <LocaleSwitcher isMobile={true} />}
+          {isLocaleSwitcherEnabled && <LocaleSwitcher isMobile={true} toggleDrawer={toggleDrawer} />}
         </ul>
       </div>
       {/* Submenu */}

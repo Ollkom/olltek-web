@@ -6,16 +6,16 @@ const SectionHeader = ({ title, description, header }) => {
   return (
     <div className="flex flex-col gap-4 max-w-3xl mx-auto text-center pb-4 md:pb-8">
       {header && (
-        <Typography variant="heading1">
+        <h3 className="text-lightBlue font-semibold text-sm">
           {header}
-        </Typography>
+        </h3>
       )}
       {title && (
-        <Typography variant="title">
+        <h2 className="inline-block text-darkGrayText font-medium text-2xl md:text-3xl">
           {title}
-        </Typography>
+        </h2>
       )}
-      {description && <Typography variant="body1">{description}</Typography>}
+      {description && <p className="font-normal text-sm md:text-lg tracking-normal text-lightGrayText">{description}</p>}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { getStrapiMedia } from "@/utils/api-helpers";
 import { PageHeader } from "@/components/common";
 import { useState, useCallback } from "react";
 import { IconChevronDown } from "@/assets/images";
+import { useTranslations } from "next-intl";
 
 const Grid = ({ items }) => {
     if (items?.length === 0) return <div className="text-center text-gray-500 py-10">Stay tuned for more partners!</div>;
@@ -38,6 +39,7 @@ const Grid = ({ items }) => {
 };
 
 const OurPartners = ({ pageHeader, locations, solutions }) => {
+    const t = useTranslations("Global");
     const [selectedLocation, setSelectedLocation] = useState("");
     const [filteredSolutions, setFilteredSolutions] = useState(solutions?.data || []);
 
@@ -78,10 +80,10 @@ const OurPartners = ({ pageHeader, locations, solutions }) => {
                 {pageHeader && <div className="md:hidden"><PageHeader data={pageHeader} /></div>}
                 <div className="flex flex-col md:flex-row">
                     <Sidebar
-                        title="Solutions"
+                        title={t("solutions")}
                         menuItem={menuItem}
                         Button={null}
-                        description="Explore our partners by solution"
+                        description={t("exploreOurPartnersBySolution")}
                     />
                     <div className="bg-lightGrayBackground md:w-[80%] 2xl:w-[85%]">
                         <div className="hidden md:block">
