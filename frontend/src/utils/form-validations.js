@@ -1,41 +1,41 @@
-export function validation(value) {
+export function validation(value, t) {
   const errors = {};
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phonePattern = /^[0-9]+$/;
   const allowedExtensions = [".pdf", ".doc", ".docx"];
   const maxFileSize = 5 * 1024 * 1024;
 
-  const validateField = (fieldName, errorMessage) => {
+  const validateField = (fieldName, errorKey) => {
     if (value[fieldName] === undefined) return;
     if (!value[fieldName]) {
-      errors[fieldName] = errorMessage;
+      errors[fieldName] = t ? t(errorKey) : errorKey;
     }
   };
 
   const validateEmail = () => {
     if (value.email === undefined) return;
     if (value.email === "") {
-      errors.email = "Please enter your email";
+      errors.email = t ? t("pleaseEnterYourEmail") : "Please enter your email";
     } else if (!emailPattern.test(value.email)) {
-      errors.email = "Invalid email format";
+      errors.email = t ? t("invalidEmailFormat") : "Invalid email format";
     }
   };
 
   const validateNumber = () => {
     if (value.weight === undefined) return;
     if (value.weight === "") {
-      errors.weight = "Please enter weight in number";
+      errors.weight = t ? t("pleaseEnterWeightInNumber") : "Please enter weight in number";
     } else if (!phonePattern.test(value.weight)) {
-      errors.weight = "should contain only numbers";
+      errors.weight = t ? t("shouldContainOnlyNumbers") : "should contain only numbers";
     }
   };
 
   const validatePhoneNumber = () => {
     if (value.phoneNumber === undefined) return;
     if (value.phoneNumber === "") {
-      errors.phoneNumber = "Plese enter your phone number";
+      errors.phoneNumber = t ? t("pleaseEnterYourPhoneNumber") : "Please enter your phone number";
     } else if (!phonePattern.test(value.phoneNumber)) {
-      errors.phoneNumber = "Phone number should contain only numbers";
+      errors.phoneNumber = t ? t("phoneNumberShouldContainOnlyNumbers") : "Phone number should contain only numbers";
     }
   };
 
@@ -45,34 +45,34 @@ export function validation(value) {
     const fileSize = value?.resume?.size || 0;
 
     if (!allowedExtensions.includes("." + fileExtension)) {
-      errors.resume = "Please upload a .pdf, .doc, or .docx file";
+      errors.resume = t ? t("pleaseUploadAPdfDocOrDocxFile") : "Please upload a .pdf, .doc, or .docx file";
     } else if (fileSize > maxFileSize) {
-      errors.resume = "File size exceeds the limit of 5 MB";
+      errors.resume = t ? t("fileSizeExceedsTheLimitOf5MB") : "File size exceeds the limit of 5 MB";
     }
   };
 
-  const validateRadioField = (fieldName, errorMessage) => {
+  const validateRadioField = (fieldName, errorKey) => {
     if (value[fieldName] === undefined) return;
     if (value[fieldName] === undefined || value[fieldName] === "") {
-      errors[fieldName] = errorMessage;
+      errors[fieldName] = t ? t(errorKey) : errorKey;
     } else {
       delete errors[fieldName];
     }
   };
 
-  validateField("firstName", "Please enter first Name");
-  validateField("lastName", "Please enter last Name");
-  validateField("message", "Please enter your message");
-  // validateField("dob", "Please select your date of birth");
-  // validateField("graduationYear", "Please select year of graduation");
-  validateField("employmentStatus", "Please confirm your employment status");
-  // validateField("experience", "Please enter your total work experience");
-  // validateField("gender", "Please select your gender");
-  validateField("resume", "Please upload your resume");
-  validateField("department", "Please choose the department");
-  validateField("name", "Please enter your name");
-  // validateField("position", "Please enter your current position");
-  // validateField("company", "Please enter your current company");
+  validateField("firstName", "pleaseEnterFirstName");
+  validateField("lastName", "pleaseEnterLastName");
+  validateField("message", "pleaseEnterYourMessage");
+  // validateField("dob", "pleaseSelectYourDateOfBirth");
+  // validateField("graduationYear", "pleaseSelectYearOfGraduation");
+  validateField("employmentStatus", "pleaseConfirmYourEmploymentStatus");
+  // validateField("experience", "pleaseEnterYourTotalWorkExperience");
+  // validateField("gender", "pleaseSelectYourGender");
+  validateField("resume", "pleaseUploadYourResume");
+  validateField("department", "pleaseChooseTheDepartment");
+  validateField("name", "pleaseEnterYourName");
+  // validateField("position", "pleaseEnterYourCurrentPosition");
+  // validateField("company", "pleaseEnterYourCurrentCompany");
   /* validateField(
     "highestDegree",
     "Please enter your highest educational degree"
@@ -84,23 +84,23 @@ export function validation(value) {
 
   // Shipping calculator form
 
-  validateField("from", "Please enter pickup location");
-  validateField("to", "Please enter drop location");
-  validateField("weight", "Please enter package weight");
+  // validateField("from", "Please enter pickup location");
+  // validateField("to", "Please enter drop location");
+  // validateField("weight", "Please enter package weight");
 
   // Shipping Tracking form
 
-  validateField("track", "Please enter your tracking number");
+  // validateField("track", "Please enter your tracking number");
 
   // Retail Application Form
 
-  validateField("brandName", "Please enter your brand name");
-  validateField("country", "Please enter your country or origin");
-  validateField("productType", "Please enter your product type");
-  validateRadioField(
-    "qualityCertification",
-    "Please select quality certifications availability"
-  );
+  // validateField("brandName", "Please enter your brand name");
+  // validateField("country", "Please enter your country or origin");
+  // validateField("productType", "Please enter your product type");
+  // validateRadioField(
+  //   "qualityCertification",
+  //   "Please select quality certifications availability"
+  // );
 
   validateEmail();
   validatePhoneNumber();
