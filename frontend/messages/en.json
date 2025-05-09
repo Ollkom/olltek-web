@@ -23,7 +23,19 @@
     "pleaseEnterYourPhoneNumber": "Please enter your phone number",
     "phoneNumberShouldContainOnlyNumbers": "Phone number should contain only numbers",
     "pleaseUploadAPdfDocOrDocxFile": "Please upload a .pdf, .doc, or .docx file",
-    "fileSizeExceedsTheLimitOf5MB": "File size exceeds the limit of 5 MB"
+    "fileSizeExceedsTheLimitOf5MB": "File size exceeds the limit of 5 MB",
+    "noCareersFoundMatchingYourCriteria": "No careers found matching your criteria. Stay tuned for more opportunities",
+    "role": "Role",
+    "type": "Type",
+    "location": "Location",
+    "viewAll": "View all",
+    "all": "All",
+    "findYourNextOpportunity": "Find Your Next Opportunity",
+    "shapeTheFutureOfCommerceWithUs": "Shape the Future of Commerce with Us.",
+    "countries": "Countries",
+    "discoverOurGlobalPresenceAndLocalExpertiseInPaymentSolutions": "Discover our global presence and local expertise in payment solutions.",
+    "solutions": "Solutions",
+    "exploreOurPartnersBySolution": "Explore our partners by solution"
   },
   "LocaleSwitcher": {
     "en": "English (UK)",
