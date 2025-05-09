@@ -1641,7 +1641,12 @@ export interface ApiMainMenuMainMenu extends Schema.SingleType {
   attributes: {
     MainMenuItems: Attribute.DynamicZone<
       ['menu.dropdown', 'menu.menu-button', 'menu.menu-link']
-    >;
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

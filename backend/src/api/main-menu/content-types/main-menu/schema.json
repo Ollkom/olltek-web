@@ -21,7 +21,12 @@
         "menu.dropdown",
         "menu.menu-button",
         "menu.menu-link"
-      ]
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }
