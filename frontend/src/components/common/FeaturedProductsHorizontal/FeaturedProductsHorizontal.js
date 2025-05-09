@@ -19,14 +19,14 @@ const FeaturedProductsHorizontal = ({ data }) => {
           {description && <p className="text-white font-normal text-sm md:text-lg">{description}</p>}
         </div>
         {ProductItem?.length > 0 && (
-          <div className="flex justify-center items-center">
-            <div className="inline-flex flex-col items-start justify-center md:flex md:flex-row md:items-center md:justify-between">
+          <div className="flex justify-center items-center mx-auto md:px-10">
+            <div className="inline-flex flex-col items-start justify-center md:flex md:flex-row md:items-center md:justify-between md:gap-y-9">
               {ProductItem?.map((item, index) => {
                 const { media, title } = item || {};
                 const image = media?.file?.data?.attributes
                 return (
                   <React.Fragment key={item?.id}>
-                    <div className="flex md:flex-col md:justify-center items-center text-white gap-2 md:gap-0 md:px-1 2xl:px-2">
+                    <div className="flex md:flex-col md:justify-center items-center text-white gap-2 md:gap-0 md:px-1 2xl:px-2 max-w-56">
                       {media && <div className="bg-transparent w-10 h-10 2xl:w-12 2xl:h-12 flex items-center justify-center md:mb-2">
                         <Image
                           src={getStrapiMedia(image.url)}
@@ -35,7 +35,7 @@ const FeaturedProductsHorizontal = ({ data }) => {
                           height={image.height}
                         />
                       </div>}
-                      {title && <span className="text-sm 2xl:text-base font-normal 2xl:whitespace-nowrap text-center">{title}</span>}
+                      {title && <span className="text-sm 2xl:text-base font-normal text-center">{title}</span>}
                     </div>
                     {index < ProductItem.length - 1 && (
                       <div className="h-[24px] w-[2px] md:h-[2px] md:w-6 2xl:h-[2px] 2xl:w-14 bg-white ms-5 md:ms-0 my-2"></div>
