@@ -2,10 +2,11 @@ import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { getStrapiMedia } from "@/utils/api-helpers";
 import { ScrollToTop } from "@/components/ui";
+import { getTranslations } from "next-intl/server";
 
-const Footer = (props) => {
+const Footer = async (props) => {
   const { footer } = props;
-
+  const t = await getTranslations("Global");
   const { FooterMenu, socialLinks, footerLogo, copyright } = footer || {};
   const logo = footerLogo?.logoImg?.data?.attributes;
   const logoText = footerLogo?.logoText;
@@ -32,7 +33,7 @@ const Footer = (props) => {
               </p>}
             </div>
             {socialLinks?.length > 0 && <div className="flex flex-col gap-3">
-              <p className="text-base md:text-lg font-medium text-lightGrayBorder">Follow us on</p>
+              <p className="text-base md:text-lg font-medium text-lightGrayBorder">{t("followUsOn")}</p>
               <div className="flex space-x-3">
                 {socialLinks?.map((link) => {
                   const icon = link?.icon?.data?.attributes;
