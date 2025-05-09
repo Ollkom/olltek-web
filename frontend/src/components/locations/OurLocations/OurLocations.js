@@ -1,6 +1,7 @@
 import { Sidebar } from "@/components/scroll-layout";
 import { PageHeader } from "@/components/common";
 import cx from "classnames";
+import { getTranslations } from "next-intl/server";
 
 const LocationSection = ({ location, index }) => {
     const isEven = index % 2 === 0;
@@ -38,9 +39,9 @@ const LocationSection = ({ location, index }) => {
     );
 };
 
-const OurLocations = ({ data, pageHeader }) => {
+const OurLocations = async ({ data, pageHeader }) => {
     if (!data?.data || data?.data?.length === 0) return null;
-
+    const t = await getTranslations("Global");
     const locations = data?.data;
     const menuItems = locations?.map(location => location?.attributes?.name);
 
@@ -50,9 +51,9 @@ const OurLocations = ({ data, pageHeader }) => {
                 {pageHeader && <div className="md:hidden"><PageHeader data={pageHeader} /></div>}
                 <div className="flex flex-col md:flex-row">
                     <Sidebar
-                        title="Countries"
+                        title={t("countries")}
                         menuItem={menuItems}
-                        description="Discover our global presence and local expertise in payment solutions."
+                        description={t("discoverOurGlobalPresenceAndLocalExpertiseInPaymentSolutions")}
                     />
                     <div className="bg-lightGrayBackground md:w-[80%] 2xl:w-[85%]">
                         <div className="hidden md:block">

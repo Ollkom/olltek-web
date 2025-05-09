@@ -1,7 +1,9 @@
 import { Pagination } from "@/components/common";
 import { getCareers } from "@/utils/api-loaders";
+import { getTranslations } from "next-intl/server";
 
 const CareersTable = async ({ pageArticles, role, location, team, limit }) => {
+    const t = await getTranslations("Global");
     const careers = await getCareers(pageArticles, role, location, team, 0, limit);
     const totalPosts = careers?.meta?.pagination?.total;
     const currentItems = careers?.data?.length;
@@ -13,13 +15,13 @@ const CareersTable = async ({ pageArticles, role, location, team, limit }) => {
                     <thead>
                         <tr>
                             <th scope="col" className="px-6 py-5 text-left text-sm md:text-lg font-medium text-darkGrayText">
-                                Role
+                                {t("role")}
                             </th>
                             <th scope="col" className="px-6 py-5 text-left text-sm md:text-lg font-medium text-darkGrayText">
-                                Type
+                                {t("type")}
                             </th>
                             <th scope="col" className="px-6 py-5 text-left text-sm md:text-lg font-medium text-darkGrayText">
-                                Location
+                                {t("location")}
                             </th>
                         </tr>
                     </thead>
@@ -41,7 +43,7 @@ const CareersTable = async ({ pageArticles, role, location, team, limit }) => {
                         ) : (
                             <tr>
                                 <td colSpan="3" className="px-6 py-4 text-center">
-                                    No careers found matching your criteria. Stay tuned for more opportunities!
+                                    {t("noCareersFoundMatchingYourCriteria")}
                                 </td>
                             </tr>
                         )}
@@ -53,7 +55,7 @@ const CareersTable = async ({ pageArticles, role, location, team, limit }) => {
                 <Pagination
                     totalItems={totalPosts}
                     currentItems={currentItems}
-                    buttonText={"View all"}
+                    buttonText={t("viewAll")}
                 />
             </div>
         </>
