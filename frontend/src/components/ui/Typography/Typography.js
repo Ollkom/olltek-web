@@ -42,11 +42,11 @@ export const typographyClasses = {
   gradient2:
     "inline-block bg-gradient-to-r from-[#08B1F6] to-[#2F4BDF] bg-clip-text text-transparent font-bold text-lg 2xl:text-2xl",
   heading1:
-    "text-lightBlue font-semibold text-sm",
+    "text-3xl md:text-4xl tracking-wide text-center text-darkGrayText",
   heading2:
-    "text-xs md:text-xl 2xl:text-2xl tracking-widest text-center uppercase",
+    "text-2xl md:text-3xl tracking-wide text-center text-darkGrayText",
   heading3:
-    "text-xl 2xl:text-2xl font-medium text-darkGrayText",
+    "text-xl md:text-2xl font-medium text-darkGrayText",
   heading4: "text-xl md:text-2xl leading-9 font-bold tracking-normal",
   heading5:
     "text-xl leading-8 md:text-xl 2xl:text-2xl md:leading-9 font-semibold tracking-normal",
