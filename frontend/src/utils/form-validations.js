@@ -63,44 +63,11 @@ export function validation(value, t) {
   validateField("firstName", "pleaseEnterFirstName");
   validateField("lastName", "pleaseEnterLastName");
   validateField("message", "pleaseEnterYourMessage");
-  // validateField("dob", "pleaseSelectYourDateOfBirth");
-  // validateField("graduationYear", "pleaseSelectYearOfGraduation");
+
   validateField("employmentStatus", "pleaseConfirmYourEmploymentStatus");
-  // validateField("experience", "pleaseEnterYourTotalWorkExperience");
-  // validateField("gender", "pleaseSelectYourGender");
   validateField("resume", "pleaseUploadYourResume");
   validateField("department", "pleaseChooseTheDepartment");
   validateField("name", "pleaseEnterYourName");
-  // validateField("position", "pleaseEnterYourCurrentPosition");
-  // validateField("company", "pleaseEnterYourCurrentCompany");
-  /* validateField(
-    "highestDegree",
-    "Please enter your highest educational degree"
-  ); */
-  // validateField("maritalStatus", "Please select your marital status");
-  // validateField("nationality", "Please enter your nationality");
-  // validateField("location", "Please enter your location");
-  // validateField("major", "Please enter your major");
-
-  // Shipping calculator form
-
-  // validateField("from", "Please enter pickup location");
-  // validateField("to", "Please enter drop location");
-  // validateField("weight", "Please enter package weight");
-
-  // Shipping Tracking form
-
-  // validateField("track", "Please enter your tracking number");
-
-  // Retail Application Form
-
-  // validateField("brandName", "Please enter your brand name");
-  // validateField("country", "Please enter your country or origin");
-  // validateField("productType", "Please enter your product type");
-  // validateRadioField(
-  //   "qualityCertification",
-  //   "Please select quality certifications availability"
-  // );
 
   validateEmail();
   validatePhoneNumber();
