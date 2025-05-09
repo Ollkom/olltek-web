@@ -23,7 +23,19 @@
     "pleaseEnterYourPhoneNumber": "Lütfen telefon numaranızı girin",
     "phoneNumberShouldContainOnlyNumbers": "Telefon numarası sadece rakamlar içermeli",
     "pleaseUploadAPdfDocOrDocxFile": "Lütfen .pdf, .doc veya .docx dosyası yükleyin",
-    "fileSizeExceedsTheLimitOf5MB": "Dosya boyutu 5 MB sınırını aşıyor"
+    "fileSizeExceedsTheLimitOf5MB": "Dosya boyutu 5 MB sınırını aşıyor",
+    "noCareersFoundMatchingYourCriteria": "Bu kriterlere uygun bir iş ilanı bulunamadı. Daha fazla fırsat için takip edin",
+    "role": "Rol",
+    "type": "Tip",
+    "location": "Konum",
+    "viewAll": "Tümünü Gör",
+    "all": "Tümü",
+    "findYourNextOpportunity": "Sonraki Fırsatınızı Bulun",
+    "shapeTheFutureOfCommerceWithUs": "Ticaretinizin Geleceğini Biz Oluşturuyoruz.",
+    "countries": "Ülkeler",
+    "discoverOurGlobalPresenceAndLocalExpertiseInPaymentSolutions": "Ödeme çözümlerimizdeki global mevcutumuzu ve yerel uzmanlığı keşfedin.",
+    "solutions": "Çözümler",
+    "exploreOurPartnersBySolution": "Çözümlere göre iş ortaklarımızı keşfedin"
   },
   "LocaleSwitcher": {
     "en": "English (UK)",

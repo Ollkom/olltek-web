@@ -23,7 +23,19 @@
     "pleaseEnterYourPhoneNumber": "请输入您的电话号码",
     "phoneNumberShouldContainOnlyNumbers": "电话号码应仅包含数字",
     "pleaseUploadAPdfDocOrDocxFile": "请上传.pdf、.doc或.docx文件",
-    "fileSizeExceedsTheLimitOf5MB": "文件大小超过5MB的限制"
+    "fileSizeExceedsTheLimitOf5MB": "文件大小超过5MB的限制",
+    "noCareersFoundMatchingYourCriteria": "没有符合您标准的职位。请继续关注更多机会",
+    "role": "角色",
+    "type": "类型",
+    "location": "位置",
+    "viewAll": "查看所有",
+    "all": "所有",
+    "findYourNextOpportunity": "找到您的下一个机会",
+    "shapeTheFutureOfCommerceWithUs": "与我们一起塑造未来",
+    "countries": "国家",
+    "discoverOurGlobalPresenceAndLocalExpertiseInPaymentSolutions": "发现我们的全球存在和本地支付解决方案专业知识",
+    "solutions": "解决方案",
+    "exploreOurPartnersBySolution": "探索我们的合作伙伴"
   },
   "LocaleSwitcher": {
     "en": "English (UK)",
