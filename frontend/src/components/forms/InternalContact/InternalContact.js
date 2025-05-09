@@ -13,6 +13,7 @@ import {
 } from "@/components/ui";
 import { getStrapiMedia } from "@/utils/api-helpers";
 import { validation } from "@/utils/form-validations";
+import { useTranslations } from "next-intl";
 
 const formFields = {
   firstName: "",
@@ -25,6 +26,7 @@ const formFields = {
 
 export default function InternalContact({ leadForm, department }) {
   const { title, description, background } = leadForm || {};
+  const t = useTranslations("Global");
   const [formValues, setFormValues] = useState(formFields);
   const [formerror, setFormerror] = useState({});
   const [snackbar, setSnackbar] = useState({
@@ -66,14 +68,14 @@ export default function InternalContact({ leadForm, department }) {
     setSnackbar({
       open: true,
       type: "success",
-      message: "Enquiry successfully submitted!",
+      message: t("enquirySuccessfullySubmitted"),
     });
 
     if (!res.ok) {
       setSnackbar({
         open: true,
         type: "error",
-        message: "Failed to submit, please try again",
+        message: t("failedToSubmitPleaseTryAgain"),
       });
       return;
     }
@@ -103,7 +105,7 @@ export default function InternalContact({ leadForm, department }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const errors = validation(formValues);
+    const errors = validation(formValues, t);
     if (Object.keys(errors).length === 0) {
       sumbitForm();
       setFormValues(formFields);
@@ -112,7 +114,7 @@ export default function InternalContact({ leadForm, department }) {
       setSnackbar({
         open: true,
         type: "error",
-        message: "Failed to submit the form, please check the form fields",
+        message: t("failedToSubmitTheFormPleaseCheckTheFormFields"),
       });
     }
   };
@@ -152,7 +154,7 @@ export default function InternalContact({ leadForm, department }) {
                     <Input
                       type="text"
                       value={formValues?.firstName}
-                      placeholder="Enter your name"
+                      placeholder={t("enterYourName")}
                       name="firstName"
                       onChange={handleValidation}
                     />
@@ -163,7 +165,7 @@ export default function InternalContact({ leadForm, department }) {
                   <div className="w-full md:w-1/2 mb-6">
                     <Input
                       type="text"
-                      placeholder="Enter your Official Email ID"
+                      placeholder={t("enterYourOfficialEmailID")}
                       name="email"
                       value={formValues?.email}
                       onChange={handleValidation}
@@ -173,7 +175,7 @@ export default function InternalContact({ leadForm, department }) {
                   <div className="w-full md:w-1/2 mb-6">
                     <Input
                       type="text"
-                      placeholder="Phone Number"
+                      placeholder={t("phoneNumber")}
                       name="phoneNumber"
                       value={formValues?.phoneNumber}
                       onChange={handleValidation}
@@ -187,7 +189,7 @@ export default function InternalContact({ leadForm, department }) {
                       name="message"
                       rows={4}
                       cols={40}
-                      placeholder="Let us know how we can help you"
+                      placeholder={t("letUsKnowHowWeCanHelpYou")}
                       value={formValues?.message}
                       onChange={handleValidation}
                     />
@@ -195,7 +197,7 @@ export default function InternalContact({ leadForm, department }) {
                   </div>
                 </div>
                 <Button type="submit" variant="primary" className="w-full md:w-auto">
-                  Submit
+                  {t("submit")}
                 </Button>
               </form>
             </div>
