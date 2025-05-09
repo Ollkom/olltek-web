@@ -1,9 +1,9 @@
 import { SectionHeader } from "@/components/common";
-import { MotionCardStaggered, MotionContainer } from "@/components/ui";
+import { MotionContainer } from "@/components/ui";
+import { Link } from "@/i18n/routing";
 import { formatDate, getStrapiMedia } from "@/utils/api-helpers";
 import { getPageArticles } from "@/utils/api-loaders";
 import Image from "next/image";
-import Link from "next/link";
 
 const BlogPosts = async (props) => {
     const { data } = props;
