@@ -1,7 +1,9 @@
 import qs from "qs";
 import { getStrapiURL } from "./api-helpers";
+import { getLocale } from "./locale";
 
 export async function fetchAPI(path, urlParamsObject = {}, options = {}, tag) {
+  const locale = await getLocale();
   try {
     // Merge default and user options
     const mergedOptions = {
@@ -16,7 +18,7 @@ export async function fetchAPI(path, urlParamsObject = {}, options = {}, tag) {
     // Build request URL
     const queryString = qs.stringify(urlParamsObject);
     const requestUrl = `${getStrapiURL(
-      `/api${path}${queryString ? `?${queryString}` : ""}`
+      `/api${path}${queryString ? `?${queryString}` : ""}&locale=${locale}`
     )}`;
 
     // Trigger API call

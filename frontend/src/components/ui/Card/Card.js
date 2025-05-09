@@ -2,7 +2,7 @@
 import { usePathname } from "next/navigation";
 import { Inter, Bakbak_One } from "next/font/google";
 import cx from "classnames";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { getStrapiMedia } from "@/utils/api-helpers";
 

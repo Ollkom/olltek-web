@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import {
   IconChevronDown,
 } from "@/assets/images";
@@ -108,12 +108,14 @@ const NavLinks = (props) => {
                     </div>
 
                     {/* Right side featured content */}
-                    <AdvertisementSlider
-                      advertisements={advertisements}
-                      isMenuOpen={isMenuOpen}
-                      hoverMenuItem={activeMenu}
-                      closeMenu={handleMouseLeave}
-                    />
+                    {advertisements?.length > 0 && (
+                      <AdvertisementSlider
+                        advertisements={advertisements}
+                        isMenuOpen={isMenuOpen}
+                        hoverMenuItem={activeMenu}
+                        closeMenu={handleMouseLeave}
+                      />
+                    )}
                   </div>
                 </div>
               </div>

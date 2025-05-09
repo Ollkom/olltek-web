@@ -1,7 +1,7 @@
 "use client";
 import cx from "classnames";
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui";
 
 const Sidebar = ({ menuItem, title, Button: button, description }) => {

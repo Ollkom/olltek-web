@@ -23,8 +23,8 @@ const formFields = {
   message: "",
 };
 
-export default function InternalContact({ data, department }) {
-  const { title, description, picture } = data;
+export default function InternalContact({ leadForm, department }) {
+  const { title, description, background } = leadForm || {};
   const [formValues, setFormValues] = useState(formFields);
   const [formerror, setFormerror] = useState({});
   const [snackbar, setSnackbar] = useState({
@@ -121,10 +121,10 @@ export default function InternalContact({ data, department }) {
     <div id="contact-form">
       <SnackBar snackbar={snackbar} setSnackbar={setSnackbar} />
       <MotionContainer className="py-12 md:py-14 text-white relative bg-darkBlue">
-        {picture?.data?.attributes?.url && (
+        {background?.data?.attributes?.url && (
           <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
             <Image
-              src={getStrapiMedia(picture.data.attributes.url)}
+              src={getStrapiMedia(background?.data?.attributes?.url)}
               alt="Background"
               fill
               className="object-cover"

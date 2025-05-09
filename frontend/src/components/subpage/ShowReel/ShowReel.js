@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { getStrapiMedia } from "@/utils/api-helpers";
 import { SectionHeader } from "@/components/common";

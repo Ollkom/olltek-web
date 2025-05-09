@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 const InfoItem = ({ label, value }) => (
   <div className="pb-3 md:pb-0">
     <p className="text-sm pb-1">{label}</p>

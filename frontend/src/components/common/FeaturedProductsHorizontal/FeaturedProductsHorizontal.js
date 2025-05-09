@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { getStrapiMedia } from "@/utils/api-helpers";
 import React from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 const FeaturedProductsHorizontal = ({ data }) => {
   const { ProductItem, title, description, Button } = data || {};
