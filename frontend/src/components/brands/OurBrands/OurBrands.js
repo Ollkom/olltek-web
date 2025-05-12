@@ -5,7 +5,7 @@ import { getStrapiMedia } from "@/utils/api-helpers";
 import { PageHeader } from "@/components/common";
 import { useState, useCallback } from "react";
 import { IconChevronDown } from "@/assets/images";
-
+import { useTranslations } from "next-intl";
 const Grid = ({ items }) => {
   if (items?.length === 0) return <div className="text-center text-gray-500 py-10">Stay tuned for more brands!</div>;
   return (
@@ -38,6 +38,7 @@ const Grid = ({ items }) => {
 };
 
 const OurBrands = ({ pageHeader, locations, industries }) => {
+  const t = useTranslations("Global");
   const [selectedLocation, setSelectedLocation] = useState("All Locations");
   const [filteredIndustries, setFilteredIndustries] = useState(industries?.data || []);
 
@@ -81,10 +82,11 @@ const OurBrands = ({ pageHeader, locations, industries }) => {
         {pageHeader && <div className="md:hidden"><PageHeader data={pageHeader} /></div>}
         <div className="flex flex-col md:flex-row">
           <Sidebar
-            title="Industries"
+            title={t("industries")}
             menuItem={menuItem}
-            Button={null}
-            description="Explore our brands by industry"
+            buttonText={t("contactUs")}
+            description={t("yourTrustedPartnerForBusinessGrowthInTheGCC")}
+            button={{ text: t("contactUs"), url: "#contact-form" }}
           />
           <div className="bg-lightGrayBackground md:w-[80%] 2xl:w-[85%]">
             <div className="hidden md:block">
@@ -93,7 +95,7 @@ const OurBrands = ({ pageHeader, locations, industries }) => {
             {locations?.data?.length > 0 &&
               <div className="py-8 bg-white px-5 xl:px-0">
                 <div className="mx-auto md:max-w-[800px] 2xl:max-w-[1200px]">
-                  <label htmlFor="location" className="block font-medium text-darkGrayText text-sm mb-2">Location</label>
+                  <label htmlFor="location" className="block font-medium text-darkGrayText text-sm mb-2">{t("location")}</label>
                   <div className="relative">
                     <select
                       className="w-full p-2.5 border border-lightGrayBorder bg-lightGrayBackground rounded-md appearance-none pr-10"
@@ -102,7 +104,7 @@ const OurBrands = ({ pageHeader, locations, industries }) => {
                       id="location"
                       value={selectedLocation}
                     >
-                      <option value="">All Locations</option>
+                      <option value="">{t("allLocations")}</option>
                       {locations?.data?.map((location) => (
                         <option key={location?.id} value={location?.attributes?.name}>
                           {location?.attributes?.name}

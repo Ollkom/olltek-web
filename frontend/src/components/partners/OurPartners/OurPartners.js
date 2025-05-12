@@ -82,8 +82,8 @@ const OurPartners = ({ pageHeader, locations, solutions }) => {
                     <Sidebar
                         title={t("solutions")}
                         menuItem={menuItem}
-                        Button={null}
                         description={t("exploreOurPartnersBySolution")}
+                        button={{ text: t("contactUs"), url: "#contact-form" }}
                     />
                     <div className="bg-lightGrayBackground md:w-[80%] 2xl:w-[85%]">
                         <div className="hidden md:block">
@@ -92,7 +92,7 @@ const OurPartners = ({ pageHeader, locations, solutions }) => {
                         {locations?.data?.length > 0 &&
                             <div className="py-8 bg-white px-5 xl:px-0">
                                 <div className="mx-auto md:max-w-[800px] 2xl:max-w-[1200px]">
-                                    <label htmlFor="location" className="block font-medium text-darkGrayText text-sm mb-2">Location</label>
+                                    <label htmlFor="location" className="block font-medium text-darkGrayText text-sm mb-2">{t("location")}</label>
                                     <div className="relative">
                                         <select
                                             className="w-full p-2.5 border border-lightGrayBorder bg-lightGrayBackground rounded-md appearance-none pr-10"
@@ -101,7 +101,7 @@ const OurPartners = ({ pageHeader, locations, solutions }) => {
                                             id="location"
                                             value={selectedLocation}
                                         >
-                                            <option value="">All Locations</option>
+                                            <option value="">{t("allLocations")}</option>
                                             {locations?.data?.map((location) => (
                                                 <option key={location?.id} value={location?.attributes?.name}>
                                                     {location?.attributes?.name}

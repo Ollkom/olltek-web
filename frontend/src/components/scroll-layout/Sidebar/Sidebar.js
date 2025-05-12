@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui";
 
-const Sidebar = ({ menuItem, title, Button: button, description }) => {
+const Sidebar = ({ menuItem, title, button, description }) => {
   const [activeSection, setActiveSection] = useState(null);
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
@@ -43,14 +43,14 @@ const Sidebar = ({ menuItem, title, Button: button, description }) => {
           </ul>
         </div>
         <p className="hidden font-medium py-5 pe-4 text-darkGrayText text-sm border-t border-[#E5E5E7] md:block">
-          Your trusted partner for business growth in the GCC
+          {description}
         </p>
         <Link
-          href={button?.url || "/"}
+          href={button?.url || "/#contact-form"}
           className="hidden md:block"
         >
           <Button variant="secondary">
-            Contact Us
+            {button?.text}
           </Button>
         </Link>
       </div>
