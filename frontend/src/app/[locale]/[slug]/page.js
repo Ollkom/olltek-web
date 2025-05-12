@@ -51,16 +51,10 @@ export async function generateStaticParams() {
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const urlParamsObject = {
     filters: {
-      slug: [
-        "contact-us",
-        "about-us",
-        "logistics",
-        "technology",
-        "legal",
-        "payment",
-        "warehousing",
-        "customer-service",
-      ],
+      slug: {
+        $ne: null, // get all pages where slug is not null
+        publicationState: "live",
+      },
     },
   };
   const articleResponse = await fetchAPI(path, urlParamsObject, options);
