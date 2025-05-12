@@ -11,6 +11,14 @@
     },
     "blocks": {
       "type": "blocks"
+    },
+    "block2": {
+      "type": "blocks"
+    },
+    "features": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.feature"
     }
   }
 }
