@@ -54,6 +54,7 @@ const OurLocations = async ({ data, pageHeader }) => {
                         title={t("countries")}
                         menuItem={menuItems}
                         description={t("discoverOurGlobalPresenceAndLocalExpertiseInPaymentSolutions")}
+                        button={{ text: t("contactUs"), url: "#contact-form" }}
                     />
                     <div className="bg-lightGrayBackground md:w-[80%] 2xl:w-[85%]">
                         <div className="hidden md:block">
