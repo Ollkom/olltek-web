@@ -973,6 +973,8 @@ export interface SectionsTab extends Schema.Component {
   attributes: {
     title: Attribute.String;
     blocks: Attribute.Blocks;
+    block2: Attribute.Blocks;
+    features: Attribute.Component<'elements.feature', true>;
   };
 }
 

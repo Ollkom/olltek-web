@@ -365,7 +365,22 @@ const populate = {
         },
       },
       Tabs: {
-        populate: true,
+        populate: {
+          blocks: true,
+          block2: true,
+          features: {
+            populate: {
+              feature: true,
+              media: {
+                populate: {
+                  file: {
+                    fields: ["url", "alternativeText", "width", "height"],
+                  },
+                },
+              },
+            },
+          },
+        },
       },
     },
   },
