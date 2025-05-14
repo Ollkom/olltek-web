@@ -52,9 +52,7 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
 
   const toggleDropdown = useCallback(() => {
     if (!isOpen) {
-      setTimeout(() => {
-        dropdownRef.current?.focus();
-      }, 0);
+      dropdownRef.current?.focus();
     }
     setIsOpen(!isOpen);
   }, [isOpen]);
