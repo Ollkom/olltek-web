@@ -3,9 +3,10 @@ import cx from "classnames";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { routing } from "@/i18n/routing";
-import { IconUk, IconTurkey, IconChina, IconSaudiArabia, IconChevronDown, IconLangSwitcher } from "@/assets/images";
-import { useCallback, useState, useTransition } from "react";
+import { IconUk, IconTurkey, IconChevronDown, IconLangSwitcher } from "@/assets/images";
+import { useCallback, useState, useTransition, useRef } from "react";
 import { useNavbar } from "@/hooks";
+import { Loader } from "@/components/ui";
 
 
 function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
@@ -17,6 +18,7 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
   const [isPending, startTransition] = useTransition();
   const { menuState, toggleSubmenu } = useNavbar();
   const { activeMenu, isAnimating } = menuState;
+  const dropdownRef = useRef(null);
 
   // Language configuration with names and icons
   const languageConfig = {
@@ -49,14 +51,29 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
   }, [router, pathname, setIsOpen, isMobile, toggleDrawer]);
 
   const toggleDropdown = useCallback(() => {
+    if (!isOpen) {
+      dropdownRef.current?.focus();
+    }
     setIsOpen(!isOpen);
-  }, [isOpen, setIsOpen]);
+  }, [isOpen]);
+
+  const handleBlur = useCallback((e) => {
+    // Only close if the new focus target is outside our container
+    if (!dropdownRef.current?.contains(e.relatedTarget)) {
+      setIsOpen(false);
+    }
+  }, []);
 
   return (
     <>
       {/* Desktop locale switcher */}
       {!isMobile && (
-        <div className="relative md:min-w-32">
+        <div
+          className="relative md:min-w-32"
+          ref={dropdownRef}
+          tabIndex={-1}
+          onBlur={handleBlur}
+        >
           <div className="hidden md:flex items-center gap-2 cursor-pointer"
             onClick={toggleDropdown}
             aria-label={currentLocaleString}
@@ -84,10 +101,12 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
               if (!languageConfig?.[lang]) return null;
 
               return (
-                <div
+                <button
                   key={lang}
                   className="flex items-center hover:bg-gray-50 cursor-pointer transition-colors duration-200 w-full gap-4 py-5 px-6"
                   onClick={() => handleLanguageChange(lang)}
+                  tabIndex={0}
+                  disabled={isPending}
                 >
                   {Icon && <Icon className="w-6 h-6 md:w-10 md:h-10" />}
                   <span className={cx("text-sm md:text-base text-nowrap", {
@@ -96,7 +115,8 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
                   })}>
                     {languageConfig?.[lang]?.name}
                   </span>
-                </div>
+                  {isPending && <Loader />}
+                </button>
               );
             })}
           </div>
