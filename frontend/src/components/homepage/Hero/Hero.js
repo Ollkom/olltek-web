@@ -4,10 +4,12 @@ import { getGlobal } from "@/utils/api-loaders";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { CountryScroll } from "@/components/homepage";
+import { getTranslations } from "next-intl/server";
 
 const Hero = async (props) => {
   const { data } = props;
   const globalData = await getGlobal();
+  const t = await getTranslations("Global");
   const countries = globalData?.data?.attributes?.countries;
 
   const { picture, pictureMobile, title, description, buttons } = data;
@@ -22,7 +24,8 @@ const Hero = async (props) => {
         <div className="md:max-w-2xl px-6 md:px-0 flex flex-col gap-2 md:gap-3">
           {title && (
             <h2 className="font-bold text-2xl text-left md:text-[52px] leading-tight md:leading-[1.1] [text-shadow:2px_2px_4px_rgba(0,0,0,0.5)]">
-              Cross-Border Solutions to <span className="inline-block italic">GCC</span> from
+              {/* Cross-Border Solutions to <span className="inline-block italic">GCC</span> from */}
+              {t("crossBorderSolutionsToGCCFrom")}
               <CountryScroll countries={countries} />
             </h2>
           )}
