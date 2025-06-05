@@ -66,7 +66,7 @@ const EnhancedFeatures = (props) => {
               index={feature?.length}
             >
               <div className="flex flex-col items-center justify-center gap-4 bg-[#445EAB33] rounded-md p-8 text-center aspect-[4/3]">
-                {Button?.icon && (
+                {Button?.icon?.data?.attributes?.url && (
                   <Image
                     src={getStrapiMedia(Button.icon.data.attributes.url)}
                     alt={Button.icon.data.attributes.name}
