@@ -3,11 +3,10 @@ import cx from "classnames";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { routing } from "@/i18n/routing";
-import { IconUk, IconTurkey, IconChevronDown, IconLangSwitcher } from "@/assets/images";
+import { IconUk, IconTurkey, IconChevronDown, IconLangSwitcher, IconChina } from "@/assets/images";
 import { useCallback, useState, useTransition, useRef } from "react";
 import { useNavbar } from "@/hooks";
-import { Loader } from "@/components/ui";
-
+import { useTopLoader } from 'nextjs-toploader';
 
 function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
   const t = useTranslations("LocaleSwitcher");
@@ -19,12 +18,13 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
   const { menuState, toggleSubmenu } = useNavbar();
   const { activeMenu, isAnimating } = menuState;
   const dropdownRef = useRef(null);
+  const loader = useTopLoader();
 
   // Language configuration with names and icons
   const languageConfig = {
     en: { name: t("en"), icon: IconUk },
     tr: { name: t("tr"), icon: IconTurkey },
-    // cn: { name: t("cn"), icon: IconChina },
+    "zh-CN": { name: t("zh-CN"), icon: IconChina },
     // ar: { name: t("ar"), icon: IconSaudiArabia }
   };
 
@@ -41,6 +41,7 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
 
   const handleLanguageChange = useCallback((newLocale) => {
     startTransition(() => {
+      loader.start();
       router.push(pathname, { locale: newLocale });
       if (isMobile) {
         toggleDrawer();
@@ -74,9 +75,10 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
           tabIndex={-1}
           onBlur={handleBlur}
         >
-          <div className="hidden md:flex items-center gap-2 cursor-pointer"
+          <button className="hidden md:flex items-center gap-2 cursor-pointer"
             onClick={toggleDropdown}
             aria-label={currentLocaleString}
+            disabled={isPending}
           >
             <IconLangSwitcher className={cx("text-lightBlue", {
               "animate-pulse text-lightBlue": isPending
@@ -89,12 +91,13 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
             <IconChevronDown className={cx("transition-transform", {
               "rotate-180": isOpen
             })} />
-          </div>
+          </button>
 
           {/* Desktop dropdown */}
           <div className={cx("transition-all duration-300 ease-in-out absolute top-12 right-0 mt-2 bg-white rounded-lg shadow-xl z-50 min-w-60 2xl:min-w-80 overflow-hidden", {
             "opacity-0 invisible h-0": !isOpen,
             "opacity-100 visible": isOpen,
+            "hidden": isPending
           })}>
             {routing?.locales?.map((lang) => {
               const Icon = languageConfig?.[lang]?.icon;
@@ -115,7 +118,6 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
                   })}>
                     {languageConfig?.[lang]?.name}
                   </span>
-                  {isPending && <Loader />}
                 </button>
               );
             })}
