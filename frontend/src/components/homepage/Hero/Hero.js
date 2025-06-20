@@ -23,14 +23,14 @@ const Hero = async (props) => {
       <div className="absolute container flex flex-col items-start justify-center gap-2 md:gap-3 text-white w-full h-full z-10">
         <div className="md:max-w-2xl px-6 md:px-0 flex flex-col gap-2 md:gap-3">
           {title && (
-            <h2 className="font-bold text-2xl text-left md:text-[52px] leading-tight md:leading-[1.1] [text-shadow:2px_2px_4px_rgba(0,0,0,0.5)]">
+            <h2 className="font-bold text-2xl md:text-[52px] leading-tight md:leading-[1.1] [text-shadow:2px_2px_4px_rgba(0,0,0,0.5)] text-start">
               {/* Cross-Border Solutions to <span className="inline-block italic">GCC</span> from */}
               {t("crossBorderSolutionsToGCCFrom")}
               <CountryScroll countries={countries} />
             </h2>
           )}
           {description && (
-            <p className="text-base md:text-2xl text-left font-medium [text-shadow:2px_2px_4px_rgba(0,0,0,0.5)]">{description}</p>
+            <p className="text-base md:text-2xl font-medium [text-shadow:2px_2px_4px_rgba(0,0,0,0.5)] text-start">{description}</p>
           )}
           {buttons?.length > 0 && (
             <div className="flex justify-start items-center flex-wrap gap-2 md:gap-3 pt-2">

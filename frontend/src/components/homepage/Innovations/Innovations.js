@@ -4,17 +4,21 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { getStrapiMedia } from "@/utils/api-helpers";
 import cx from "classnames";
+import { useLocale } from "next-intl";
 
 const Innovations = (props) => {
   const { data } = props;
   const { description, feature, title, picture } = data;
   const [selectedIndex, setSelectedIndex] = useState(0);
 
+  const locale = useLocale();
+  const isRTL = locale === "ar";
 
   const OPTIONS = {
     loop: true,
     align: "start",
     skipSnaps: false,
+    direction: isRTL ? "rtl" : "ltr",
   };
 
   const [mainRef, mainApi] = useEmblaCarousel(OPTIONS);
@@ -99,7 +103,7 @@ const Innovations = (props) => {
                       className={cx(
                         "inline-flex w-fit items-start cursor-pointer transition-all duration-300 ease-in-out border hover:border-[#E5E5E7]/50 rounded-full",
                         {
-                          "border-[#E5E5E7] bg-white shadow-md transform scale-[1.02] translate-x-[1%]": index === selectedIndex,
+                          "border-[#E5E5E7] bg-white shadow-md transform scale-[1.02] ltr:translate-x-[1%] rtl:translate-x-[-1%]": index === selectedIndex,
                           "border-transparent opacity-80 hover:opacity-100": index !== selectedIndex
                         }
                       )}
@@ -107,7 +111,7 @@ const Innovations = (props) => {
                     >
                       <div className="flex items-center">
                         <div className={cx(
-                          "flex items-center justify-center w-8 h-8 rounded-full mr-2 md:mr-4 border-t border-r border-b border-[#E5E5E7] font-medium transition-all duration-300 ease-in-out flex-shrink-0 text-xs md:text-sm",
+                          "flex items-center justify-center w-8 h-8 rounded-full me-2 md:me-4 border-t border-r border-b border-[#E5E5E7] font-medium transition-all duration-300 ease-in-out flex-shrink-0 text-xs md:text-sm rtl:border-r-0 rtl:border-l",
                           {
                             "text-white font-semibold bg-darkBlue": index === selectedIndex,
                             "bg-[#FFFFFF] text-[#525D6A]": index !== selectedIndex
@@ -131,7 +135,7 @@ const Innovations = (props) => {
 
                     {/* Divider */}
                     {index < feature.length - 1 && (
-                      <div className="h-6 w-[2px] bg-[#FFFFFF] ml-4 my-2 transition-all duration-300 ease-in-out"></div>
+                      <div className="h-6 w-[2px] bg-[#FFFFFF] ms-4 my-2 transition-all duration-300 ease-in-out"></div>
                     )}
                   </div>
                 )

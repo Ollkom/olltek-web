@@ -5,14 +5,19 @@ import { SectionHeader } from "@/components/common";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import { MotionContainer } from "@/components/ui";
+import { useLocale } from "next-intl";
 
 const Clients = (props) => {
   const { data } = props;
   const { heading, Client, subtitle, enable } = data;
 
+  const locale = useLocale();
+  const isRTL = locale === "ar";
+
   const OPTIONS = {
     loop: true,
     align: "start",
+    direction: isRTL ? "rtl" : "ltr",
   };
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [
     AutoScroll({ playOnInit: true, stopOnMouseEnter: true, stopOnInteraction: false })

@@ -7,6 +7,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { CarouselButton, DotButton, SectionHeader } from "@/components/common";
 import cx from "classnames";
 import { useCarouselButtons, useDotButton } from "@/hooks";
+import { useLocale } from "next-intl";
 
 function Testimonial({ text, authorName, picture, authorTitle }) {
   const imageUrl = getStrapiMedia(picture?.data?.attributes?.url);
@@ -37,10 +38,14 @@ function Testimonial({ text, authorName, picture, authorTitle }) {
 
 export default function Testimonials({ data }) {
 
+  const locale = useLocale();
+  const isRTL = locale === "ar";
+
   const OPTIONS = {
     loop: true,
     align: "start",
     slidesToScroll: "auto",
+    direction: isRTL ? "rtl" : "ltr",
   };
 
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS, [
