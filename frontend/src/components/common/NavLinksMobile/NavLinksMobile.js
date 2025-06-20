@@ -33,13 +33,13 @@ const NavLinksMobile = (props) => {
                     onClick={() => toggleSubmenu(link)}
                     className="flex items-center justify-between w-full px-6"
                   >
-                    {link?.title && <span className="text-base font-medium text-darkGrayText group-active:text-lightBlue">{link?.title}</span>}
-                    <IconChevronDown className="rotate-[270deg] text-darkGrayText group-active:text-lightBlue" />
+                    {link?.title && <span className="text-base rtl:text-xl font-medium text-darkGrayText group-active:text-lightBlue">{link?.title}</span>}
+                    <IconChevronDown className="rotate-[270deg] rtl:rotate-[90deg] text-darkGrayText group-active:text-lightBlue" />
                   </button>
                 ) : (
                   <DynamicTag
                     {...(link?.url && { href: link?.url })}
-                    className={cx("block px-6 text-base font-medium text-darkGrayText", {
+                    className={cx("block px-6 text-base rtl:text-xl font-medium text-darkGrayText", {
                       "cursor-pointer": link?.url,
                       "cursor-default": !link?.url
                     })}

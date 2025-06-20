@@ -34,7 +34,7 @@ const Footer = async (props) => {
             </div>
             {socialLinks?.length > 0 && <div className="flex flex-col gap-3">
               <p className="text-base md:text-lg font-medium text-lightGrayBorder">{t("followUsOn")}</p>
-              <div className="flex space-x-3">
+              <div className="flex gap-3">
                 {socialLinks?.map((link) => {
                   const icon = link?.icon?.data?.attributes;
                   if (!icon?.url) return null;

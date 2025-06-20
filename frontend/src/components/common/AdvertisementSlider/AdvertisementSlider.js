@@ -8,13 +8,17 @@ import { Link } from "@/i18n/routing";
 import { useEffect } from "react";
 import { DotButton } from "@/components/common";
 import cx from "classnames";
+import { useLocale } from "next-intl";
 
 function AdvertisementSlider({ advertisements, hoverMenuItem, isMenuOpen, isMobileMenu }) {
+    const locale = useLocale();
+    const isRTL = locale === "ar";
 
     const [emblaRef, emblaApi] = useEmblaCarousel({
         loop: true,
         align: "start",
         slidesToScroll: 1,
+        direction: isRTL ? "rtl" : "ltr",
     }, [
         Autoplay({ playOnInit: true, stopOnMouseEnter: true, stopOnInteraction: false, delay: 3000 })
     ]);
@@ -87,7 +91,7 @@ function AdvertisementSlider({ advertisements, hoverMenuItem, isMenuOpen, isMobi
 
                         {/* Indicator dots */}
                         {isCarouselRequired && (
-                            <div className={cx("absolute left-1/2 transform -translate-x-1/2 flex space-x-2", {
+                            <div className={cx("absolute left-1/2 transform -translate-x-1/2 flex gap-2", {
                                 "bottom-8": !isMobileMenu,
                                 "bottom-10": isMobileMenu
                             })}>

@@ -55,7 +55,7 @@ const NavLinks = (props) => {
               })}
             >
               {link.title}
-              {hasNavigationLinks > 0 && <IconChevronDown className="ml-2" />}
+              {hasNavigationLinks > 0 && <IconChevronDown className="ms-2" />}
             </DynamicTag>
             {hasNavigationLinks > 0 && (
               <div
