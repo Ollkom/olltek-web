@@ -40,11 +40,13 @@
     "industries": "Industries",
     "contactUs": "Contact Us",
     "allLocations": "All Locations",
-    "crossBorderSolutionsToGCCFrom": "Cross-Border Solutions to GCC from"
+    "crossBorderSolutionsToGCCFrom": "Cross-Border Solutions to GCC from",
+    "stayTunedForMorePartners": "Stay tuned for more partners!",
+    "stayTunedForMoreBrands": "Stay tuned for more brands!"
   },
   "LocaleSwitcher": {
-    "en": "English (UK)",
-    "tr": "Turkish",
+    "en": "English",
+    "tr": "Türkçe",
     "zh-CN": "中文",
     "ar": "العربية",
     "language": "Language"
