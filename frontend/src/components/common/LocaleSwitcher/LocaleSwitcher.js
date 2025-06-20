@@ -3,7 +3,7 @@ import cx from "classnames";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { routing } from "@/i18n/routing";
-import { IconUk, IconTurkey, IconChevronDown, IconLangSwitcher, IconChina } from "@/assets/images";
+import { IconUk, IconTurkey, IconChevronDown, IconLangSwitcher, IconChina, IconSaudiArabia } from "@/assets/images";
 import { useCallback, useState, useTransition, useRef } from "react";
 import { useNavbar } from "@/hooks";
 import { useTopLoader } from 'nextjs-toploader';
@@ -25,7 +25,7 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
     en: { name: t("en"), icon: IconUk },
     tr: { name: t("tr"), icon: IconTurkey },
     "zh-CN": { name: t("zh-CN"), icon: IconChina },
-    // ar: { name: t("ar"), icon: IconSaudiArabia }
+    ar: { name: t("ar"), icon: IconSaudiArabia }
   };
 
   const currentLocaleString = languageConfig[locale]?.name;
@@ -80,10 +80,10 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
             aria-label={currentLocaleString}
             disabled={isPending}
           >
-            <IconLangSwitcher className={cx("text-lightBlue", {
+            <IconLangSwitcher className={cx("text-darkGrayText", {
               "animate-pulse text-lightBlue": isPending
             })} />
-            <span className={cx("text-black text-sm md:text-base font-medium", {
+            <span className={cx("text-darkGrayText text-sm md:text-base rtl:md:text-xl font-bold font-inter rtl:font-syne", {
               "animate-pulse text-lightBlue": isPending
             })}>
               {currentLocaleString}
@@ -94,7 +94,7 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
           </button>
 
           {/* Desktop dropdown */}
-          <div className={cx("transition-all duration-300 ease-in-out absolute top-12 right-0 mt-2 bg-white rounded-lg shadow-xl z-50 min-w-60 2xl:min-w-80 overflow-hidden", {
+          <div className={cx("transition-all duration-300 ease-in-out absolute top-12 right-0 rtl:right-auto rtl:left-0 mt-2 rtl:mt-3 bg-white rounded-lg shadow-xl z-50 min-w-60 2xl:min-w-80 overflow-hidden", {
             "opacity-0 invisible h-0": !isOpen,
             "opacity-100 visible": isOpen,
             "hidden": isPending
@@ -112,7 +112,7 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
                   disabled={isPending}
                 >
                   {Icon && <Icon className="w-6 h-6 md:w-10 md:h-10" />}
-                  <span className={cx("text-sm md:text-base text-nowrap", {
+                  <span className={cx("text-sm md:text-base text-nowrap font-inter rtl:font-syne", {
                     "font-medium text-darkGrayText": locale !== lang,
                     "font-semibold text-lightBlue": locale === lang,
                   })}>
@@ -133,10 +133,10 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
               onClick={() => toggleSubmenu(localeMenuItem)}
               className="flex items-center justify-between w-full px-6"
             >
-              <span className="text-base font-medium text-darkGrayText group-active:text-lightBlue">
+              <span className="text-base rtl:text-xl font-medium text-darkGrayText group-active:text-lightBlue">
                 {t("language")}: {currentLocaleString}
               </span>
-              <IconChevronDown className="rotate-[270deg] text-darkGrayText group-active:text-lightBlue" />
+              <IconChevronDown className="rotate-[270deg] rtl:rotate-[90deg] text-darkGrayText group-active:text-lightBlue" />
             </button>
           </li>
 
@@ -153,9 +153,9 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
                     className="group flex items-center gap-4 text-darkGrayText"
                   >
                     <div className="w-10 h-10 rounded-full border border-darkGrayText group-active:border-lightBlue flex items-center justify-center">
-                      <IconChevronDown className="rotate-90 group-active:text-lightBlue" />
+                      <IconChevronDown className="rotate-[270deg] rtl:rotate-[90deg] group-active:text-lightBlue" />
                     </div>
-                    <span className="text-base font-medium group-active:text-lightBlue">Back</span>
+                    <span className="text-base rtl:text-xl font-medium group-active:text-lightBlue">Back</span>
                   </button>
 
                   <ul className="flex flex-col gap-8">
@@ -177,7 +177,7 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
                                 <Icon />
                               </div>
                             )}
-                            <span className={cx("text-base font-medium", {
+                            <span className={cx("text-base rtl:text-xl font-medium", {
                               "text-lightBlue": locale === lang,
                               "text-darkGrayText group-active:text-lightBlue": locale !== lang,
                             })}>
