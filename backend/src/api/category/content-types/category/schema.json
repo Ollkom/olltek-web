@@ -24,10 +24,6 @@
         }
       }
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "name"
-    },
     "articles": {
       "type": "relation",
       "relation": "oneToMany",
@@ -41,6 +37,15 @@
           "localized": true
         }
       }
+    },
+    "slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
     }
   }
 }
