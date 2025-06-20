@@ -40,11 +40,13 @@
     "industries": "Endüstriler",
     "contactUs": "İletişime Geçin",
     "allLocations": "Tüm Konumlar",
-    "crossBorderSolutionsToGCCFrom": "GCC’ye Yönelik Sınır Ötesi Çözümler -"
+    "crossBorderSolutionsToGCCFrom": "GCC’ye Yönelik Sınır Ötesi Çözümler -",
+    "stayTunedForMorePartners": "Daha fazla iş ortakımız için takip edin!",
+    "stayTunedForMoreBrands": "Daha fazla markamız için takip edin!"
   },
   "LocaleSwitcher": {
-    "en": "English (UK)",
-    "tr": "Turkish",
+    "en": "English",
+    "tr": "Türkçe",
     "zh-CN": "中文",
     "ar": "العربية",
     "language": "Dil"

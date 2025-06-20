@@ -40,11 +40,13 @@
     "industries": "الصناعات",
     "contactUs": "تواصل معنا",
     "allLocations": "جميع المواقع",
-    "crossBorderSolutionsToGCCFrom": "من خلال الحدود المتقاطعة للمنطقة المركزية العربية"
+    "crossBorderSolutionsToGCCFrom": "من خلال الحدود المتقاطعة للمنطقة المركزية العربية",
+    "stayTunedForMorePartners": "تابعنا للمزيد من الشركاء!",
+    "stayTunedForMoreBrands": "تابعنا للمزيد من العلامات التجارية!"
   },
   "LocaleSwitcher": {
-    "en": "English (UK)",
-    "tr": "Turkish",
+    "en": "English",
+    "tr": "Türkçe",
     "zh-CN": "中文",
     "ar": "العربية",
     "language": "اللغة"
