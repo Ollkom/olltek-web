@@ -8,7 +8,8 @@ import { IconChevronDown } from "@/assets/images";
 import { useTranslations } from "next-intl";
 
 const Grid = ({ items }) => {
-    if (items?.length === 0) return <div className="text-center text-gray-500 py-10">Stay tuned for more partners!</div>;
+    const t = useTranslations("Global");
+    if (items?.length === 0) return <div className="text-center text-gray-500 py-10">{t("stayTunedForMorePartners")}</div>;
     return (
         <div className="grid grid-cols-3 gap-2 md:gap-3 md:grid-cols-4 py-5">
             {items?.map((item) => {
