@@ -21,7 +21,7 @@ const Hero = async (props) => {
     <div className="relative w-full flex justify-center md:px-0 bg-black" role="banner">
 
       <div className="absolute container flex flex-col items-start justify-center gap-2 md:gap-3 text-white w-full h-full z-10">
-        <div className="md:max-w-2xl px-6 md:px-0 flex flex-col gap-2 md:gap-3">
+        <div className="md:max-w-3xl px-6 md:px-0 flex flex-col gap-2 md:gap-3">
           {title && (
             <h2 className="font-bold text-2xl md:text-[52px] leading-tight md:leading-[1.1] [text-shadow:2px_2px_4px_rgba(0,0,0,0.5)] text-start">
               {/* Cross-Border Solutions to <span className="inline-block italic">GCC</span> from */}
