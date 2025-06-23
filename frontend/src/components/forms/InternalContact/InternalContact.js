@@ -149,7 +149,7 @@ export default function InternalContact({ leadForm, department }) {
           <div className="md:max-w-[840px] mx-auto bg-white p-4 md:p-8 rounded-md">
             <div className="flex flex-col">
               <form onSubmit={handleSubmit}>
-                <div className="md:flex md:space-x-3">
+                <div className="md:flex md:gap-3">
                   <div className="w-full mb-6">
                     <Input
                       type="text"
@@ -161,7 +161,7 @@ export default function InternalContact({ leadForm, department }) {
                     <ErrorMessage message={formerror?.firstName} />
                   </div>
                 </div>
-                <div className="md:flex md:space-x-3">
+                <div className="md:flex md:gap-3">
                   <div className="w-full md:w-1/2 mb-6">
                     <Input
                       type="text"

@@ -39,7 +39,7 @@ export default function PageHeader({ data }) {
             </div>
           )}
 
-          <div className="flex flex-col md:flex-row md:items-center justify-center text-center md:text-left md:divide-x-2 md:divide-white">
+          <div className="flex flex-col md:flex-row md:items-center justify-center text-center md:text-start md:divide-x-2 md:divide-white rtl:md:divide-x-reverse">
             {title && <h1 className="text-3xl md:text-4xl 2xl:text-5xl font-medium px-4 2xl:px-6 mb-2 md:mb-0">{title}</h1>}
             {description && <p className="text-sm md:text-lg font-normal max-w-xl text-[#F9F9F9] px-4 2xl:px-6">{description}</p>}
           </div>
