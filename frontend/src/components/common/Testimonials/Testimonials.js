@@ -80,7 +80,7 @@ export default function Testimonials({ data }) {
             {isCarouselRequired && (
               <div className="hidden md:flex md:min-w-20">
                 <CarouselButton
-                  direction="prev"
+                  direction={isRTL ? "next" : "prev"}
                   onClick={onPrevButtonClick}
                   disabled={prevBtnDisabled}
                   className="mx-auto"
@@ -105,7 +105,7 @@ export default function Testimonials({ data }) {
 
             <div className="hidden md:flex md:min-w-20">
               <CarouselButton
-                direction="next"
+                direction={isRTL ? "prev" : "next"}
                 onClick={onNextButtonClick}
                 disabled={nextBtnDisabled}
                 className="mx-auto"

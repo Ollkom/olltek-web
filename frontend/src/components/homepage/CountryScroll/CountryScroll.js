@@ -35,10 +35,10 @@ const CountryScroll = ({ countries }) => {
                     >
 
                         {countryArray[currentIndex]?.title &&
-                            <span className="italic me-1">{countryArray[currentIndex].title}</span>
+                            <span className="italic pe-1 ps-2">{countryArray[currentIndex].title}</span>
                         }
                         {countryArray[currentIndex]?.media?.file?.data?.attributes?.url && (
-                            <span className="inline-block ms-2">
+                            <span className="inline-block ps-2">
                                 <Image
                                     src={getStrapiMedia(countryArray[currentIndex].media.file.data.attributes.url)}
                                     alt={countryArray[currentIndex].media.file.data.attributes.alternativeText || "Icon"}
