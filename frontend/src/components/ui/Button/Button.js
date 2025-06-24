@@ -44,12 +44,12 @@ const Button = (props) => {
       >
         {variant === "gradient" ? (
           <span className="flex w-full md:w-auto bg-white text-white rounded-full transition-colors duration-300 ease-in-out  hover:text-white hover:bg-gradient-to-r from-[#08B1F6] to-[#2F4BDF]">
-            <span className="w-full md:w-max inline-block bg-gradient-to-r from-[#08B1F6] to-[#2F4BDF] bg-clip-text text-transparent px-6 py-1 hover:text-white transition-colors duration-300 ease-in-out rtl:text-xl rtl:font-bold">
+            <span className="w-full md:w-max inline-block bg-gradient-to-r from-[#08B1F6] to-[#2F4BDF] bg-clip-text text-transparent px-6 py-1 hover:text-white transition-colors duration-300 ease-in-out rtl:text-xl">
               {children}
             </span>
           </span>
         ) : (
-          <span className="rtl:text-xl rtl:font-bold">
+          <span className="rtl:text-xl">
             {children}
           </span>
         )}

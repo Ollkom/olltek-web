@@ -10,7 +10,7 @@ module.exports = {
       },
       fontFamily: {
         inter: ["var(--font-inter)"],
-        syne: ["var(--font-syne)"],
+        notoSansArabic: ["var(--font-notoSansArabic)"],
       },
       colors: {
         amazon_blue: {

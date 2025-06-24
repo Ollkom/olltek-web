@@ -2,7 +2,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { GoogleTagManager } from "@next/third-parties/google";
 import NextTopLoader from "nextjs-toploader";
 import { Header, Footer } from "@/components/common";
-import { Inter, Syne } from "next/font/google";
+import { Inter, Noto_Sans_Arabic } from "next/font/google";
 import { getStrapiURL } from "@/utils/api-helpers";
 import { FALLBACK_SEO } from "@/utils/constants";
 import { getGlobal, getMainMenu } from "@/utils/api-loaders";
@@ -13,11 +13,11 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 
-const syne = Syne({
-  subsets: ["latin"],
-  variable: '--font-syne',
+const notoSansArabic = Noto_Sans_Arabic({
+  subsets: ["arabic"],
+  variable: '--font-notoSansArabic',
   display: 'swap',
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 })
 
 const inter = Inter({
@@ -75,7 +75,7 @@ export default async function RootLayout({ children, params }) {
     <html
       lang={locale}
       dir={direction}
-      className={`${syne.variable} ${inter.variable} font-inter rtl:font-syne antialiased`}>
+      className={`${inter.variable} ${notoSansArabic.variable} font-inter rtl:font-notoSansArabic antialiased`}>
       <GoogleTagManager gtmId="GTM-5LH3SXGT" />
       <GoogleAnalyticsTracking />
       <body>
