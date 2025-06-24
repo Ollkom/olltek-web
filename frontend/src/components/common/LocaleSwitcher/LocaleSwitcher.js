@@ -83,8 +83,10 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
             <IconLangSwitcher className={cx("text-darkGrayText", {
               "animate-pulse text-lightBlue": isPending
             })} />
-            <span className={cx("text-darkGrayText text-sm md:text-base rtl:md:text-xl font-bold font-inter rtl:font-syne", {
-              "animate-pulse text-lightBlue": isPending
+            <span className={cx("text-darkGrayText text-sm md:text-base font-bold", {
+              "animate-pulse text-lightBlue": isPending,
+              "font-inter": locale !== "ar",
+              "font-notoSansArabic": locale === "ar"
             })}>
               {currentLocaleString}
             </span>
@@ -112,9 +114,10 @@ function LocaleSwitcher({ isMobile = false, toggleDrawer }) {
                   disabled={isPending}
                 >
                   {Icon && <Icon className="w-6 h-6 md:w-10 md:h-10" />}
-                  <span className={cx("text-sm md:text-base text-nowrap font-inter rtl:font-syne", {
+                  <span className={cx("text-sm md:text-base text-nowrap", {
                     "font-medium text-darkGrayText": locale !== lang,
                     "font-semibold text-lightBlue": locale === lang,
+                    "font-notoSansArabic": lang === "ar"
                   })}>
                     {languageConfig?.[lang]?.name}
                   </span>
